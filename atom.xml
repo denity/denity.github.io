@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://sqj.me/"/>
-  <updated>2019-10-23T04:11:34.215Z</updated>
+  <updated>2019-10-24T09:05:58.298Z</updated>
   <id>http://sqj.me/</id>
   
   <author>
@@ -17,55 +17,32 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>哪一个是正确的</title>
-    <link href="http://sqj.me/2019/a-template-paper/"/>
-    <id>http://sqj.me/2019/a-template-paper/</id>
-    <published>2019-10-19T01:43:18.000Z</published>
-    <updated>2019-10-23T04:11:34.215Z</updated>
+    <title>设置github正确的Repository name避免404错误</title>
+    <link href="http://sqj.me/2019/set-correct-name-to-fix-github-404/"/>
+    <id>http://sqj.me/2019/set-correct-name-to-fix-github-404/</id>
+    <published>2019-10-24T08:50:00.000Z</published>
+    <updated>2019-10-24T09:05:58.298Z</updated>
     
-    <content type="html"><![CDATA[<p>This is your very first post.</p><p><em>测试各类的字体</em> heiheihahe</p><p><strong>粗体</strong></p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print_r(somthing)</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;This is your very first post.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;测试各类的字体&lt;/em&gt; heiheihahe&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;粗体&lt;/strong&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight php&quot;&gt;&lt;table&gt;&lt;tr&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="Zabbix" scheme="http://sqj.me/categories/Zabbix/"/>
-    
-    
-      <category term="琐碎事" scheme="http://sqj.me/tags/%E7%90%90%E7%A2%8E%E4%BA%8B/"/>
-    
-      <category term="Zabbix" scheme="http://sqj.me/tags/Zabbix/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://sqj.me/2019/hello-world/"/>
-    <id>http://sqj.me/2019/hello-world/</id>
-    <published>2019-10-18T08:44:10.020Z</published>
-    <updated>2019-10-18T08:44:10.020Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<p>现在一个很热门的博客方式，就是在github上建Github Pages。</p><p>在创建Github的仓库（Resposity），并且上传Hexo页面后，页面总是404。</p><p><img src="E:%5Chexo%5Cblog%5Csource_posts%5Cpics%5C1571907461817.png" alt="1571907461817"></p><p>在网上很多教程中，都忽略了一点，就是正确设置github仓库的名字。</p><p><strong>如果要设置Github Pages，仓库的名字，必须是用户名。才能出现形如 <u>username.github.io</u> 的访问方式。</strong></p><p>也就是说，这里的仓库名称也不能随便取得。</p><hr><p>正确设置后，在Github的“Settings”里面，将直接显示出可访问的地址。</p><p><img src="E:%5Chexo%5Cblog%5Csource_posts%5Cpics%5C1571907855052.png" alt="1571907855052"></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+        &lt;p&gt;现在一个很热门的博客方式，就是在github上建Github Pages。&lt;/p&gt;
+&lt;p&gt;在创建Github的仓库（Resposity），并且上传Hexo页面后，页面总是404。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;E:%5Chexo%5Cblog%5Csource_post
       
     
     </summary>
     
     
+      <category term="HTML/CSS/JS" scheme="http://sqj.me/categories/HTML-CSS-JS/"/>
+    
+      <category term="运维" scheme="http://sqj.me/categories/HTML-CSS-JS/%E8%BF%90%E7%BB%B4/"/>
+    
+    
+      <category term="Hexo" scheme="http://sqj.me/tags/Hexo/"/>
     
   </entry>
   
