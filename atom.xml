@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://sqj.me/"/>
-  <updated>2019-10-24T09:05:58.298Z</updated>
+  <updated>2019-10-25T05:04:30.519Z</updated>
   <id>http://sqj.me/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://sqj.me/2019/set-correct-name-to-fix-github-404/"/>
     <id>http://sqj.me/2019/set-correct-name-to-fix-github-404/</id>
     <published>2019-10-24T08:50:00.000Z</published>
-    <updated>2019-10-24T09:05:58.298Z</updated>
+    <updated>2019-10-25T05:04:30.519Z</updated>
     
-    <content type="html"><![CDATA[<p>现在一个很热门的博客方式，就是在github上建Github Pages。</p><p>在创建Github的仓库（Resposity），并且上传Hexo页面后，页面总是404。</p><p><img src="E:%5Chexo%5Cblog%5Csource_posts%5Cpics%5C1571907461817.png" alt="1571907461817"></p><p>在网上很多教程中，都忽略了一点，就是正确设置github仓库的名字。</p><p><strong>如果要设置Github Pages，仓库的名字，必须是用户名。才能出现形如 <u>username.github.io</u> 的访问方式。</strong></p><p>也就是说，这里的仓库名称也不能随便取得。</p><hr><p>正确设置后，在Github的“Settings”里面，将直接显示出可访问的地址。</p><p><img src="E:%5Chexo%5Cblog%5Csource_posts%5Cpics%5C1571907855052.png" alt="1571907855052"></p>]]></content>
+    <content type="html"><![CDATA[<p>现在一个很热门的博客方式，就是在github上建Github Pages。</p><p>在创建Github的仓库（Resposity），并且上传Hexo页面后，页面总是404。</p><p><img src="https://s1.yuehetong.com/denitygithub_media/2019/1571907461817.png" alt="1571907461817"></p><p>在网上很多教程中，都忽略了一点，就是正确设置github仓库的名字。</p><p><strong>如果要设置Github Pages，仓库的名字，必须是用户名。才能出现形如 <u>username.github.io</u> 的访问方式。</strong></p><p>也就是说，这里的仓库名称也不能随便取得。</p><hr><p>正确设置后，在Github的“Settings”里面，将直接显示出可访问的地址。</p><p><img src="https://s1.yuehetong.com/denitygithub_media/2019/1571907855052.png" alt="1571907855052"></p><p>配置完毕后，形成如下的设置，注意仓库前缀需要和用户名一致。</p><p><img src="https://s1.yuehetong.com/denitygithub_media/2019/githubname-settings.png" alt=""></p>]]></content>
     
     <summary type="html">
     
@@ -31,7 +31,7 @@
       
         &lt;p&gt;现在一个很热门的博客方式，就是在github上建Github Pages。&lt;/p&gt;
 &lt;p&gt;在创建Github的仓库（Resposity），并且上传Hexo页面后，页面总是404。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;E:%5Chexo%5Cblog%5Csource_post
+&lt;p&gt;&lt;img src=&quot;https://s1.yuehetong.com/denit
       
     
     </summary>
