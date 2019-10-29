@@ -2,7 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://sqj.me/mylinks/index.html</loc>
+    <loc>http://sqj.me/2019/a-way-to-set-grafana-panel-links/</loc>
+    
+    <lastmod>2019-10-29T07:58:18.580Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sqj.me/tags/</loc>
+    
+    <lastmod>2019-10-25T07:52:29.411Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sqj.me/mylinks/</loc>
     
     <lastmod>2019-10-25T05:34:14.808Z</lastmod>
     
@@ -16,21 +30,14 @@
   </url>
   
   <url>
-    <loc>http://sqj.me/about/index.html</loc>
+    <loc>http://sqj.me/about/</loc>
     
     <lastmod>2019-10-20T07:56:37.344Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://sqj.me/tags/index.html</loc>
-    
-    <lastmod>2019-10-20T07:51:02.470Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://sqj.me/categories/index.html</loc>
+    <loc>http://sqj.me/categories/</loc>
     
     <lastmod>2019-10-20T07:50:28.379Z</lastmod>
     

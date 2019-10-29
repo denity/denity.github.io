@@ -8,28 +8,34 @@
   <meta name="renderer" content="webkit">
 
   
-  <title>从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想</title>
+  <title>配置Grafana的Panel地址，实现点击图表后跳转到另一个dashboard/Url | 从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想</title>
 
   <link rel="shortcut icon" href="/images/favicon.png">
   <link rel="alternate" href="/atom.xml" title="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="description" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-<meta property="og:type" content="website">
-<meta property="og:title" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-<meta property="og:url" content="http:&#x2F;&#x2F;sqj.me&#x2F;tags&#x2F;">
+  <meta name="description" content="配置Grafana的Panel地址，实现点击图表后跳转到另一个dashboardGrafana有3个地方可以配置跳转链接  dashboard层次，在dashboard的settings可以配置Links。 每一个Panel的data links。 每一个Panel的panel links。     在这三个地方都能够实现点击链接跳转到另外的页面。 传参在添加链接时，可以使用绝对地址，也可以通过传">
+<meta name="keywords" content="Grafana">
+<meta property="og:type" content="article">
+<meta property="og:title" content="配置Grafana的Panel地址，实现点击图表后跳转到另一个dashboard&#x2F;Url">
+<meta property="og:url" content="http:&#x2F;&#x2F;sqj.me&#x2F;2019&#x2F;a-way-to-set-grafana-panel-links&#x2F;">
 <meta property="og:site_name" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-<meta property="og:description" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
+<meta property="og:description" content="配置Grafana的Panel地址，实现点击图表后跳转到另一个dashboardGrafana有3个地方可以配置跳转链接  dashboard层次，在dashboard的settings可以配置Links。 每一个Panel的data links。 每一个Panel的panel links。     在这三个地方都能够实现点击链接跳转到另外的页面。 传参在添加链接时，可以使用绝对地址，也可以通过传">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-25T07:52:29.411Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.yuehetong.com&#x2F;denitygithub_media&#x2F;2019&#x2F;awaytosetlinks1.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.yuehetong.com&#x2F;denitygithub_media&#x2F;2019&#x2F;awaytosetlinks2.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.yuehetong.com&#x2F;denitygithub_media&#x2F;2019&#x2F;awaytosetlinks3.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1.yuehetong.com&#x2F;denitygithub_media&#x2F;2019&#x2F;awaytosetlinks4.png">
+<meta property="og:updated_time" content="2019-10-29T07:58:18.580Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;s1.yuehetong.com&#x2F;denitygithub_media&#x2F;2019&#x2F;awaytosetlinks1.png">
 
   <meta name="format-detection" content="telephone=no,email=no">
   <meta name="theme-color" content="#9C27B0">
   <meta name="description" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="keywords" content="">
+  <meta name="keywords" content=",Grafana">
 
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="application-name" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="msapplication-starturl" content="http://sqj.me/tags/">
+  <meta name="msapplication-starturl" content="http://sqj.me/2019/a-way-to-set-grafana-panel-links/">
   <meta name="msapplication-navbutton-color" content="#9C27B0">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
@@ -37,9 +43,12 @@
   <link rel="apple-touch-icon" href="/images/favicon.png">
 
   
+    <meta property="article:published_time" content="Mon Oct 28 2019 23:03:28 GMT+0800">
+    <meta property="article:modified_time" content="Tue Oct 29 2019 15:58:18 GMT+0800">
+  
 
   
-    <link rel="canonical" href="http://sqj.me/tags/index.html">
+    <link rel="canonical" href="http://sqj.me/2019/a-way-to-set-grafana-panel-links/">
   
 
   
@@ -164,11 +173,11 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="/images/random/material-16.png" style="max-height: 180px;">
+      <img src="/images/random/material-4.png" style="max-height: 180px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
-          <div class="mdui-card-primary-title"></div>
-          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2019-10-25 / <i class="iconfont">&#xe601;</i> Jay Yi</div>
+          <div class="mdui-card-primary-title">配置Grafana的Panel地址，实现点击图表后跳转到另一个dashboard/Url</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2019-10-28 / <i class="iconfont">&#xe601;</i> Jay</div>
         </div>
       </div>
       <div class="mdui-card-menu">
@@ -180,45 +189,76 @@
             
             <li class="mdui-menu-item" disabled>
               
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABeUlEQVR42u3aO47DMAwFQN//0pt2GylPVGLRyKgyjDgcN4T5uf4edS5cXFxcXFzcBtwrPqOn/t9Jrpdj4eLiHuK+SSXxb0a4nVi4uLhnuaOEklzP/7MWCxcX9+ncKDAuLu4PcOdPtUtkuLi4JW5SkFylc6xWw8XF3eDWQj6gv4uLi1viLo88px8xo0Lo2EwYFxd3Y58hSTQ1dJ40cXFxu3GTEWlSwNRe4819XFzcQ9zPlkPz9JQPY3BxcXtyR8FqY9dicYWLi3s7d568vrFakd/HxcU9xd0pfopD09UFUFxc3EPc1bZm/mK1dIaLi9uHmzRDa587Ww1WXFzcBtzV4mf1JVdXOXFxce/nrp78gyZvvOLi4nbj1has8zFMbbEbFxe3AzdveiaJbH9Yi4uL24e73x5dTY5RkwUXF/ex3Lxk+sD6BS4ubktu0ijZX8jAxcXtwM0D1BY4orSFi4vbhrtanNQWN2vNWVxc3Pu5/Q8uLi4uLi7uofMCFcrBF01eM0kAAAAASUVORK5CYII=">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACYUlEQVR42u3aQZKDMAwEQP7/6d0HpCAjKTYk1ZxSuwnQPtiqkY6/n74OPDw8PDw8PDy8h/GO+Dr71evfr7+Z37P5bnh4eHhbeG+22vg7vQU6u3/v3fDw8PB28s4eefY5+W/1eJi8Gx4eHt7zedffz8vuZLHw8PDwvp2Xhws9GB4eHt638KqlbTWY6BXiW7MWPDw8vJiXh7D7P2/t7+Hh4eEFvPJIU6vsrh4bozfEw8PDW8zLN+LrhlZ+h0nTKyro8fDw8BbzJjHEpGHWGyz4cEmNh4eH1+JVR1GT4YDrX+V36EXJeHh4eKt5vVK4GjfkC3c9RtA89/Dw8PCW8ZINvbetJyMCeRn95m54eHh4W3h5wFotpvNxq3y8tZm14OHh4X2IV41lq8VxAsuL6QiPh4eHt5g3eXyVlB8MveAYDw8Pbw9vEtdWw4v8aKlGxnh4eHhP4E1IyWEwGed68yw8PDy8xby8vJ6Uv9W21mhwAQ8PD28xrzpoNW9WVZ9Vbr/h4eHhLeYlbbB8CKA6sJUvcV764+Hh4a3mJRt6L/atLlkvusXDw8O7l9d7cHWLz8PivEmGh4eH9xzepJXV3Nbnowx4eHh4N/EmY1U99iQKwcPDw9vJq14rtvXre5ZbcXh4eHiLeUd8rWBUY47rJcDDw8PbyaseBnlzKy+gewcDHh4e3r28vHE1iQ+qw1v5OBceHh7et/Cq0W2vSVZYRDw8PLxH8qpNqaRYT5YsuiceHh7eRl7+EoVoIC7Bq8MEeHh4ePfyqhFAr7BOIolehIGHh4e3k/d7Fx4eHh4eHh4e3gOufzElpYHDVhfYAAAAAElFTkSuQmCC">
               
             </li>
           </ul>
         
         
-          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
-          <ul class="mdui-menu" id="share_menu">
-            <li class="mdui-menu-item">
-              <a href="http://service.weibo.com/share/share.php?appkey=&title=&url=http://sqj.me/tags/&pic=http://sqj.me/images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到微博</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="https://twitter.com/intent/tweet?text=&url=http://sqj.me/tags/&via=Jay Yi" target="_blank" class="mdui-ripple">分享到Twitter</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="https://www.facebook.com/sharer/sharer.php?u=http://sqj.me/tags/" target="_blank" class="mdui-ripple">分享到Facebook</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="https://plus.google.com/share?url=http://sqj.me/tags/" target="_blank" class="mdui-ripple">分享到Google+</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://sqj.me/tags/&title=" target="_blank" class="mdui-ripple">分享到LinkedIn</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="http://connect.qq.com/widget/shareqq/index.html?site=从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想&title=&summary=从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想&pics=http://sqj.me/images/favicon.png&url=http://sqj.me/tags/" target="_blank" class="mdui-ripple">分享到QQ</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="https://telegram.me/share/url?url=http://sqj.me/tags/&text=" target="_blank" class="mdui-ripple">分享到Telegram</a>
-            </li>
-          </ul>
-        
       </div>
     </header>
     <div class="mdui-card-content mdui-typo">
-      
+      <h3 id="配置Grafana的Panel地址，实现点击图表后跳转到另一个dashboard"><a href="#配置Grafana的Panel地址，实现点击图表后跳转到另一个dashboard" class="headerlink" title="配置Grafana的Panel地址，实现点击图表后跳转到另一个dashboard"></a>配置Grafana的Panel地址，实现点击图表后跳转到另一个dashboard</h3><p>Grafana有3个地方可以配置跳转链接</p>
+<ol>
+<li>dashboard层次，在dashboard的settings可以配置Links。</li>
+<li>每一个Panel的<strong>data links</strong>。</li>
+<li>每一个Panel的<strong>panel links</strong>。</li>
+</ol>
+<p><img src="https://s1.yuehetong.com/denitygithub_media/2019/awaytosetlinks1.png" alt="在dashboard的Settings-&gt;Links中配置链接"></p>
+<p><img src="https://s1.yuehetong.com/denitygithub_media/2019/awaytosetlinks2.png" alt="在Panel中配置data links"></p>
+<p><img src="https://s1.yuehetong.com/denitygithub_media/2019/awaytosetlinks3.png" alt="在Panel中配置panel links"></p>
+<p>在这三个地方都能够实现点击链接跳转到另外的页面。</p>
+<h3 id="传参"><a href="#传参" class="headerlink" title="传参"></a>传参</h3><p>在添加链接时，可以使用绝对地址，也可以通过传递变量参数，实现链接的动态跳转</p>
+<p>主要参数如下</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>举例</th>
+<th>简要说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>${配置的dashboard变量}</td>
+<td>如$group,$host等</td>
+<td>这些变量需要在dashboard的settings的变量里面设置</td>
+</tr>
+<tr>
+<td>${__url_time_range}</td>
+<td>时间范围</td>
+<td>${<strong>url_time_range} ${</strong>from} ${__to}</td>
+</tr>
+<tr>
+<td>${__series.name}</td>
+<td>数据列的名称</td>
+<td>只在<strong>data links</strong>中有</td>
+</tr>
+<tr>
+<td>${__field.name}</td>
+<td>数据列的名称</td>
+<td>只在<strong>data links</strong>中有</td>
+</tr>
+<tr>
+<td>${__value.numeric}</td>
+<td>图表的数值</td>
+<td>只在<strong>data links</strong>中有，可以是字符/数字/原值/计算值</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>注意：</strong>在实践中发现，如果dashboard的变量，允许使用<strong>ALL</strong>的时候，只有在<strong>panel links</strong>中配置的url能够准确抓取当前图表的变量值。否则，会将变量的所有值，都会被传送到跳转链接中，导致目标url在获取参数的时候不正确。</p>
+<h3 id="跳转到Dashboard"><a href="#跳转到Dashboard" class="headerlink" title="跳转到Dashboard"></a>跳转到Dashboard</h3><p>跳转到Dashboard是，网上的说明一直说的不够透彻。最简单的方法如下：</p>
+<p>1、进入需要跳转的Dashboard，复制浏览器前面一段<br><img src="https://s1.yuehetong.com/denitygithub_media/2019/awaytosetlinks4.png" alt="复制dashboard链接地址"></p>
+<p>2、这段地址前面一段，就是Dashboard的地址，将这段链接地址，复制到Links里面，配置即可。</p>
+<p>3、加上适当的参数。</p>
+
       <hr>
       <blockquote class="mdui-m-t-5">
-      	<strong>本文作者：</strong>Jay Yi<br>
-	<strong>本文链接：</strong><a href="http://sqj.me/tags/">http://sqj.me/tags/</a><br>
+      	<strong>本文作者：</strong>Jay<br>
+	<strong>本文链接：</strong><a href="http://sqj.me/2019/a-way-to-set-grafana-panel-links/">http://sqj.me/2019/a-way-to-set-grafana-panel-links/</a><br>
       	<strong>版权声明：</strong>
         
           本作品采用 <a href='https://creativecommons.org/licenses/by-nc-nd/4.0/' target='_blank'>署名-非商业性使用-禁止演绎 4.0 国际</a> 许可。转载请保留原文链接及作者。
@@ -228,6 +268,10 @@
     </div>
     <footer class="mdui-card-actions">
       
+        <a class="mdui-ripple article_categories-link" href="/categories/HTML-CSS-JS/">HTML/CSS/JS</a><a class="mdui-ripple article_categories-link" href="/categories/HTML-CSS-JS/%E8%BF%90%E7%BB%B4/">运维</a>
+      
+      
+        <a class="mdui-ripple article_tags-link" href="/tags/Grafana/" rel="tag">Grafana</a>
       
     </footer>
     
@@ -236,6 +280,17 @@
 <script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
   <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
 
+
+  <nav id="paginator">
+    
+    <div class="spacer"></div>
+    
+      <a rel="next" class="extend next" href="/2019/set-correct-name-to-fix-github-404/">
+        下一篇&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
+      </a>
+    
+  </nav>
 
 
 
