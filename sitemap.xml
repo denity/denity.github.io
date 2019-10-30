@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.sqj.me/2019/common-script/</loc>
+    
+    <lastmod>2019-10-30T07:28:29.470Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.sqj.me/2019/a-way-to-set-grafana-panel-links/</loc>
     
     <lastmod>2019-10-30T05:35:23.706Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://blog.sqj.me/2019/set-correct-name-to-fix-github-404/</loc>
     
     <lastmod>2019-10-30T05:34:46.853Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.sqj.me/2019/common-script/</loc>
-    
-    <lastmod>2019-10-30T02:16:14.896Z</lastmod>
     
   </url>
   

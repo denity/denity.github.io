@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.sqj.me/"/>
-  <updated>2019-10-30T02:16:14.896Z</updated>
+  <updated>2019-10-30T07:28:29.470Z</updated>
   <id>http://blog.sqj.me/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://blog.sqj.me/2019/common-script/"/>
     <id>http://blog.sqj.me/2019/common-script/</id>
     <published>2019-10-30T01:55:54.000Z</published>
-    <updated>2019-10-30T02:16:14.896Z</updated>
+    <updated>2019-10-30T07:28:29.470Z</updated>
     
     <content type="html"><![CDATA[<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>-= 获取当前目录下，各文件夹的大小 =-</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -h --max-depth=1 ./</span><br></pre></td></tr></table></figure>]]></content>
     
