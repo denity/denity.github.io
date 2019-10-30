@@ -2,42 +2,49 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://sqj.me/2019/a-way-to-set-grafana-panel-links/</loc>
+    <loc>http://blog.sqj.me/2019/a-way-to-set-grafana-panel-links/</loc>
     
-    <lastmod>2019-10-29T07:58:18.580Z</lastmod>
+    <lastmod>2019-10-30T05:35:23.706Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://sqj.me/tags/</loc>
+    <loc>http://blog.sqj.me/2019/set-correct-name-to-fix-github-404/</loc>
+    
+    <lastmod>2019-10-30T05:34:46.853Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.sqj.me/2019/common-script/</loc>
+    
+    <lastmod>2019-10-30T02:16:14.896Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.sqj.me/tags/</loc>
     
     <lastmod>2019-10-25T07:52:29.411Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://sqj.me/mylinks/</loc>
+    <loc>http://blog.sqj.me/mylinks/</loc>
     
     <lastmod>2019-10-25T05:34:14.808Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://sqj.me/2019/set-correct-name-to-fix-github-404/</loc>
-    
-    <lastmod>2019-10-25T05:04:30.519Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://sqj.me/about/</loc>
+    <loc>http://blog.sqj.me/about/</loc>
     
     <lastmod>2019-10-20T07:56:37.344Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://sqj.me/categories/</loc>
+    <loc>http://blog.sqj.me/categories/</loc>
     
     <lastmod>2019-10-20T07:50:28.379Z</lastmod>
     

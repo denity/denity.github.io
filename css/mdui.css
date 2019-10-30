@@ -5300,6 +5300,8 @@ body.mdui-locked {
   /* img */
 }
 .mdui-card-content.mdui-typo p{ font-size:1.15em;}
+.mdui-card-content.mdui-typo p img{cursor:pointer;display: block !important;margin: 0 auto !important;}
+.mdui-card-content.mdui-typo p img:hover{ box-shadow:0 5px 25px 0 rgba(0,0,0,.2), 0 10px 30px -11px rgba(0,0,0,.6); transition:all .5s cubic-bezier(0,0,.2,1);}
 .mdui-typo address,
 .mdui-typo caption,
 .mdui-typo cite,
