@@ -8,25 +8,25 @@
   <meta name="renderer" content="webkit">
 
   
-  <title>grafana简单oauth认证（自建简易oauth 2.0实现grafana SSO整合） | 从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想</title>
+  <title>Grafana简单OAuth认证（自建简易OAuth 2.0实现Grafana SSO整合） | 从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想</title>
 
   <link rel="shortcut icon" href="http://q068kveb3.bkt.clouddn.com/b/favicon.png">
   <link rel="alternate" href="/atom.xml" title="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="description" content="Grafana能够以较为丰富的方式进行单点登录集成。在  https:&#x2F;&#x2F;grafana.com&#x2F;docs&#x2F;installation&#x2F;configuration&#x2F;  中有比较全面的描述。  Authentication Overview (anonymous access options, hide login and more) Google OAuth (auth.google) GitHu">
-<meta name="keywords" content="Grafana">
+  <meta name="description" content="Grafana能够以较为丰富的方式进行单点登录集成。在  https:&#x2F;&#x2F;Grafana.com&#x2F;docs&#x2F;installation&#x2F;configuration&#x2F;  中有比较全面的描述。  Authentication Overview (anonymous access options, hide login and more) Google OAuth (auth.google) GitHu">
+<meta name="keywords" content="Grafana,OAuth,SSO">
 <meta property="og:type" content="article">
-<meta property="og:title" content="grafana简单oauth认证（自建简易oauth 2.0实现grafana SSO整合）">
+<meta property="og:title" content="Grafana简单OAuth认证（自建简易OAuth 2.0实现Grafana SSO整合）">
 <meta property="og:url" content="http:&#x2F;&#x2F;blog.sqj.me&#x2F;2019&#x2F;grafana-oauth-simple&#x2F;">
 <meta property="og:site_name" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-<meta property="og:description" content="Grafana能够以较为丰富的方式进行单点登录集成。在  https:&#x2F;&#x2F;grafana.com&#x2F;docs&#x2F;installation&#x2F;configuration&#x2F;  中有比较全面的描述。  Authentication Overview (anonymous access options, hide login and more) Google OAuth (auth.google) GitHu">
+<meta property="og:description" content="Grafana能够以较为丰富的方式进行单点登录集成。在  https:&#x2F;&#x2F;Grafana.com&#x2F;docs&#x2F;installation&#x2F;configuration&#x2F;  中有比较全面的描述。  Authentication Overview (anonymous access options, hide login and more) Google OAuth (auth.google) GitHu">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-31T06:29:32.618Z">
+<meta property="og:updated_time" content="2019-10-31T06:33:07.607Z">
 <meta name="twitter:card" content="summary">
 
   <meta name="format-detection" content="telephone=no,email=no">
   <meta name="theme-color" content="#9C27B0">
   <meta name="description" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="keywords" content=",Grafana">
+  <meta name="keywords" content=",Grafana,OAuth,SSO">
 
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="application-name" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
@@ -39,7 +39,7 @@
 
   
     <meta property="article:published_time" content="Thu Oct 31 2019 12:05:15 GMT+0800">
-    <meta property="article:modified_time" content="Thu Oct 31 2019 14:29:32 GMT+0800">
+    <meta property="article:modified_time" content="Thu Oct 31 2019 14:33:07 GMT+0800">
   
 
   
@@ -129,7 +129,7 @@
       </div>
       <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
         
-        <a class="mdui-ripple sidebar_archives-link" href="/tags/Grafana/" rel="tag">Grafana<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Hexo/" rel="tag">Hexo<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Linux/" rel="tag">Linux<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        <a class="mdui-ripple sidebar_archives-link" href="/tags/Grafana/" rel="tag">Grafana<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Hexo/" rel="tag">Hexo<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Linux/" rel="tag">Linux<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/OAuth/" rel="tag">OAuth<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/SSO/" rel="tag">SSO<span class="mdui-ripple sidebar_archives-count">1</span></a>
         
       </div>
     </div>
@@ -170,10 +170,10 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="http://q068kveb3.bkt.clouddn.com/b2/material-12.png" style="max-height: 180px;">
+      <img src="http://q068kveb3.bkt.clouddn.com/b2/material-14.png" style="max-height: 180px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
-          <div class="mdui-card-primary-title">grafana简单oauth认证（自建简易oauth 2.0实现grafana SSO整合）</div>
+          <div class="mdui-card-primary-title">Grafana简单OAuth认证（自建简易OAuth 2.0实现Grafana SSO整合）</div>
           <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2019-10-31 / <i class="iconfont">&#xe601;</i> Jay</div>
         </div>
       </div>
@@ -196,21 +196,21 @@
     </header>
     <div class="mdui-card-content mdui-typo">
       <blockquote>
-<p>Grafana能够以较为丰富的方式进行单点登录集成。在  <a href="https://grafana.com/docs/installation/configuration/" target="_blank" rel="noopener">https://grafana.com/docs/installation/configuration/</a>  中有比较全面的描述。</p>
+<p>Grafana能够以较为丰富的方式进行单点登录集成。在  <a href="https://Grafana.com/docs/installation/configuration/" target="_blank" rel="noopener">https://Grafana.com/docs/installation/configuration/</a>  中有比较全面的描述。</p>
 <ul>
-<li><a href="https://grafana.com/docs/auth/overview/" target="_blank" rel="noopener">Authentication Overview</a> (anonymous access options, hide login and more)</li>
-<li><a href="https://grafana.com/docs/auth/google/" target="_blank" rel="noopener">Google OAuth</a> (auth.google)</li>
-<li><a href="https://grafana.com/docs/auth/github/" target="_blank" rel="noopener">GitHub OAuth</a> (auth.github)</li>
-<li><a href="https://grafana.com/docs/auth/gitlab/" target="_blank" rel="noopener">Gitlab OAuth</a> (auth.gitlab)</li>
-<li><a href="https://grafana.com/docs/auth/generic-oauth/" target="_blank" rel="noopener">Generic OAuth</a> (auth.generic_oauth, okta2, auth0, bitbucket, azure)</li>
-<li><a href="https://grafana.com/docs/auth/overview/" target="_blank" rel="noopener">Basic Authentication</a> (auth.basic)</li>
-<li><a href="https://grafana.com/docs/auth/ldap/" target="_blank" rel="noopener">LDAP Authentication</a> (auth.ldap)</li>
-<li><a href="https://grafana.com/docs/auth/auth-proxy/" target="_blank" rel="noopener">Auth Proxy</a> (auth.proxy)</li>
+<li><a href="https://Grafana.com/docs/auth/overview/" target="_blank" rel="noopener">Authentication Overview</a> (anonymous access options, hide login and more)</li>
+<li><a href="https://Grafana.com/docs/auth/google/" target="_blank" rel="noopener">Google OAuth</a> (auth.google)</li>
+<li><a href="https://Grafana.com/docs/auth/github/" target="_blank" rel="noopener">GitHub OAuth</a> (auth.github)</li>
+<li><a href="https://Grafana.com/docs/auth/gitlab/" target="_blank" rel="noopener">Gitlab OAuth</a> (auth.gitlab)</li>
+<li><a href="https://Grafana.com/docs/auth/generic-OAuth/" target="_blank" rel="noopener">Generic OAuth</a> (auth.generic_OAuth, okta2, auth0, bitbucket, azure)</li>
+<li><a href="https://Grafana.com/docs/auth/overview/" target="_blank" rel="noopener">Basic Authentication</a> (auth.basic)</li>
+<li><a href="https://Grafana.com/docs/auth/ldap/" target="_blank" rel="noopener">LDAP Authentication</a> (auth.ldap)</li>
+<li><a href="https://Grafana.com/docs/auth/auth-proxy/" target="_blank" rel="noopener">Auth Proxy</a> (auth.proxy)</li>
 </ul>
 </blockquote>
 <p>但是如果原有系统无法使用以上方式进行整合，又不想直接允许匿名登录，则可以基于OAuth 2.0的认证逻辑，开发一个简易的OAuth认证服务，实现Grafana的单点登录。</p>
-<p>以下内容在 <a href="https://smallpath.me/post/grafana-with-sso" target="_blank" rel="noopener">https://smallpath.me/post/grafana-with-sso</a> 获得了很多帮助。</p>
-<p>OAuth2 RFC6749 原理可查看  <a href="https://colobu.com/2017/04/28/oauth2-rfc6749/" target="_blank" rel="noopener">https://colobu.com/2017/04/28/oauth2-rfc6749/</a> </p>
+<p>以下内容在 <a href="https://smallpath.me/post/Grafana-with-sso" target="_blank" rel="noopener">https://smallpath.me/post/Grafana-with-sso</a> 获得了很多帮助。</p>
+<p>OAuth2 RFC6749 原理可查看  <a href="https://colobu.com/2017/04/28/OAuth2-rfc6749/" target="_blank" rel="noopener">https://colobu.com/2017/04/28/OAuth2-rfc6749/</a> </p>
 <h3 id="OAuth-2-0认证基本逻辑"><a href="#OAuth-2-0认证基本逻辑" class="headerlink" title="OAuth 2.0认证基本逻辑"></a>OAuth 2.0认证基本逻辑</h3><h4 id="协议流程"><a href="#协议流程" class="headerlink" title="协议流程"></a>协议流程</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">+--------+                               +---------------+</span><br><span class="line">|        |--(A)- Authorization Request -&gt;|   Resource    |</span><br><span class="line">|        |                               |     Owner     |</span><br><span class="line">|        |&lt;-(B)-- Authorization Grant ---|               |</span><br><span class="line">|        |                               +---------------+</span><br><span class="line">|        |</span><br><span class="line">|        |                               +---------------+</span><br><span class="line">|        |--(C)-- Authorization Grant --&gt;| Authorization |</span><br><span class="line">| Client |                               |     Server    |</span><br><span class="line">|        |&lt;-(D)----- Access Token -------|               |</span><br><span class="line">|        |                               +---------------+</span><br><span class="line">|        |</span><br><span class="line">|        |                               +---------------+</span><br><span class="line">|        |--(E)----- Access Token ------&gt;|    Resource   |</span><br><span class="line">|        |                               |     Server    |</span><br><span class="line">|        |&lt;-(F)--- Protected Resource ---|               |</span><br><span class="line">+--------+                               +---------------+</span><br></pre></td></tr></table></figure>
 
 <p> 图中所示的抽象OAuth 2.0流程描述了四个角色之间的交互，包括以下步骤： </p>
@@ -229,17 +229,17 @@
 </ol>
 <p>综合评估下来，还是通过Grafana地Generic OAuth方式，通过开发与现有系统整合，又符合Grafana OAuth2.0 要求的单点登录服务比较方便。</p>
 <h5 id="2、配置"><a href="#2、配置" class="headerlink" title="2、配置"></a>2、配置</h5><p>Grafana单点登录配置，主要有3个参数，<strong>auth_url、token_url、api_url</strong>。</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[auth.generic_oauth]</span></span><br><span class="line"><span class="attr">enabled</span> = <span class="literal">true</span></span><br><span class="line"><span class="attr">name</span> = 名称</span><br><span class="line"><span class="comment">;allow_sign_up = true</span></span><br><span class="line"><span class="attr">client_id</span> = grafana_info	<span class="comment">;用于传递到auth_url标识系统来源</span></span><br><span class="line"><span class="attr">client_secret</span> = some_secret	<span class="comment">;用于传递到token_url标识系统，可暂时忽略</span></span><br><span class="line"><span class="attr">scopes</span> = uname email		<span class="comment">;搜索返回用户数据的来源</span></span><br><span class="line"><span class="comment">;email_attribute_name = email:primary</span></span><br><span class="line"><span class="comment">;email_attribute_path =</span></span><br><span class="line"><span class="attr">auth_url</span> = https://XXXXXXXX/oauth2_simple/auth.php		<span class="comment">;认证第一步的授权页面</span></span><br><span class="line"><span class="attr">token_url</span> = https://XXXXXXXX/oauth2_simple/token.php	<span class="comment">;认证第二步的获取token页面</span></span><br><span class="line"><span class="attr">api_url</span> = https://XXXXXXXX/oauth2_simple/user.php		<span class="comment">;认证第三步的通过token获取用户信息页面</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[auth.generic_OAuth]</span></span><br><span class="line"><span class="attr">enabled</span> = <span class="literal">true</span></span><br><span class="line"><span class="attr">name</span> = 名称</span><br><span class="line"><span class="comment">;allow_sign_up = true</span></span><br><span class="line"><span class="attr">client_id</span> = Grafana_info	<span class="comment">;用于传递到auth_url标识系统来源</span></span><br><span class="line"><span class="attr">client_secret</span> = some_secret	<span class="comment">;用于传递到token_url标识系统，可暂时忽略</span></span><br><span class="line"><span class="attr">scopes</span> = uname email		<span class="comment">;搜索返回用户数据的来源</span></span><br><span class="line"><span class="comment">;email_attribute_name = email:primary</span></span><br><span class="line"><span class="comment">;email_attribute_path =</span></span><br><span class="line"><span class="attr">auth_url</span> = https://XXXXXXXX/OAuth2_simple/auth.php		<span class="comment">;认证第一步的授权页面</span></span><br><span class="line"><span class="attr">token_url</span> = https://XXXXXXXX/OAuth2_simple/token.php	<span class="comment">;认证第二步的获取token页面</span></span><br><span class="line"><span class="attr">api_url</span> = https://XXXXXXXX/OAuth2_simple/user.php		<span class="comment">;认证第三步的通过token获取用户信息页面</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h5 id="3、配置说明"><a href="#3、配置说明" class="headerlink" title="3、配置说明"></a>3、配置说明</h5><p>（参考<a href="https://smallpath.me/post/grafana-with-sso，并进行了调整）" target="_blank" rel="noopener">https://smallpath.me/post/grafana-with-sso，并进行了调整）</a></p>
+<h5 id="3、配置说明"><a href="#3、配置说明" class="headerlink" title="3、配置说明"></a>3、配置说明</h5><p>（参考<a href="https://smallpath.me/post/Grafana-with-sso，并进行了调整）" target="_blank" rel="noopener">https://smallpath.me/post/Grafana-with-sso，并进行了调整）</a></p>
 <ul>
 <li><strong>Grafana 参数 auth_url</strong></li>
 </ul>
-<p>auth_url 是 Generic-oauth 的 OAuth 2 流程的第一步，Grafana 会在前端跳转到 auth_url 里填写的地址，我们需要在这个地址里做的事情是：</p>
+<p>auth_url 是 Generic-OAuth 的 OAuth 2 流程的第一步，Grafana 会在前端跳转到 auth_url 里填写的地址，我们需要在这个地址里做的事情是：</p>
 <ol>
-<li><p>校验client_id（是否与[auth.generic_oauth]中配置一致），判断跳转过来的系统是否是Grafana。</p>
+<li><p>校验client_id（是否与[auth.generic_OAuth]中配置一致），判断跳转过来的系统是否是Grafana。</p>
 </li>
 <li><p>auth_url 验证当前浏览器账户的登录状态，如果没有登录（session/cookie等），则引导用户进行登录。</p>
 </li>
@@ -278,7 +278,7 @@
 
 <p>Grafana会根据参数中的scopes 配置，来获取授权的用户名。</p>
 <p>该用户名，必须提前在Grafana中已经注册。</p>
-<p>由此，一个简易OAuth2.0的认证完成。这种方式不但适用于Grafana，也适用于其它使用OAuth2.0整合的第三方系统。</p>
+<p>由此，一个简易OAuth2.0的认证完成。这种方式不但适用于Grafana，也适用于其它使用OAuth 2.0整合的第三方系统。</p>
 
       <hr>
       <blockquote class="mdui-m-t-5">
@@ -296,7 +296,7 @@
         <a class="mdui-ripple article_categories-link" href="/categories/HTML-CSS-JS/">HTML/CSS/JS</a>
       
       
-        <a class="mdui-ripple article_tags-link" href="/tags/Grafana/" rel="tag">Grafana</a>
+        <a class="mdui-ripple article_tags-link" href="/tags/Grafana/" rel="tag">Grafana</a><a class="mdui-ripple article_tags-link" href="/tags/OAuth/" rel="tag">OAuth</a><a class="mdui-ripple article_tags-link" href="/tags/SSO/" rel="tag">SSO</a>
       
     </footer>
     
