@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.sqj.me/2019/zabbix-sso/</loc>
+    
+    <lastmod>2019-11-05T09:13:49.069Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.sqj.me/mylinks/</loc>
+    
+    <lastmod>2019-11-04T08:30:53.758Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.sqj.me/2019/grafana-oauth-simple/</loc>
     
-    <lastmod>2019-10-31T06:33:07.607Z</lastmod>
+    <lastmod>2019-11-01T07:03:32.013Z</lastmod>
     
   </url>
   
@@ -33,13 +47,6 @@
     <loc>http://blog.sqj.me/tags/</loc>
     
     <lastmod>2019-10-25T07:52:29.411Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.sqj.me/mylinks/</loc>
-    
-    <lastmod>2019-10-25T05:34:14.808Z</lastmod>
     
   </url>
   

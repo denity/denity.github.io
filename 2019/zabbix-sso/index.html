@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="renderer" content="webkit">
+
+  
+  <title>zabbix-sso | 从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想</title>
+
+  <link rel="shortcut icon" href="http://q068kveb3.bkt.clouddn.com/b/favicon.png">
+  <link rel="alternate" href="/atom.xml" title="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
+  <meta name="description" content="Zabbix是一个老牌的系统监控软件。是一个高度集成的网络监控解决方案，可以提供企业级的开源分布式监控解决方案。 Zabbix是一个基于Web界面的，提供分布式系统监控以及网络监视功能的企业级的开源解决方案。能灵活监视各种网络参数，保证服务器系统的安全运营，并提供灵活的通知机制以让系统管理员快速定位&#x2F;解决存在的各种问题。 Zabbix可以分4部分：zabbix server、zabbix age">
+<meta name="keywords" content="SSO,Zabbix">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zabbix-sso">
+<meta property="og:url" content="http:&#x2F;&#x2F;blog.sqj.me&#x2F;2019&#x2F;zabbix-sso&#x2F;">
+<meta property="og:site_name" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
+<meta property="og:description" content="Zabbix是一个老牌的系统监控软件。是一个高度集成的网络监控解决方案，可以提供企业级的开源分布式监控解决方案。 Zabbix是一个基于Web界面的，提供分布式系统监控以及网络监视功能的企业级的开源解决方案。能灵活监视各种网络参数，保证服务器系统的安全运营，并提供灵活的通知机制以让系统管理员快速定位&#x2F;解决存在的各种问题。 Zabbix可以分4部分：zabbix server、zabbix age">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-05T09:13:49.069Z">
+<meta name="twitter:card" content="summary">
+
+  <meta name="format-detection" content="telephone=no,email=no">
+  <meta name="theme-color" content="#9C27B0">
+  <meta name="description" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
+  <meta name="keywords" content=",SSO,Zabbix">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
+  <meta name="msapplication-starturl" content="http://blog.sqj.me/2019/zabbix-sso/">
+  <meta name="msapplication-navbutton-color" content="#9C27B0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="http://q068kveb3.bkt.clouddn.com/b/favicon.png">
+
+  
+    <meta property="article:published_time" content="Tue Nov 05 2019 12:31:26 GMT+0800">
+    <meta property="article:modified_time" content="Tue Nov 05 2019 17:13:49 GMT+0800">
+  
+
+  
+    <link rel="canonical" href="http://blog.sqj.me/2019/zabbix-sso/">
+  
+
+  
+  
+
+  
+  
+  
+
+  <link rel="stylesheet" href="/css/mdui.css">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-primary-deep-purple mdui-theme-accent-deep-purple">
+  <script>var a=localStorage.getItem("mdui-theme-layout-dark");if(a){document.getElementsByTagName("body")[0].className+=" mdui-theme-layout-dark"};</script>
+  <header id="header" class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide mdui-appbar-inset">
+  <div class="mdui-toolbar mdui-color-theme">
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="mdui-icon material-icons">menu</i></a>
+    <a href="/" class="mdui-typo-headline">从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: '搜索'}"><i class="mdui-icon material-icons">search</i></a>
+    <a href="/atom.xml" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'RSS'}"><i class="mdui-icon material-icons">rss_feed</i></a>
+  </div>
+</header>
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="Enter the key words">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+  <aside id="sidebar" class="mdui-drawer mdui-drawer-full-height">
+  <div class="mdui-grid-tile">
+    <img src="http://q068kveb3.bkt.clouddn.com/b/banner.png" style="height: 160px;">
+    <img src="http://q068kveb3.bkt.clouddn.com/b/avatar.png" class="avatar-animation" style="position: absolute; top: 10%; left: 24px; width: 64px; height: 64px; border: 2px solid #fff; border-radius: 50%;">
+    <div class="mdui-grid-tile-actions">
+      <div class="mdui-grid-tile-text">
+        <div class="mdui-grid-tile-title">Jay Yi</div>
+        <div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">art_track</i>Keep It Simple Stupid</div>
+      </div>
+      
+        <div class="mdui-grid-tile-buttons">
+          <a href="mailto:38984917@qq.com" target="_blank" rel="noopener" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '38984917@qq.com'}"><i class="mdui-icon material-icons">email</i></a>
+        </div>
+      
+    </div>
+  </div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    <a href="/" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">home</i>
+      <div class="mdui-list-item-content">主页</div>
+    </a>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">inbox</i>
+        <div class="mdui-list-item-content">归档</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/archives/2019/11/">十一月 2019<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="mdui-ripple sidebar_archives-count">4</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">chrome_reader_mode</i>
+        <div class="mdui-list-item-content">分类</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/categories/HTML-CSS-JS/">HTML/CSS/JS<span class="mdui-ripple sidebar_archives-count">4</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">bookmark</i>
+        <div class="mdui-list-item-content">标签</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/tags/Grafana/" rel="tag">Grafana<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Hexo/" rel="tag">Hexo<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Linux/" rel="tag">Linux<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/OAuth/" rel="tag">OAuth<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/SSO/" rel="tag">SSO<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Zabbix/" rel="tag">Zabbix<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        
+      </div>
+    </div>
+    <a href="/about" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">person</i>
+      <div class="mdui-list-item-content">关于</div>
+    </a>
+  </div>
+
+  <div class="mdui-divider"></div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    
+      <a href="/tags" class="mdui-list-item mdui-ripple">Tags</a>
+    
+      <a href="/mylinks" class="mdui-list-item mdui-ripple">常用链接</a>
+    
+      <a href="/2019/common-script/" class="mdui-list-item mdui-ripple">常用命令</a>
+    
+    <!--
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <div class="mdui-list-item-content">友情链接</div>
+        <i class="mdui-list-item-icon mdui-icon material-icons">link</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        
+          <a href="javascript:;" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme" style="justify-content: center;">链接为空</a>
+        
+      </div>
+    </div>
+    -->
+  </div>
+</aside>
+  <main id="main" class="mdui-m-t-5 fadeIn animated">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+  <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
+  <article class="mdui-card mdui-m-b-5">
+    <header class="mdui-card-media">
+      <img src="http://q068kveb3.bkt.clouddn.com/image/zabbix-sso-title.png" style="max-height: 180px;">
+      <div class="mdui-card-media-covered">
+        <div class="mdui-card-primary">
+          <div class="mdui-card-primary-title">zabbix-sso</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2019-11-05 / <i class="iconfont">&#xe601;</i> Jay</div>
+        </div>
+      </div>
+      <div class="mdui-card-menu">
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#qrcode', align: 'right'}"><i class="mdui-icon material-icons">devices</i></button>
+          <ul class="mdui-menu" id="qrcode">
+            
+              <li class="mdui-menu-item"><a class="mdui-text-center mdui-ripple">Send to mobile phone</a></li>
+            
+            <li class="mdui-menu-item" disabled>
+              
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAAB7klEQVR42u3aS1LEMAwFwNz/0nABEp6khMFxezU1xThpFir9jq9XnAMDAwMDAwMD498wjvj8cNHJ92c3n/2q9w4YGBi7MX4JbfGD83uuYdE7YGBgbMlIQuTkc86LwjQGBgZG/Ir5i1bvxMDAwHiCcX3DaTmKgYGBcWsRe12+Vht2H6vFMTAwFmTkTfnnPv/pfAMDA2MpRnnFIYblwfQDOyMYGBhLMXqJ3RxzQ0KJgYGxGeO6HK2G4HzNImnGNYtYDAyMFzGqBW0ScJPG3DxxxMDA2I2RLHIlCWJvOaMaajEwMHZjTBYgqk26PNSOilgMDIzXMXpl5GTkWQ3QhSIWAwPjpYxqg35SuPbK4EfmGxgYGEsx5k38pADOk9Ecg4GBsScjCb5JcJxTRwEXAwPjdYxJ+ywPr9fpYDUlxcDA2JkxWYnoJZGTpTQMDAyMPKUrlJ3xs8pFLAYGxmaM+cAgGYtW12TLqSEGBsaLGPPytTfyvA6vSTjGwMDYh3HEZ0LqLWGUi1gMDIxXM+5t7lf/srdygYGBsSejFxCjR46L2FHXEAMDY3tGErgnK2LNriEGBsb2jN4gs1fcPhhwMTAwFmTkK1+9EJmPTqN/HAYGxmaMeRO/OvLMFzIemW9gYGAsxVj3YGBgYGBgYGB89HwDst0w3f1nIVsAAAAASUVORK5CYII=">
+              
+            </li>
+          </ul>
+        
+        
+      </div>
+    </header>
+    <div class="mdui-card-content mdui-typo">
+      <blockquote>
+<p>Zabbix是一个老牌的系统监控软件。是一个高度集成的网络监控解决方案，可以提供企业级的开源分布式监控解决方案。</p>
+<p>Zabbix是一个基于Web界面的，提供分布式系统监控以及网络监视功能的企业级的开源解决方案。能灵活监视各种网络参数，保证服务器系统的安全运营，并提供灵活的通知机制以让系统管理员快速定位/解决存在的各种问题。</p>
+<p>Zabbix可以分4部分：zabbix server、zabbix agent、zabbix proxy（可选）、zabbix web。</p>
+<p>Zabbix 主要监控手段包括：zabbix agent、snmp、ipmi、fping、http监测等方式，基本涵盖了主要的监控手段。</p>
+<hr>
+<p><strong>本文主要描述如何定制Zabbix的单点登录，经过4.2/4.4版测试。</strong></p>
+</blockquote>
+<h3 id="Zabbix登录方式"><a href="#Zabbix登录方式" class="headerlink" title="Zabbix登录方式"></a>Zabbix登录方式</h3><p>zabbix主要有3中登录方式</p>
+<ol>
+<li>普通账号/密码认证，最常用的方式。</li>
+<li>http认证，通过apache/nginx提供用户进行认证，适用于简单的场景。</li>
+<li>LDAP登录，适用于组织内部运行有AD的环境。</li>
+</ol>
+<p>Zabbix没有一种直接对接SSO系统的方式。而LDAP方式也不便于进行账号的控制（进入zabbix的用户一般都是少数几个人），故需要对ZABBIX进行定制化改造，实现与现有系统的整合集成。</p>
+<h3 id="Zabbix单点登录SSO定制思路"><a href="#Zabbix单点登录SSO定制思路" class="headerlink" title="Zabbix单点登录SSO定制思路"></a>Zabbix单点登录SSO定制思路</h3><p>在4.x版本下，首页代码index.php登录的入口。可以重写一个sso的登录入口，作为sso系统传递token过来的着陆页面，进行相关的登录逻辑处理。</p>
+<p><strong>用户鉴权：</strong>zabbix通过CWebUser（/include/classes/user/CWebUser.php）封装了对用户鉴权的操作。</p>
+<p><strong>接口封装：</strong>CWebUser调用用户api CUser（/include/classes/api/services/CUser.php)，对用户进行鉴权。</p>
+<p><strong>SSO定制思路：</strong></p>
+<ol>
+<li>仿照index.php，编制 fromportalsso.php  (单点登录着陆页面)，调用CWebUser中的登录函数。</li>
+<li>改写CWebUser，增加单点登录的函数。</li>
+<li>改写CUser，实现单点登录。</li>
+</ol>
+<h3 id="具体代码修改"><a href="#具体代码修改" class="headerlink" title="具体代码修改"></a>具体代码修改</h3><p>1、登录着陆页面fromportalsso.php关键代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">CWebUser::logout();</span><br><span class="line"></span><br><span class="line"><span class="comment">/*--------------- 通过 token 获取 uname -------------------------*/</span></span><br><span class="line"><span class="comment">//SSO 传递token，通过token获取用户名 $uname 过程省略</span></span><br><span class="line"><span class="comment">//这个环节，是控制账号安全的关键环节。</span></span><br><span class="line"><span class="comment">/*--------------- 通过 token 获取 uname 结束-------------------------*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// login via portal sso</span></span><br><span class="line"><span class="keyword">if</span> ( CWebUser::login_from_portalsso($uname)) &#123;</span><br><span class="line">	$redirect = $rdi!=<span class="string">""</span> ? $rdi : ZBX_DEFAULT_URL;</span><br><span class="line">	redirect($redirect);</span><br><span class="line">	<span class="keyword">exit</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>2、修改CWebUser.php，增加一个函数 login_from_portalsso($login)</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">login_from_portalsso</span><span class="params">($login)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		<span class="keyword">self</span>::setDefault();</span><br><span class="line">		<span class="keyword">self</span>::$data = API::User()-&gt;login([</span><br><span class="line">			<span class="string">'user'</span> =&gt; $login,</span><br><span class="line">			<span class="string">'password'</span> =&gt; <span class="string">'NotAPassWord'</span>,		<span class="comment">//这个随便写</span></span><br><span class="line">			<span class="string">'userData'</span> =&gt; <span class="keyword">true</span>,</span><br><span class="line">			<span class="string">'fromsso'</span> =&gt; <span class="number">1</span>						<span class="comment">//增加单点登录的标识</span></span><br><span class="line">		],<span class="keyword">true</span>);</span><br><span class="line">        </span><br><span class="line">	<span class="comment">//其余内容和 login($login, $password) 函数一样。</span></span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里直接调用默认的CUser::login函数。 实践中，如果调用了其它的函数，可能会发生不成功的现象，应该是接口检验的时候，根据规则，进行了过滤导致调用失败。所以最简单直接的方法，就是修改默认的login函数。</p>
+<p>3、修改 CUser.php 的login函数</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> array $user</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span> string|array</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span><span class="params">(array $user)</span> </span>&#123;</span><br><span class="line">	$api_input_rules = [<span class="string">'type'</span> =&gt; API_OBJECT, <span class="string">'fields'</span> =&gt; [</span><br><span class="line">		<span class="string">'user'</span> =&gt; ...,</span><br><span class="line">		<span class="string">'password'</span> =&gt; ...,</span><br><span class="line">		<span class="string">'userData'</span> =&gt;	[<span class="string">'type'</span> =&gt; API_FLAG],</span><br><span class="line">		<span class="string">'fromsso'</span> =&gt;	[<span class="string">'type'</span> =&gt; API_FLAG]	<span class="comment">//检验是否来自sso系统</span></span><br><span class="line">	]];</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 如果来自sso系统，则强制密码和账号密码一致（既跳过后面的密码验证环节）</span></span><br><span class="line">	<span class="keyword">if</span>( intval($user[<span class="string">'fromsso'</span>]) == <span class="number">1</span> )</span><br><span class="line">	&#123;</span><br><span class="line">		$db_user[<span class="string">'passwd'</span>] = md5($user[<span class="string">'password'</span>]);</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//其余代码不变...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      <hr>
+      <blockquote class="mdui-m-t-5">
+      	<strong>本文作者：</strong>Jay<br>
+	<strong>本文链接：</strong><a href="http://blog.sqj.me/2019/zabbix-sso/">http://blog.sqj.me/2019/zabbix-sso/</a><br>
+      	<strong>版权声明：</strong>
+        
+          本作品采用 <a href='https://creativecommons.org/licenses/by-nc-nd/4.0/' target='_blank'>署名-非商业性使用-禁止演绎 4.0 国际</a> 许可。转载请保留原文链接及作者。
+        
+      </blockquote>
+      
+    </div>
+    <footer class="mdui-card-actions">
+      
+        <a class="mdui-ripple article_categories-link" href="/categories/HTML-CSS-JS/">HTML/CSS/JS</a>
+      
+      
+        <a class="mdui-ripple article_tags-link" href="/tags/SSO/" rel="tag">SSO</a><a class="mdui-ripple article_tags-link" href="/tags/Zabbix/" rel="tag">Zabbix</a>
+      
+    </footer>
+    
+  </article>
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
+
+
+  <nav id="paginator">
+    
+    <div class="spacer"></div>
+    
+      <a rel="next" class="extend next" href="/2019/grafana-oauth-simple/">
+        下一篇&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
+      </a>
+    
+  </nav>
+
+
+
+</main>
+  <footer id="footer" class="mdui-m-t-5 mdui-p-y-3 mdui-color-theme">
+  <div class="mdui-p-y-0 mdui-text-center">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  <div class="mdui-p-y-1 mdui-text-center">
+    <p>Copyright &copy; 2019 - 2019 Jay Yi</p>
+    <p>Powered by <a href="https://hexo.io/" target="_blank" class="mdui-text-color-theme-accent">Hexo</a>
+    
+    </p>
+  </div>
+</footer>
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">arrow_upward</i></button>
+  
+  <script src="/js/mdui.js"></script>
+<script src="/js/script.js"></script>
+</body>
+</html>
