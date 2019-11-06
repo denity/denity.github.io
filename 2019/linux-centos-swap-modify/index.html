@@ -8,27 +8,32 @@
   <meta name="renderer" content="webkit">
 
   
-  <title>标签: OAuth | 从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想</title>
+  <title>linux centos 调整配置 swap 的方法 | 从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想</title>
 
   <link rel="shortcut icon" href="http://q068kveb3.bkt.clouddn.com/b/favicon.png">
   <link rel="alternate" href="/atom.xml" title="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="description" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-<meta property="og:type" content="website">
-<meta property="og:title" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-<meta property="og:url" content="http:&#x2F;&#x2F;blog.sqj.me&#x2F;tags&#x2F;OAuth&#x2F;">
+  <meta name="description" content="生产环境中，发现Centos的swap分区不足，调整swap。1、查看内存情况 1free -m   2、增加swap 1234567dd if=&#x2F;dev&#x2F;zero of=&#x2F;var&#x2F;swap bs=1024 count=20480000mkswap &#x2F;var&#x2F;swapmkswap -f &#x2F;var&#x2F;swapswapon &#x2F;var&#x2F;swap    3、增加开机配置 1vi &#x2F;etc&#x2F;fstab  1&#x2F;">
+<meta name="keywords" content="Centos">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux centos 调整配置 swap 的方法">
+<meta property="og:url" content="http:&#x2F;&#x2F;blog.sqj.me&#x2F;2019&#x2F;linux-centos-swap-modify&#x2F;">
 <meta property="og:site_name" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-<meta property="og:description" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
+<meta property="og:description" content="生产环境中，发现Centos的swap分区不足，调整swap。1、查看内存情况 1free -m   2、增加swap 1234567dd if=&#x2F;dev&#x2F;zero of=&#x2F;var&#x2F;swap bs=1024 count=20480000mkswap &#x2F;var&#x2F;swapmkswap -f &#x2F;var&#x2F;swapswapon &#x2F;var&#x2F;swap    3、增加开机配置 1vi &#x2F;etc&#x2F;fstab  1&#x2F;">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;q068kveb3.bkt.clouddn.com&#x2F;image&#x2F;free-m.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;q068kveb3.bkt.clouddn.com&#x2F;image&#x2F;free-m2.png">
+<meta property="og:updated_time" content="2019-11-06T02:51:50.319Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;q068kveb3.bkt.clouddn.com&#x2F;image&#x2F;free-m.png">
 
   <meta name="format-detection" content="telephone=no,email=no">
   <meta name="theme-color" content="#9C27B0">
   <meta name="description" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="keywords" content="">
+  <meta name="keywords" content=",Centos">
 
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="application-name" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="msapplication-starturl" content="http://blog.sqj.me/tags/OAuth/">
+  <meta name="msapplication-starturl" content="http://blog.sqj.me/2019/linux-centos-swap-modify/">
   <meta name="msapplication-navbutton-color" content="#9C27B0">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
@@ -36,9 +41,12 @@
   <link rel="apple-touch-icon" href="http://q068kveb3.bkt.clouddn.com/b/favicon.png">
 
   
+    <meta property="article:published_time" content="Wed Nov 06 2019 10:34:37 GMT+0800">
+    <meta property="article:modified_time" content="Wed Nov 06 2019 10:51:50 GMT+0800">
+  
 
   
-    <link rel="canonical" href="http://blog.sqj.me/tags/OAuth/index.html">
+    <link rel="canonical" href="http://blog.sqj.me/2019/linux-centos-swap-modify/">
   
 
   
@@ -161,37 +169,100 @@
   </div>
 </aside>
   <main id="main" class="mdui-m-t-5 fadeIn animated">
-
-  <article class="mdui-card mdui-m-b-5 mdui-hoverable">
-    <a href="/2019/grafana-oauth-simple/">
-      <header class="mdui-card-media mdui-ripple">
-        <img src="http://q068kveb3.bkt.clouddn.com/b2/material-6.png" style="max-height: 240px;">
-        <div class="mdui-card-media-covered">
-          <div class="mdui-card-primary">
-            <div class="mdui-card-primary-title">Grafana简单OAuth认证（自建简易OAuth 2.0实现Grafana SSO整合）</div>
-            <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2019-10-31 / <i class="iconfont">&#xe601;</i> Jay</div>
-          </div>
+  <link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+  <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
+  <article class="mdui-card mdui-m-b-5">
+    <header class="mdui-card-media">
+      <img src="http://q068kveb3.bkt.clouddn.com/b2/material-15.png" style="max-height: 180px;">
+      <div class="mdui-card-media-covered">
+        <div class="mdui-card-primary">
+          <div class="mdui-card-primary-title">linux centos 调整配置 swap 的方法</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2019-11-06 / <i class="iconfont">&#xe601;</i> Jay</div>
         </div>
-      </header>
-    </a>
-    <div class="mdui-card-content mdui-typo">
-      
+      </div>
+      <div class="mdui-card-menu">
         
-Grafana能够以较为丰富的方式进行单点登录集成。在  https://Grafana.com/docs/installation/configuration/  中有比较全面的描述。
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#qrcode', align: 'right'}"><i class="mdui-icon material-icons">devices</i></button>
+          <ul class="mdui-menu" id="qrcode">
+            
+              <li class="mdui-menu-item"><a class="mdui-text-center mdui-ripple">Send to mobile phone</a></li>
+            
+            <li class="mdui-menu-item" disabled>
+              
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACXUlEQVR42u3aQW7DIBAF0Nz/0um2UuXmzwxgK3qsqsYhPBaA//B6f3V74eHh4eHh4eHhPYz3itvv5y+7vvjW1ZN/vzUZGx4eHt5J3oelNn7mf1h1ynpjw8PDwzvJW/XzhUU8mI7q2PDw8PCexssPzQngwxKPh4eH93W86uJe3Wbw8PDwns/LI9d8QPmnj8ha8PDw8GJerwB25u/b6nt4eHh4F7xqax5zi8HuaIR4eHh4m3lri08JKb9M0JsOPDw8vN285Mfm05FcGqgessv7Hh4eHt4iXrW4NblYUN0Y8kAZDw8P72m8wqI8HmLvUhceHh7eSV5e5k8KY/lmkBy+k6N59MaAh4eHt5nXW5rnBbCNWQseHh7etpyzeshOML3tYXRkx8PDw9vMS4pbyafzMlhypH4HDQ8PD+8MbxKnTq5eVUPk6BIDHh4e3nHeqPjUihvyCY2ewcPDw9vMmxf4exFD3ufirAUPDw9vUc5ZPfImC3deAFu1LeHh4eGd4VUvTlVj2Wo/vSAYDw8P7zyvV2rK49f5ZjN6Y8DDw8NbysvD2WooUA2IJ6UyPDw8vLt41ZigcBGq2PI+8fDw8M7z8mg1OUb3eujhL+MJPDw8vM28apsPNI+Mm0dzPDw8vM283rDyiHZeAKse6PHw8PDO8CabQf6f/3tINobmGwMeHh7eNl5vsc6nILkusCVrwcPDw7uVlw9xVVhcvqyAh4eH92DejgN3bzx4eHh4d/EmRa/q4CbgD6PFw8PDO8LrRQDV0DafoEK5a3KnDA8PD6/F+76Gh4eHh4eHh4f3gPYDyvSglGq2engAAAAASUVORK5CYII=">
+              
+            </li>
+          </ul>
+        
+        
+      </div>
+    </header>
+    <div class="mdui-card-content mdui-typo">
+      <h3 id="生产环境中，发现Centos的swap分区不足，调整swap。"><a href="#生产环境中，发现Centos的swap分区不足，调整swap。" class="headerlink" title="生产环境中，发现Centos的swap分区不足，调整swap。"></a>生产环境中，发现Centos的swap分区不足，调整swap。</h3><p>1、查看内存情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free -m</span><br></pre></td></tr></table></figure>
 
-Authentication Overview (anonymous access options, ...
+<p><img src="http://q068kveb3.bkt.clouddn.com/image/free-m.png" alt=""></p>
+<p>2、增加swap</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dd <span class="keyword">if</span>=/dev/zero of=/var/swap bs=1024 count=20480000</span><br><span class="line"></span><br><span class="line">mkswap /var/swap</span><br><span class="line"></span><br><span class="line">mkswap -f /var/swap</span><br><span class="line"></span><br><span class="line">swapon /var/swap</span><br></pre></td></tr></table></figure>
+
+
+
+<p>3、增加开机配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/fstab</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/var/swap               swap                    swap    defaults        0 0</span><br></pre></td></tr></table></figure>
+
+
+
+<p>4、查看配置后的情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free -h</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://q068kveb3.bkt.clouddn.com/image/free-m2.png" alt=""></p>
+<p>5、 如果不再需要swap，可以清理该分区</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapoff /var/swap</span><br></pre></td></tr></table></figure>
+      <hr>
+      <blockquote class="mdui-m-t-5">
+      	<strong>本文作者：</strong>Jay<br>
+	<strong>本文链接：</strong><a href="http://blog.sqj.me/2019/linux-centos-swap-modify/">http://blog.sqj.me/2019/linux-centos-swap-modify/</a><br>
+      	<strong>版权声明：</strong>
+        
+          本作品采用 <a href='https://creativecommons.org/licenses/by-nc-nd/4.0/' target='_blank'>署名-非商业性使用-禁止演绎 4.0 国际</a> 许可。转载请保留原文链接及作者。
+        
+      </blockquote>
       
-      <a href="/2019/grafana-oauth-simple/">阅读更多 >></a>
     </div>
     <footer class="mdui-card-actions">
       
-        <a class="mdui-ripple article_categories-link" href="/categories/HTML-CSS-JS/">HTML/CSS/JS</a>
+        <a class="mdui-ripple article_categories-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
       
       
-        <a class="mdui-ripple article_tags-link" href="/tags/Grafana/" rel="tag">Grafana</a><a class="mdui-ripple article_tags-link" href="/tags/OAuth/" rel="tag">OAuth</a><a class="mdui-ripple article_tags-link" href="/tags/SSO/" rel="tag">SSO</a>
+        <a class="mdui-ripple article_tags-link" href="/tags/Centos/" rel="tag">Centos</a>
       
     </footer>
+    
   </article>
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
+
+
+  <nav id="paginator">
+    
+      <a rel="prev" class="extend prev" href="/2019/linux-centos-free-cache/">
+        <button aria-label="prev" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_back</i></button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上一篇
+      </a>
+    
+    <div class="spacer"></div>
+    
+      <a rel="next" class="extend next" href="/2019/zabbix-sso/">
+        下一篇&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
+      </a>
+    
+  </nav>
+
+
 
 </main>
   <footer id="footer" class="mdui-m-t-5 mdui-p-y-3 mdui-color-theme">

@@ -8,27 +8,31 @@
   <meta name="renderer" content="webkit">
 
   
-  <title>标签: OAuth | 从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想</title>
+  <title>linux centos 释放cache 的方法 | 从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想</title>
 
   <link rel="shortcut icon" href="http://q068kveb3.bkt.clouddn.com/b/favicon.png">
   <link rel="alternate" href="/atom.xml" title="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="description" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-<meta property="og:type" content="website">
-<meta property="og:title" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-<meta property="og:url" content="http:&#x2F;&#x2F;blog.sqj.me&#x2F;tags&#x2F;OAuth&#x2F;">
+  <meta name="description" content="生产环境中，Centos内存free很小，cache很大，可进行调整1、查看内存情况 1free -m   2、查看系统内存管理 12cat &#x2F;proc&#x2F;sys&#x2F;vm&#x2F;drop_caches0    3、配置自动清除内存cache 1echo 1 &amp;gt; &#x2F;proc&#x2F;sys&#x2F;vm&#x2F;drop_caches  1234# 这里可以选择1、2、3种模式echo 1 &amp;gt; &#x2F;proc&#x2F;sys&#x2F;vm&#x2F;">
+<meta name="keywords" content="Centos">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux centos 释放cache 的方法">
+<meta property="og:url" content="http:&#x2F;&#x2F;blog.sqj.me&#x2F;2019&#x2F;linux-centos-free-cache&#x2F;">
 <meta property="og:site_name" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-<meta property="og:description" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
+<meta property="og:description" content="生产环境中，Centos内存free很小，cache很大，可进行调整1、查看内存情况 1free -m   2、查看系统内存管理 12cat &#x2F;proc&#x2F;sys&#x2F;vm&#x2F;drop_caches0    3、配置自动清除内存cache 1echo 1 &amp;gt; &#x2F;proc&#x2F;sys&#x2F;vm&#x2F;drop_caches  1234# 这里可以选择1、2、3种模式echo 1 &amp;gt; &#x2F;proc&#x2F;sys&#x2F;vm&#x2F;">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;q068kveb3.bkt.clouddn.com&#x2F;image&#x2F;free-m.png">
+<meta property="og:updated_time" content="2019-11-06T02:56:12.265Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;q068kveb3.bkt.clouddn.com&#x2F;image&#x2F;free-m.png">
 
   <meta name="format-detection" content="telephone=no,email=no">
   <meta name="theme-color" content="#9C27B0">
   <meta name="description" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="keywords" content="">
+  <meta name="keywords" content=",Centos">
 
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="application-name" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="msapplication-starturl" content="http://blog.sqj.me/tags/OAuth/">
+  <meta name="msapplication-starturl" content="http://blog.sqj.me/2019/linux-centos-free-cache/">
   <meta name="msapplication-navbutton-color" content="#9C27B0">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
@@ -36,9 +40,12 @@
   <link rel="apple-touch-icon" href="http://q068kveb3.bkt.clouddn.com/b/favicon.png">
 
   
+    <meta property="article:published_time" content="Wed Nov 06 2019 11:34:37 GMT+0800">
+    <meta property="article:modified_time" content="Wed Nov 06 2019 10:56:12 GMT+0800">
+  
 
   
-    <link rel="canonical" href="http://blog.sqj.me/tags/OAuth/index.html">
+    <link rel="canonical" href="http://blog.sqj.me/2019/linux-centos-free-cache/">
   
 
   
@@ -161,37 +168,98 @@
   </div>
 </aside>
   <main id="main" class="mdui-m-t-5 fadeIn animated">
-
-  <article class="mdui-card mdui-m-b-5 mdui-hoverable">
-    <a href="/2019/grafana-oauth-simple/">
-      <header class="mdui-card-media mdui-ripple">
-        <img src="http://q068kveb3.bkt.clouddn.com/b2/material-6.png" style="max-height: 240px;">
-        <div class="mdui-card-media-covered">
-          <div class="mdui-card-primary">
-            <div class="mdui-card-primary-title">Grafana简单OAuth认证（自建简易OAuth 2.0实现Grafana SSO整合）</div>
-            <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2019-10-31 / <i class="iconfont">&#xe601;</i> Jay</div>
-          </div>
+  <link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+  <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
+  <article class="mdui-card mdui-m-b-5">
+    <header class="mdui-card-media">
+      <img src="http://q068kveb3.bkt.clouddn.com/b2/material-11.png" style="max-height: 180px;">
+      <div class="mdui-card-media-covered">
+        <div class="mdui-card-primary">
+          <div class="mdui-card-primary-title">linux centos 释放cache 的方法</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2019-11-06 / <i class="iconfont">&#xe601;</i> Jay</div>
         </div>
-      </header>
-    </a>
-    <div class="mdui-card-content mdui-typo">
-      
+      </div>
+      <div class="mdui-card-menu">
         
-Grafana能够以较为丰富的方式进行单点登录集成。在  https://Grafana.com/docs/installation/configuration/  中有比较全面的描述。
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#qrcode', align: 'right'}"><i class="mdui-icon material-icons">devices</i></button>
+          <ul class="mdui-menu" id="qrcode">
+            
+              <li class="mdui-menu-item"><a class="mdui-text-center mdui-ripple">Send to mobile phone</a></li>
+            
+            <li class="mdui-menu-item" disabled>
+              
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACaUlEQVR42u3aS5KDMAwFQO5/6ZkDzECeJGyoVLNK5Yc7C8t50vHz1deBh4eHh4eHh4f3Mt4RX/980Z9Xr9959vjsLr214eHh4e3hfdhq40Wf3Ti5S37f6/fg4eHh7eQli8u36bNPJVt/b214eHh4b+b13p8fsvHw8PC+j9e88eUzyat4eHh4b+Mlf/jzRfcO2Q9nLXh4eHgxbxIxrH68tb+Hh4eHF/DmTanrwpB827xVhoeHh7eTl2/E+YF7UmDyooWHh4f3LO86nK2+s1pIJjFH+R8DHh4e3q28vO1UfbXXEkvKT6Ew4OHh4d3K67X2qw2wPMBdOBmBh4eHN+b1ykNvi6+GDskK8fDw8N7Ay9tR8+UuDyPw8PDwluWcH7ba4ihAPiiQDyvcFkbg4eHhjXnJspIbVwtA3nKr/kB4eHh4q3nJMNPkkF0dnLphNAEPDw9vMW/S7M9bXPnQau8ZPDw8vP28o3jlh+z5eEH+s+Lh4eHt5M3jierYQV4w8uADDw8Pbz+vt8RJSaiGEdH4LB4eHt5i3jxmTWKC/Dh+wzN4eHh4W3jVx5MRgaSp1vsUHh4e3lO8HNA78vYij0KUjIeHh/cQb7Lp55v4ve03PDw8vD286jUZiupFEvlxHw8PD28Pr7cd522wasAxCUTw8PDwdvKqxaC6lVeP0XlBKjTA8PDw8Bbw8g26GhBURwGWZy14eHh4D/Hy76mOT+WRx8LCgIeHh3crb0UQXB2BXVgY8PDw8G7NOfMDcV4w8jITxRx4eHh4W3h5BNALJvIgOBlH+PCj4+Hh4S3mfd+Fh4eHh4eHh4f3gusXYIObp9yUcLEAAAAASUVORK5CYII=">
+              
+            </li>
+          </ul>
+        
+        
+      </div>
+    </header>
+    <div class="mdui-card-content mdui-typo">
+      <h3 id="生产环境中，Centos内存free很小，cache很大，可进行调整"><a href="#生产环境中，Centos内存free很小，cache很大，可进行调整" class="headerlink" title="生产环境中，Centos内存free很小，cache很大，可进行调整"></a>生产环境中，Centos内存free很小，cache很大，可进行调整</h3><p>1、查看内存情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free -m</span><br></pre></td></tr></table></figure>
 
-Authentication Overview (anonymous access options, ...
+<p><img src="http://q068kveb3.bkt.clouddn.com/image/free-m.png" alt=""></p>
+<p>2、查看系统内存管理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/sys/vm/drop_caches</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+
+
+
+<p>3、配置自动清除内存cache</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> 1 &gt; /proc/sys/vm/drop_caches</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这里可以选择1、2、3种模式</span></span><br><span class="line"><span class="built_in">echo</span> 1 &gt; /proc/sys/vm/drop_caches <span class="comment">#表示清除pagecache。</span></span><br><span class="line"><span class="built_in">echo</span> 2 &gt; /proc/sys/vm/drop_caches <span class="comment">#表示清除回收slab分配器中的对象（包括目录项缓存和inode缓存）。slab分配器是内核中管理内存的一种机制，其中很多缓存数据实现都是用的pagecache。</span></span><br><span class="line"><span class="built_in">echo</span> 3 &gt; /proc/sys/vm/drop_caches <span class="comment">#表示清除pagecache和slab分配器中的缓存对象。</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>4、查看配置后的情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free -h</span><br></pre></td></tr></table></figure>
+
+
+
+<p>5、注意，配置完内存处理方式后，可能无法恢复成0的状态，既由系统自动进行内存管理和清除。</p>
+<p>此时，可以重启服务器，重启后系统自动配置为状态0。</p>
+<p>进一步了解Cache，可以查阅  <a href="https://www.v2ex.com/t/278921" target="_blank" rel="noopener">https://www.v2ex.com/t/278921</a> </p>
+
+      <hr>
+      <blockquote class="mdui-m-t-5">
+      	<strong>本文作者：</strong>Jay<br>
+	<strong>本文链接：</strong><a href="http://blog.sqj.me/2019/linux-centos-free-cache/">http://blog.sqj.me/2019/linux-centos-free-cache/</a><br>
+      	<strong>版权声明：</strong>
+        
+          本作品采用 <a href='https://creativecommons.org/licenses/by-nc-nd/4.0/' target='_blank'>署名-非商业性使用-禁止演绎 4.0 国际</a> 许可。转载请保留原文链接及作者。
+        
+      </blockquote>
       
-      <a href="/2019/grafana-oauth-simple/">阅读更多 >></a>
     </div>
     <footer class="mdui-card-actions">
       
-        <a class="mdui-ripple article_categories-link" href="/categories/HTML-CSS-JS/">HTML/CSS/JS</a>
+        <a class="mdui-ripple article_categories-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
       
       
-        <a class="mdui-ripple article_tags-link" href="/tags/Grafana/" rel="tag">Grafana</a><a class="mdui-ripple article_tags-link" href="/tags/OAuth/" rel="tag">OAuth</a><a class="mdui-ripple article_tags-link" href="/tags/SSO/" rel="tag">SSO</a>
+        <a class="mdui-ripple article_tags-link" href="/tags/Centos/" rel="tag">Centos</a>
       
     </footer>
+    
   </article>
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
+
+
+  <nav id="paginator">
+    
+    <div class="spacer"></div>
+    
+      <a rel="next" class="extend next" href="/2019/linux-centos-swap-modify/">
+        下一篇&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
+      </a>
+    
+  </nav>
+
+
 
 </main>
   <footer id="footer" class="mdui-m-t-5 mdui-p-y-3 mdui-color-theme">

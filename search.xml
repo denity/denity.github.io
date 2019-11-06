@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>linux centos 释放cache 的方法</title>
+      <link href="/2019/linux-centos-free-cache/"/>
+      <url>/2019/linux-centos-free-cache/</url>
+      
+        <content type="html"><![CDATA[<h3 id="生产环境中，Centos内存free很小，cache很大，可进行调整"><a href="#生产环境中，Centos内存free很小，cache很大，可进行调整" class="headerlink" title="生产环境中，Centos内存free很小，cache很大，可进行调整"></a>生产环境中，Centos内存free很小，cache很大，可进行调整</h3><p>1、查看内存情况</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free -m</span><br></pre></td></tr></table></figure><p><img src="http://q068kveb3.bkt.clouddn.com/image/free-m.png" alt=""></p><p>2、查看系统内存管理</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/sys/vm/drop_caches</span><br><span class="line">0</span><br></pre></td></tr></table></figure><p>3、配置自动清除内存cache</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> 1 &gt; /proc/sys/vm/drop_caches</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这里可以选择1、2、3种模式</span></span><br><span class="line"><span class="built_in">echo</span> 1 &gt; /proc/sys/vm/drop_caches <span class="comment">#表示清除pagecache。</span></span><br><span class="line"><span class="built_in">echo</span> 2 &gt; /proc/sys/vm/drop_caches <span class="comment">#表示清除回收slab分配器中的对象（包括目录项缓存和inode缓存）。slab分配器是内核中管理内存的一种机制，其中很多缓存数据实现都是用的pagecache。</span></span><br><span class="line"><span class="built_in">echo</span> 3 &gt; /proc/sys/vm/drop_caches <span class="comment">#表示清除pagecache和slab分配器中的缓存对象。</span></span><br></pre></td></tr></table></figure><p>4、查看配置后的情况</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free -h</span><br></pre></td></tr></table></figure><p>5、注意，配置完内存处理方式后，可能无法恢复成0的状态，既由系统自动进行内存管理和清除。</p><p>此时，可以重启服务器，重启后系统自动配置为状态0。</p><p>进一步了解Cache，可以查阅  <a href="https://www.v2ex.com/t/278921" target="_blank" rel="noopener">https://www.v2ex.com/t/278921</a> </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 运维 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Centos </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>linux centos 调整配置 swap 的方法</title>
+      <link href="/2019/linux-centos-swap-modify/"/>
+      <url>/2019/linux-centos-swap-modify/</url>
+      
+        <content type="html"><![CDATA[<h3 id="生产环境中，发现Centos的swap分区不足，调整swap。"><a href="#生产环境中，发现Centos的swap分区不足，调整swap。" class="headerlink" title="生产环境中，发现Centos的swap分区不足，调整swap。"></a>生产环境中，发现Centos的swap分区不足，调整swap。</h3><p>1、查看内存情况</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free -m</span><br></pre></td></tr></table></figure><p><img src="http://q068kveb3.bkt.clouddn.com/image/free-m.png" alt=""></p><p>2、增加swap</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dd <span class="keyword">if</span>=/dev/zero of=/var/swap bs=1024 count=20480000</span><br><span class="line"></span><br><span class="line">mkswap /var/swap</span><br><span class="line"></span><br><span class="line">mkswap -f /var/swap</span><br><span class="line"></span><br><span class="line">swapon /var/swap</span><br></pre></td></tr></table></figure><p>3、增加开机配置</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/fstab</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/var/swap               swap                    swap    defaults        0 0</span><br></pre></td></tr></table></figure><p>4、查看配置后的情况</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free -h</span><br></pre></td></tr></table></figure><p><img src="http://q068kveb3.bkt.clouddn.com/image/free-m2.png" alt=""></p><p>5、 如果不再需要swap，可以清理该分区</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapoff /var/swap</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 运维 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Centos </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Zabbix单点登录开发sso</title>
       <link href="/2019/zabbix-sso/"/>
       <url>/2019/zabbix-sso/</url>
@@ -76,7 +126,7 @@
       
         <tags>
             
-            <tag> Linux </tag>
+            <tag> Centos </tag>
             
         </tags>
       
