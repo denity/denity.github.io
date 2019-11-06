@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.sqj.me/"/>
-  <updated>2019-11-06T02:56:12.265Z</updated>
+  <updated>2019-11-06T04:52:10.537Z</updated>
   <id>http://blog.sqj.me/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>linux centos 释放cache 的方法</title>
+    <title>linux centos 释放cache的方法</title>
     <link href="http://blog.sqj.me/2019/linux-centos-free-cache/"/>
     <id>http://blog.sqj.me/2019/linux-centos-free-cache/</id>
     <published>2019-11-06T03:34:37.000Z</published>
-    <updated>2019-11-06T02:56:12.265Z</updated>
+    <updated>2019-11-06T04:52:10.537Z</updated>
     
     <content type="html"><![CDATA[<h3 id="生产环境中，Centos内存free很小，cache很大，可进行调整"><a href="#生产环境中，Centos内存free很小，cache很大，可进行调整" class="headerlink" title="生产环境中，Centos内存free很小，cache很大，可进行调整"></a>生产环境中，Centos内存free很小，cache很大，可进行调整</h3><p>1、查看内存情况</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free -m</span><br></pre></td></tr></table></figure><p><img src="http://q068kveb3.bkt.clouddn.com/image/free-m.png" alt=""></p><p>2、查看系统内存管理</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/sys/vm/drop_caches</span><br><span class="line">0</span><br></pre></td></tr></table></figure><p>3、配置自动清除内存cache</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> 1 &gt; /proc/sys/vm/drop_caches</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这里可以选择1、2、3种模式</span></span><br><span class="line"><span class="built_in">echo</span> 1 &gt; /proc/sys/vm/drop_caches <span class="comment">#表示清除pagecache。</span></span><br><span class="line"><span class="built_in">echo</span> 2 &gt; /proc/sys/vm/drop_caches <span class="comment">#表示清除回收slab分配器中的对象（包括目录项缓存和inode缓存）。slab分配器是内核中管理内存的一种机制，其中很多缓存数据实现都是用的pagecache。</span></span><br><span class="line"><span class="built_in">echo</span> 3 &gt; /proc/sys/vm/drop_caches <span class="comment">#表示清除pagecache和slab分配器中的缓存对象。</span></span><br></pre></td></tr></table></figure><p>4、查看配置后的情况</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free -h</span><br></pre></td></tr></table></figure><p>5、注意，配置完内存处理方式后，可能无法恢复成0的状态，既由系统自动进行内存管理和清除。</p><p>此时，可以重启服务器，重启后系统自动配置为状态0。</p><p>进一步了解Cache，可以查阅  <a href="https://www.v2ex.com/t/278921" target="_blank" rel="noopener">https://www.v2ex.com/t/278921</a> </p>]]></content>
     
