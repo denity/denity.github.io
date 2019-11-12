@@ -81,7 +81,7 @@
     
     
     <entry>
-      <title>methods-to-get-memory-usage</title>
+      <title>Centos下查看内存占用情况的方法</title>
       <link href="/2019/methods-to-get-memory-usage/"/>
       <url>/2019/methods-to-get-memory-usage/</url>
       
@@ -266,7 +266,7 @@
       <link href="/2019/common-script/"/>
       <url>/2019/common-script/</url>
       
-        <content type="html"><![CDATA[<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>-= 获取当前目录下，各文件夹的大小 =-</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -h --max-depth=1 ./</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>-= 获取当前目录下，各文件夹的大小 =-</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -h --max-depth=1 ./</span><br></pre></td></tr></table></figure><p>-= Centos下查看内存占用情况的方法 =-</p><p><a href="/2019/methods-to-get-memory-usage/">Centos下查看内存占用的方法top、free、ps</a></p>]]></content>
       
       
       <categories>
