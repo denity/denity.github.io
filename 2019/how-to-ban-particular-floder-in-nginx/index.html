@@ -8,28 +8,31 @@
   <meta name="renderer" content="webkit">
 
   
-  <title>about | 从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想</title>
+  <title>如何在Nginx中屏蔽特定的地址或文件夹 | 从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想</title>
 
   <link rel="shortcut icon" href="http://q068kveb3.bkt.clouddn.com/b/favicon.png">
   <link rel="alternate" href="/atom.xml" title="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="description" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http:&#x2F;&#x2F;blog.sqj.me&#x2F;about&#x2F;">
+  <meta name="description" content="Nginx是一个高性能Web&#x2F;Proxy服务器。本文将配置Nginx，屏蔽对于特定Url或文件夹的访问。  屏蔽特定文件夹的访问实际网页中，有些地址是不允许外部进行访问的，可通过配置location节，进行特定地址屏蔽。 1、新增一个限制访问文件配置对应的屏蔽信息，方便后续引入每一个站点的配置文件中2、配置屏蔽信息123456789location ~* &#x2F;(check|login|loginc">
+<meta name="keywords" content="Nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何在Nginx中屏蔽特定的地址或文件夹">
+<meta property="og:url" content="http:&#x2F;&#x2F;blog.sqj.me&#x2F;2019&#x2F;how-to-ban-particular-floder-in-nginx&#x2F;">
 <meta property="og:site_name" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-<meta property="og:description" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
+<meta property="og:description" content="Nginx是一个高性能Web&#x2F;Proxy服务器。本文将配置Nginx，屏蔽对于特定Url或文件夹的访问。  屏蔽特定文件夹的访问实际网页中，有些地址是不允许外部进行访问的，可通过配置location节，进行特定地址屏蔽。 1、新增一个限制访问文件配置对应的屏蔽信息，方便后续引入每一个站点的配置文件中2、配置屏蔽信息123456789location ~* &#x2F;(check|login|loginc">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-20T07:56:37.344Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;q068kveb3.bkt.clouddn.com&#x2F;image&#x2F;postman-test-after-config2.png">
+<meta property="og:updated_time" content="2019-11-12T03:44:20.754Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;q068kveb3.bkt.clouddn.com&#x2F;image&#x2F;postman-test-after-config2.png">
 
   <meta name="format-detection" content="telephone=no,email=no">
   <meta name="theme-color" content="#9C27B0">
   <meta name="description" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="keywords" content="">
+  <meta name="keywords" content=",Nginx">
 
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="application-name" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="msapplication-starturl" content="http://blog.sqj.me/about/">
+  <meta name="msapplication-starturl" content="http://blog.sqj.me/2019/how-to-ban-particular-floder-in-nginx/">
   <meta name="msapplication-navbutton-color" content="#9C27B0">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
@@ -37,9 +40,12 @@
   <link rel="apple-touch-icon" href="http://q068kveb3.bkt.clouddn.com/b/favicon.png">
 
   
+    <meta property="article:published_time" content="Wed Nov 06 2019 08:30:00 GMT+0800">
+    <meta property="article:modified_time" content="Tue Nov 12 2019 11:44:20 GMT+0800">
+  
 
   
-    <link rel="canonical" href="http://blog.sqj.me/about/index.html">
+    <link rel="canonical" href="http://blog.sqj.me/2019/how-to-ban-particular-floder-in-nginx/">
   
 
   
@@ -166,11 +172,11 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="http://q068kveb3.bkt.clouddn.com/b2/material-3.png" style="max-height: 180px;">
+      <img src="http://q068kveb3.bkt.clouddn.com/b2/material-5.png" style="max-height: 180px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
-          <div class="mdui-card-primary-title">about</div>
-          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2019-10-20 / <i class="iconfont">&#xe601;</i> Jay Yi</div>
+          <div class="mdui-card-primary-title">如何在Nginx中屏蔽特定的地址或文件夹</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2019-11-06 / <i class="iconfont">&#xe601;</i> Jay</div>
         </div>
       </div>
       <div class="mdui-card-menu">
@@ -182,45 +188,34 @@
             
             <li class="mdui-menu-item" disabled>
               
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABhklEQVR42u3aMY7DMAwEQP//08kDDrGXJGzJuFGVQohGDWEudXxetQ5cXFxcXFzcDbhHvHr7J2fh4uKu5V6Ukvj4v/t//c7PwsXFXcvNj89L3uQsXFzct3B7JQwXF/c/cCf7cXFx38VNGpKLCCOIRR7t1XBxcQfcXkvT+70g38XFxS1yR+PPmLXFTBgXF7f4niFvcqoDkvNwJApTcHFxF3F/laFzRNIIVa+Ni4u7G7c3Ou1dYxSY4uLi3sxNPmhyXFIcq60RLi7uWm4v2sjHJ/m/4eLi7sCtPp7I44+cWxil4OLi3sxNCtZkmFq9AC4u7g7c3sik2sZMBq64uLjPc5NoIxmW5MFoPnrBxcVdxS2XlYDYi0uaoxRcXNwbuPPH3HlckjdIuLi4O3Dz4pUcXI1ayl9kuLi4D3ILj6WKDzQnT75wcXHfyE2g5xHqxU5cXNztuXmoWo1HC88vcHFxH+TmzU/vGvlQFhcXdwfupEWZPLx4NN/FxcWNufsvXFxcXFxc3EXrC7DBb4VZpwD6AAAAAElFTkSuQmCC">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACYklEQVR42u3aQW4jMQwEQP//05sHLGbcLVrKxCidjMCWVDmQBMXXv69eLzw8PDw8PDw8vIfxXvH6/1dXO1ztP/ltcTc8PDy8I7w3ofaWl/+qDvFrd8PDw8M7yLsKuElYvzr4/or3u7V3w8PDw3syb15qt4kBDw8P75t4bw4rQz8eHh7e3+LlAfr+m0nayHc72mvBw8PDi3n5I9P5z0ff9/Dw8PAC3vxRKimF14rsxRvi4eHhbeblgTgpnde+mTyh5U1hPDw8vPO8yZHtuOpayhl1qfHw8PA+xMuH7O+PWXseSwa5imEvPDw8vCO8NlXkg6qfGszKC2s8PDy8M7wkAbTFd/tPbEvzohmBh4eH91He/EJ5+2A+khXdAQ8PD+8IL08Ma0Vw2ybO2yVRYsDDw8PbzEtSRft5cmIOw8PDwzvJWyudc9h8PKtIJHh4eHibee2m7QBr2w5e+wseHh7eSV7bDoge78umbRL0F4eu8PDw8Lbx8oJ10q7Nh1nXUgseHh7eGV5bwuat2HwsdVLKv0kMeHh4eJt5Sbhfa9fuGLqqEwMeHh7eBl7bzM3bEPlQwqRZjIeHh/dbvElQbtsc7Q4faEbg4eHhbeYlgf4VrxaQn4uHh4d3kteutgk7L6/rBIaHh4e3mbcW1pMrrg1mtSMIUTMCDw8PbwNv3g7Ih6ImYwp4eHh4T+PlAbotmh/Ua8HDw8N7AG/SDm53SEp2PDw8vOfz8mSwlk7qNIOHh4d3kDcZnGqbCPnDWP2EhoeHh3eENxmxagcO7hPA/BEODw8Pbzfv+xYeHh4eHh4eHt4D1g9FHjUANBDLRgAAAABJRU5ErkJggg==">
               
             </li>
           </ul>
         
         
-          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
-          <ul class="mdui-menu" id="share_menu">
-            <li class="mdui-menu-item">
-              <a href="http://service.weibo.com/share/share.php?appkey=&title=about&url=http://blog.sqj.me/about/&pic=http://blog.sqj.mehttp://q068kveb3.bkt.clouddn.com/b/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到微博</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="https://twitter.com/intent/tweet?text=about&url=http://blog.sqj.me/about/&via=Jay Yi" target="_blank" class="mdui-ripple">分享到Twitter</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.sqj.me/about/" target="_blank" class="mdui-ripple">分享到Facebook</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="https://plus.google.com/share?url=http://blog.sqj.me/about/" target="_blank" class="mdui-ripple">分享到Google+</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://blog.sqj.me/about/&title=about" target="_blank" class="mdui-ripple">分享到LinkedIn</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="http://connect.qq.com/widget/shareqq/index.html?site=从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想&title=about&summary=从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想&pics=http://blog.sqj.mehttp://q068kveb3.bkt.clouddn.com/b/favicon.png&url=http://blog.sqj.me/about/" target="_blank" class="mdui-ripple">分享到QQ</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="https://telegram.me/share/url?url=http://blog.sqj.me/about/&text=about" target="_blank" class="mdui-ripple">分享到Telegram</a>
-            </li>
-          </ul>
-        
       </div>
     </header>
     <div class="mdui-card-content mdui-typo">
-      
+      <blockquote>
+<p>Nginx是一个高性能Web/Proxy服务器。本文将配置Nginx，屏蔽对于特定Url或文件夹的访问。</p>
+</blockquote>
+<h3 id="屏蔽特定文件夹的访问"><a href="#屏蔽特定文件夹的访问" class="headerlink" title="屏蔽特定文件夹的访问"></a>屏蔽特定文件夹的访问</h3><p>实际网页中，有些地址是不允许外部进行访问的，可通过配置location节，进行特定地址屏蔽。</p>
+<h4 id="1、新增一个限制访问文件配置对应的屏蔽信息，方便后续引入每一个站点的配置文件中"><a href="#1、新增一个限制访问文件配置对应的屏蔽信息，方便后续引入每一个站点的配置文件中" class="headerlink" title="1、新增一个限制访问文件配置对应的屏蔽信息，方便后续引入每一个站点的配置文件中"></a>1、新增一个限制访问文件配置对应的屏蔽信息，方便后续引入每一个站点的配置文件中</h4><h4 id="2、配置屏蔽信息"><a href="#2、配置屏蔽信息" class="headerlink" title="2、配置屏蔽信息"></a>2、配置屏蔽信息</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">location ~* /(check|login|logincheck)\.(php|aspx|asp|html|jsp) </span><br><span class="line">&#123;</span><br><span class="line">	deny all;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location ~* /(config|cnkadmin|eWebEditor|Systemadminweb|Databaseweb|db|data|weblogin|database|login|cenbel|account|CKEditor|xheditor|ueditor|admin|zzadminNN|_notes)/ </span><br><span class="line">&#123;</span><br><span class="line">	deny all;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3、将该文件在对应的站点文件中引入"><a href="#3、将该文件在对应的站点文件中引入" class="headerlink" title="3、将该文件在对应的站点文件中引入"></a>3、将该文件在对应的站点文件中引入</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include _common_config.conf;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>4、Postman测试</p>
+<p><img src="http://q068kveb3.bkt.clouddn.com/image/postman-test-after-config2.png" alt=""></p>
+<hr>
+<p>在Nginx中，屏蔽特定特定IP/UA的访问，请看 <a href="配置nginx屏蔽特定IP/UA的访问">/2019/how-to-ban-ip-or-ua-in-nginx</a></p>
+
       <hr>
       <blockquote class="mdui-m-t-5">
-      	<strong>本文作者：</strong>Jay Yi<br>
-	<strong>本文链接：</strong><a href="http://blog.sqj.me/about/">http://blog.sqj.me/about/</a><br>
+      	<strong>本文作者：</strong>Jay<br>
+	<strong>本文链接：</strong><a href="http://blog.sqj.me/2019/how-to-ban-particular-floder-in-nginx/">http://blog.sqj.me/2019/how-to-ban-particular-floder-in-nginx/</a><br>
       	<strong>版权声明：</strong>
         
           本作品采用 <a href='https://creativecommons.org/licenses/by-nc-nd/4.0/' target='_blank'>署名-非商业性使用-禁止演绎 4.0 国际</a> 许可。转载请保留原文链接及作者。
@@ -230,6 +225,10 @@
     </div>
     <footer class="mdui-card-actions">
       
+        <a class="mdui-ripple article_categories-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+      
+      
+        <a class="mdui-ripple article_tags-link" href="/tags/Nginx/" rel="tag">Nginx</a>
       
     </footer>
     
@@ -238,6 +237,22 @@
 <script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
   <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
 
+
+  <nav id="paginator">
+    
+      <a rel="prev" class="extend prev" href="/2019/linux-centos-swap-modify/">
+        <button aria-label="prev" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_back</i></button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上一篇
+      </a>
+    
+    <div class="spacer"></div>
+    
+      <a rel="next" class="extend next" href="/2019/zabbix-sso/">
+        下一篇&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
+      </a>
+    
+  </nav>
 
 
 

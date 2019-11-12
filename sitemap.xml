@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.sqj.me/2019/how-to-config-log-format-in-nginx/</loc>
+    
+    <lastmod>2019-11-12T04:23:12.683Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.sqj.me/2019/how-to-ban-particular-floder-in-nginx/</loc>
+    
+    <lastmod>2019-11-12T03:44:20.754Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.sqj.me/2019/how-to-ban-ip-or-ua-in-nginx/</loc>
+    
+    <lastmod>2019-11-12T03:43:49.815Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.sqj.me/2019/linux-centos-free-cache/</loc>
     
     <lastmod>2019-11-06T04:52:10.537Z</lastmod>
