@@ -8,28 +8,32 @@
   <meta name="renderer" content="webkit">
 
   
-  <title>从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想</title>
+  <title>set-centos-open-files-count | 从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想</title>
 
   <link rel="shortcut icon" href="http://q068kveb3.bkt.clouddn.com/b/favicon.png">
   <link rel="alternate" href="/atom.xml" title="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="description" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-<meta property="og:type" content="website">
-<meta property="og:title" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-<meta property="og:url" content="http:&#x2F;&#x2F;blog.sqj.me&#x2F;tags&#x2F;">
+  <meta name="description" content="Centos 默认的文件打开数比较低（默认1024)，在生产环境中很容易就引发文件打开数限制的问题。  查看文件打开数(open files)1、查看单个进程允许打开数1ulimit -a   2、查看系统总体能打开数（对所有进程）123cat &#x2F;proc&#x2F;sys&#x2F;fs&#x2F;file-max789949	#返回值    修改文件打开数1、修改 &#x2F;etc&#x2F;security&#x2F;limits.conf ，允">
+<meta name="keywords" content="Centos">
+<meta property="og:type" content="article">
+<meta property="og:title" content="set-centos-open-files-count">
+<meta property="og:url" content="http:&#x2F;&#x2F;blog.sqj.me&#x2F;2019&#x2F;set-centos-open-files-count&#x2F;">
 <meta property="og:site_name" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-<meta property="og:description" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
+<meta property="og:description" content="Centos 默认的文件打开数比较低（默认1024)，在生产环境中很容易就引发文件打开数限制的问题。  查看文件打开数(open files)1、查看单个进程允许打开数1ulimit -a   2、查看系统总体能打开数（对所有进程）123cat &#x2F;proc&#x2F;sys&#x2F;fs&#x2F;file-max789949	#返回值    修改文件打开数1、修改 &#x2F;etc&#x2F;security&#x2F;limits.conf ，允">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-25T07:52:29.411Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;q068kveb3.bkt.clouddn.com&#x2F;image&#x2F;openfiles1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;q068kveb3.bkt.clouddn.com&#x2F;image&#x2F;openfiles2.png">
+<meta property="og:updated_time" content="2019-11-12T06:42:40.818Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;q068kveb3.bkt.clouddn.com&#x2F;image&#x2F;openfiles1.png">
 
   <meta name="format-detection" content="telephone=no,email=no">
   <meta name="theme-color" content="#9C27B0">
   <meta name="description" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="keywords" content="">
+  <meta name="keywords" content=",Centos">
 
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="application-name" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="msapplication-starturl" content="http://blog.sqj.me/tags/">
+  <meta name="msapplication-starturl" content="http://blog.sqj.me/2019/set-centos-open-files-count/">
   <meta name="msapplication-navbutton-color" content="#9C27B0">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
@@ -37,9 +41,12 @@
   <link rel="apple-touch-icon" href="http://q068kveb3.bkt.clouddn.com/b/favicon.png">
 
   
+    <meta property="article:published_time" content="Tue Nov 12 2019 14:26:23 GMT+0800">
+    <meta property="article:modified_time" content="Tue Nov 12 2019 14:42:40 GMT+0800">
+  
 
   
-    <link rel="canonical" href="http://blog.sqj.me/tags/index.html">
+    <link rel="canonical" href="http://blog.sqj.me/2019/set-centos-open-files-count/">
   
 
   
@@ -166,11 +173,11 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="http://q068kveb3.bkt.clouddn.com/b2/material-4.png" style="max-height: 180px;">
+      <img src="http://q068kveb3.bkt.clouddn.com/b2/material-5.png" style="max-height: 180px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
-          <div class="mdui-card-primary-title"></div>
-          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2019-10-25 / <i class="iconfont">&#xe601;</i> Jay Yi</div>
+          <div class="mdui-card-primary-title">set-centos-open-files-count</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2019-11-12 / <i class="iconfont">&#xe601;</i> Jay</div>
         </div>
       </div>
       <div class="mdui-card-menu">
@@ -182,45 +189,43 @@
             
             <li class="mdui-menu-item" disabled>
               
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABhElEQVR42u3aS27DMAwFQN//0u0BjNZPpPUxMFoFRixNsiAoktfPp9aFi4uLi4uLewD3itf9rf+f3J8Xz8LFxd3EfQglMeUvVucsXFzcvdzkmOT4fJ/kJ+Hi4n6FmyconbNwcXG/y70/fzcNwsXF3csdDUB5crPtroaLi9vg5olL//PS+i4uLm6JO9zyDJKb0SLpxJ4wLi5uY54hCTQzEqBof1xc3K3cvMDRaaYmLVtcXNwTuKMHJN/P27EPfxMuLu5y7mj5MimM9tMgXFzc07j51gPBqNS4xcXF3cUdDSudJCZvuuDi4p7ArZU58itQ3oB5eY4MFxf3Je5o2TR5txbmcHFxT+B20FdpRQERFxd3OXd0dUqltX1wcXHXc4sD1i8Nf0+fPcfFxW1wa82VJAHKS67Fyw8uLu5kbh6MZqzhuxouLu5h3Bmfp3R+cHFxl3OTZKgzkIGLi3sCNy96PhwQj1lMv6vh4uI2uJ0CaK25sqi+i4uLW+Kev3BxcXFxcXE3rV+0lW+FE6urmwAAAABJRU5ErkJggg==">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACdUlEQVR42u3awU7DMBAE0P7/T8MVCTXMrO0QwcsJVQ7188Hejvf18aefFx4eHh4eHh4e3sN4r/j5Ov7du9/HvJ3Et7euxyRzw8PDw7uTl0zlenLX1LdTufxkODc8PDy8G3ntYdBOMdrWlw8hPDw8vKfx8qkkGz0eHh7e/+El2337JMuHh4eH9zRe8oN/VoInIcIjshY8PDy8mLdyAXb671++38PDw8Pb1HTVBrvrB8mw6QoPDw/vAK+dVnuVlU89L76XshY8PDy8Zd6uL2sbs/IDJh+Ph4eHdw8veuFy6rOm1QSTH1F4eHh49/Pyr2lL53z52sK9Tqnx8PDwtvLaK/xZWZw3WiUj6xgXDw8PbysvDwJmDVj51Vd7RNWdEXh4eHjLvHOB7CyGSBbihxIfDw8P7zAvCW3bkLddgjZWXvrFgIeHh3fg1/rsmUUVs2jjhwXCw8PDu53XNg20BXF7tVZ/goeHh3cLb6UNq77aD8KOIz1leHh4eJt47QV/XhC3EXAe8hZhBB4eHt4BXju59casdtO/frc49/Dw8PA28ZIgNd++2zJ91uY1LKnx8PDwNvHyMnq9vL6nBQEPDw/vNC8vVfPiOCmaZ/9nmLXg4eHhbeUlXzm7BmtDhCRQ3twZgYeHhzfi7drcV+KG2YH0FoyHh4d3mLfSeNpGBu2BkS8ZHh4e3v28NgK43qbz67S2rK9bB/Dw8PAO81YOgwS8d3wR4+Lh4eE9gNeObMv3Fo+Hh4f3ZF576dXGuMlbdYyLh4eHd4w3a3XKwe2SJZiipMbDw8PbyptdgM3i17bBq23ewsPDwzvN+3sPHh4eHh4eHh7eA55PT8jyJqeEVvsAAAAASUVORK5CYII=">
               
             </li>
           </ul>
         
         
-          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
-          <ul class="mdui-menu" id="share_menu">
-            <li class="mdui-menu-item">
-              <a href="http://service.weibo.com/share/share.php?appkey=&title=&url=http://blog.sqj.me/tags/&pic=http://blog.sqj.mehttp://q068kveb3.bkt.clouddn.com/b/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到微博</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="https://twitter.com/intent/tweet?text=&url=http://blog.sqj.me/tags/&via=Jay Yi" target="_blank" class="mdui-ripple">分享到Twitter</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.sqj.me/tags/" target="_blank" class="mdui-ripple">分享到Facebook</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="https://plus.google.com/share?url=http://blog.sqj.me/tags/" target="_blank" class="mdui-ripple">分享到Google+</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://blog.sqj.me/tags/&title=" target="_blank" class="mdui-ripple">分享到LinkedIn</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="http://connect.qq.com/widget/shareqq/index.html?site=从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想&title=&summary=从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想&pics=http://blog.sqj.mehttp://q068kveb3.bkt.clouddn.com/b/favicon.png&url=http://blog.sqj.me/tags/" target="_blank" class="mdui-ripple">分享到QQ</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="https://telegram.me/share/url?url=http://blog.sqj.me/tags/&text=" target="_blank" class="mdui-ripple">分享到Telegram</a>
-            </li>
-          </ul>
-        
       </div>
     </header>
     <div class="mdui-card-content mdui-typo">
-      
+      <blockquote>
+<p>Centos 默认的文件打开数比较低（默认1024)，在生产环境中很容易就引发文件打开数限制的问题。</p>
+</blockquote>
+<h3 id="查看文件打开数-open-files"><a href="#查看文件打开数-open-files" class="headerlink" title="查看文件打开数(open files)"></a>查看文件打开数(open files)</h3><h4 id="1、查看单个进程允许打开数"><a href="#1、查看单个进程允许打开数" class="headerlink" title="1、查看单个进程允许打开数"></a>1、查看单个进程允许打开数</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ulimit</span> -a</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://q068kveb3.bkt.clouddn.com/image/openfiles1.png" alt=""></p>
+<h4 id="2、查看系统总体能打开数（对所有进程）"><a href="#2、查看系统总体能打开数（对所有进程）" class="headerlink" title="2、查看系统总体能打开数（对所有进程）"></a>2、查看系统总体能打开数（对所有进程）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/sys/fs/file-max</span><br><span class="line"></span><br><span class="line">789949	<span class="comment">#返回值</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="修改文件打开数"><a href="#修改文件打开数" class="headerlink" title="修改文件打开数"></a>修改文件打开数</h3><h4 id="1、修改-etc-security-limits-conf-，允许一个进程打开数量"><a href="#1、修改-etc-security-limits-conf-，允许一个进程打开数量" class="headerlink" title="1、修改 /etc/security/limits.conf ，允许一个进程打开数量"></a>1、修改 /etc/security/limits.conf ，允许一个进程打开数量</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/security/limits.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#在最后添加</span></span><br><span class="line">* soft nofile 65535</span><br><span class="line">* hard nofile 65535</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2、修改所有进程允许总共文件打开数量"><a href="#2、修改所有进程允许总共文件打开数量" class="headerlink" title="2、修改所有进程允许总共文件打开数量"></a>2、修改所有进程允许总共文件打开数量</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysctl.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在文件中增加</span></span><br><span class="line">fs.file-max = 6553560</span><br><span class="line"></span><br><span class="line"><span class="comment">#使其生效</span></span><br><span class="line">sysctl -p</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3、查看修改结果"><a href="#3、查看修改结果" class="headerlink" title="3、查看修改结果"></a>3、查看修改结果</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ulimit</span> -a</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://q068kveb3.bkt.clouddn.com/image/openfiles2.png" alt=""></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/sys/fs/file-max</span><br><span class="line"></span><br><span class="line">789949	<span class="comment">#返回值</span></span><br></pre></td></tr></table></figure>
+
+
       <hr>
       <blockquote class="mdui-m-t-5">
-      	<strong>本文作者：</strong>Jay Yi<br>
-	<strong>本文链接：</strong><a href="http://blog.sqj.me/tags/">http://blog.sqj.me/tags/</a><br>
+      	<strong>本文作者：</strong>Jay<br>
+	<strong>本文链接：</strong><a href="http://blog.sqj.me/2019/set-centos-open-files-count/">http://blog.sqj.me/2019/set-centos-open-files-count/</a><br>
       	<strong>版权声明：</strong>
         
           本作品采用 <a href='https://creativecommons.org/licenses/by-nc-nd/4.0/' target='_blank'>署名-非商业性使用-禁止演绎 4.0 国际</a> 许可。转载请保留原文链接及作者。
@@ -230,6 +235,10 @@
     </div>
     <footer class="mdui-card-actions">
       
+        <a class="mdui-ripple article_categories-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+      
+      
+        <a class="mdui-ripple article_tags-link" href="/tags/Centos/" rel="tag">Centos</a>
       
     </footer>
     
@@ -238,6 +247,17 @@
 <script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
   <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
 
+
+  <nav id="paginator">
+    
+    <div class="spacer"></div>
+    
+      <a rel="next" class="extend next" href="/2019/how-to-config-log-format-in-nginx/">
+        下一篇&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
+      </a>
+    
+  </nav>
 
 
 

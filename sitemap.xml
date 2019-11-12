@@ -2,16 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://blog.sqj.me/2019/how-to-ban-particular-floder-in-nginx/</loc>
+    <loc>http://blog.sqj.me/2019/methods-to-get-memory-usage/</loc>
     
-    <lastmod>2019-11-12T04:31:20.132Z</lastmod>
+    <lastmod>2019-11-12T08:34:40.009Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.sqj.me/2019/php-fpm-optimize1/</loc>
+    
+    <lastmod>2019-11-12T08:21:57.352Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.sqj.me/2019/linux-centos-swap-modify/</loc>
+    
+    <lastmod>2019-11-12T08:21:21.806Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://blog.sqj.me/2019/how-to-ban-ip-or-ua-in-nginx/</loc>
     
-    <lastmod>2019-11-12T04:28:46.528Z</lastmod>
+    <lastmod>2019-11-12T08:21:09.058Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.sqj.me/2019/set-centos-open-files-count/</loc>
+    
+    <lastmod>2019-11-12T06:42:40.818Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.sqj.me/2019/how-to-ban-particular-floder-in-nginx/</loc>
+    
+    <lastmod>2019-11-12T04:31:20.132Z</lastmod>
     
   </url>
   
@@ -33,13 +61,6 @@
     <loc>http://blog.sqj.me/2019/common-script/</loc>
     
     <lastmod>2019-11-06T03:00:43.314Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.sqj.me/2019/linux-centos-swap-modify/</loc>
-    
-    <lastmod>2019-11-06T02:51:50.319Z</lastmod>
     
   </url>
   
