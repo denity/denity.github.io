@@ -12,16 +12,16 @@
 
   <link rel="shortcut icon" href="http://q068kveb3.bkt.clouddn.com/b/favicon.png">
   <link rel="alternate" href="/atom.xml" title="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="description" content="Nginx是一个高性能Web&#x2F;Proxy服务器。本文将配置Nginx，屏蔽对于特定Url或文件夹的访问。  屏蔽特定文件夹的访问实际网页中，有些地址是不允许外部进行访问的，可通过配置location节，进行特定地址屏蔽。 1、新增一个限制访问文件配置对应的屏蔽信息，方便后续引入每一个站点的配置文件中2、配置屏蔽信息123456789location ~* &#x2F;(check|login|loginc">
+  <meta name="description" content="Nginx是一个高性能Web&#x2F;Proxy服务器。本文将配置Nginx，屏蔽对于特定Url或文件夹的访问。  屏蔽特定文件夹的访问实际网页中，有些地址是不允许外部进行访问的，可通过配置location节，进行特定地址屏蔽。 1、新增一个限制访问文件配置对应的屏蔽信息，方便后续引入每一个站点的配置文件中2、配置屏蔽信息1234567891011#屏蔽特定目录下的文件location ~* &#x2F;(che">
 <meta name="keywords" content="Nginx">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何在Nginx中屏蔽特定的地址或文件夹">
 <meta property="og:url" content="http:&#x2F;&#x2F;blog.sqj.me&#x2F;2019&#x2F;how-to-ban-particular-floder-in-nginx&#x2F;">
 <meta property="og:site_name" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-<meta property="og:description" content="Nginx是一个高性能Web&#x2F;Proxy服务器。本文将配置Nginx，屏蔽对于特定Url或文件夹的访问。  屏蔽特定文件夹的访问实际网页中，有些地址是不允许外部进行访问的，可通过配置location节，进行特定地址屏蔽。 1、新增一个限制访问文件配置对应的屏蔽信息，方便后续引入每一个站点的配置文件中2、配置屏蔽信息123456789location ~* &#x2F;(check|login|loginc">
+<meta property="og:description" content="Nginx是一个高性能Web&#x2F;Proxy服务器。本文将配置Nginx，屏蔽对于特定Url或文件夹的访问。  屏蔽特定文件夹的访问实际网页中，有些地址是不允许外部进行访问的，可通过配置location节，进行特定地址屏蔽。 1、新增一个限制访问文件配置对应的屏蔽信息，方便后续引入每一个站点的配置文件中2、配置屏蔽信息1234567891011#屏蔽特定目录下的文件location ~* &#x2F;(che">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http:&#x2F;&#x2F;q068kveb3.bkt.clouddn.com&#x2F;image&#x2F;postman-test-after-config2.png">
-<meta property="og:updated_time" content="2019-11-12T04:28:07.267Z">
+<meta property="og:updated_time" content="2019-11-12T04:31:20.132Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;q068kveb3.bkt.clouddn.com&#x2F;image&#x2F;postman-test-after-config2.png">
 
@@ -41,7 +41,7 @@
 
   
     <meta property="article:published_time" content="Wed Nov 06 2019 08:30:00 GMT+0800">
-    <meta property="article:modified_time" content="Tue Nov 12 2019 12:28:07 GMT+0800">
+    <meta property="article:modified_time" content="Tue Nov 12 2019 12:31:20 GMT+0800">
   
 
   
@@ -172,7 +172,7 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="http://q068kveb3.bkt.clouddn.com/b2/material-11.png" style="max-height: 180px;">
+      <img src="http://q068kveb3.bkt.clouddn.com/b2/material-1.png" style="max-height: 180px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
           <div class="mdui-card-primary-title">如何在Nginx中屏蔽特定的地址或文件夹</div>
@@ -201,7 +201,7 @@
 <p>Nginx是一个高性能Web/Proxy服务器。本文将配置Nginx，屏蔽对于特定Url或文件夹的访问。</p>
 </blockquote>
 <h3 id="屏蔽特定文件夹的访问"><a href="#屏蔽特定文件夹的访问" class="headerlink" title="屏蔽特定文件夹的访问"></a>屏蔽特定文件夹的访问</h3><p>实际网页中，有些地址是不允许外部进行访问的，可通过配置location节，进行特定地址屏蔽。</p>
-<h4 id="1、新增一个限制访问文件配置对应的屏蔽信息，方便后续引入每一个站点的配置文件中"><a href="#1、新增一个限制访问文件配置对应的屏蔽信息，方便后续引入每一个站点的配置文件中" class="headerlink" title="1、新增一个限制访问文件配置对应的屏蔽信息，方便后续引入每一个站点的配置文件中"></a>1、新增一个限制访问文件配置对应的屏蔽信息，方便后续引入每一个站点的配置文件中</h4><h4 id="2、配置屏蔽信息"><a href="#2、配置屏蔽信息" class="headerlink" title="2、配置屏蔽信息"></a>2、配置屏蔽信息</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">location ~* /(check|login|logincheck)\.(php|aspx|asp|html|jsp) </span><br><span class="line">&#123;</span><br><span class="line">	deny all;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location ~* /(config|cnkadmin|eWebEditor|Systemadminweb|Databaseweb|db|data|weblogin|database|login|cenbel|account|CKEditor|xheditor|ueditor|admin|zzadminNN|_notes)/ </span><br><span class="line">&#123;</span><br><span class="line">	deny all;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="1、新增一个限制访问文件配置对应的屏蔽信息，方便后续引入每一个站点的配置文件中"><a href="#1、新增一个限制访问文件配置对应的屏蔽信息，方便后续引入每一个站点的配置文件中" class="headerlink" title="1、新增一个限制访问文件配置对应的屏蔽信息，方便后续引入每一个站点的配置文件中"></a>1、新增一个限制访问文件配置对应的屏蔽信息，方便后续引入每一个站点的配置文件中</h4><h4 id="2、配置屏蔽信息"><a href="#2、配置屏蔽信息" class="headerlink" title="2、配置屏蔽信息"></a>2、配置屏蔽信息</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#屏蔽特定目录下的文件</span></span><br><span class="line">location ~* /(check|login|logincheck)\.(php|aspx|asp|html|jsp) </span><br><span class="line">&#123;</span><br><span class="line">	deny all;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#屏蔽特定目录</span></span><br><span class="line">location ~* /(config|cnkadmin|eWebEditor|admin|_notes)/ </span><br><span class="line">&#123;</span><br><span class="line">	deny all;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="3、将该文件在对应的站点文件中引入"><a href="#3、将该文件在对应的站点文件中引入" class="headerlink" title="3、将该文件在对应的站点文件中引入"></a>3、将该文件在对应的站点文件中引入</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include _common_config.conf;</span><br></pre></td></tr></table></figure>
 
