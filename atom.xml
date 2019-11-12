@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.sqj.me/"/>
-  <updated>2019-11-12T06:42:40.818Z</updated>
+  <updated>2019-11-12T08:45:28.115Z</updated>
   <id>http://blog.sqj.me/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>set-centos-open-files-count</title>
+    <title>配置Centos文件打开数</title>
     <link href="http://blog.sqj.me/2019/set-centos-open-files-count/"/>
     <id>http://blog.sqj.me/2019/set-centos-open-files-count/</id>
     <published>2019-11-12T06:26:23.000Z</published>
-    <updated>2019-11-12T06:42:40.818Z</updated>
+    <updated>2019-11-12T08:45:28.115Z</updated>
     
     <content type="html"><![CDATA[<blockquote><p>Centos 默认的文件打开数比较低（默认1024)，在生产环境中很容易就引发文件打开数限制的问题。</p></blockquote><h3 id="查看文件打开数-open-files"><a href="#查看文件打开数-open-files" class="headerlink" title="查看文件打开数(open files)"></a>查看文件打开数(open files)</h3><h4 id="1、查看单个进程允许打开数"><a href="#1、查看单个进程允许打开数" class="headerlink" title="1、查看单个进程允许打开数"></a>1、查看单个进程允许打开数</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ulimit</span> -a</span><br></pre></td></tr></table></figure><p><img src="http://q068kveb3.bkt.clouddn.com/image/openfiles1.png" alt=""></p><h4 id="2、查看系统总体能打开数（对所有进程）"><a href="#2、查看系统总体能打开数（对所有进程）" class="headerlink" title="2、查看系统总体能打开数（对所有进程）"></a>2、查看系统总体能打开数（对所有进程）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/sys/fs/file-max</span><br><span class="line"></span><br><span class="line">789949<span class="comment">#返回值</span></span><br></pre></td></tr></table></figure><h3 id="修改文件打开数"><a href="#修改文件打开数" class="headerlink" title="修改文件打开数"></a>修改文件打开数</h3><h4 id="1、修改-etc-security-limits-conf-，允许一个进程打开数量"><a href="#1、修改-etc-security-limits-conf-，允许一个进程打开数量" class="headerlink" title="1、修改 /etc/security/limits.conf ，允许一个进程打开数量"></a>1、修改 /etc/security/limits.conf ，允许一个进程打开数量</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/security/limits.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#在最后添加</span></span><br><span class="line">* soft nofile 65535</span><br><span class="line">* hard nofile 65535</span><br></pre></td></tr></table></figure><h4 id="2、修改所有进程允许总共文件打开数量"><a href="#2、修改所有进程允许总共文件打开数量" class="headerlink" title="2、修改所有进程允许总共文件打开数量"></a>2、修改所有进程允许总共文件打开数量</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysctl.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在文件中增加</span></span><br><span class="line">fs.file-max = 6553560</span><br><span class="line"></span><br><span class="line"><span class="comment">#使其生效</span></span><br><span class="line">sysctl -p</span><br></pre></td></tr></table></figure><h4 id="3、查看修改结果"><a href="#3、查看修改结果" class="headerlink" title="3、查看修改结果"></a>3、查看修改结果</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ulimit</span> -a</span><br></pre></td></tr></table></figure><p><img src="http://q068kveb3.bkt.clouddn.com/image/openfiles2.png" alt=""></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/sys/fs/file-max</span><br><span class="line"></span><br><span class="line">789949<span class="comment">#返回值</span></span><br></pre></td></tr></table></figure>]]></content>
     
