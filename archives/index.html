@@ -100,7 +100,7 @@
       </div>
       <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
         
-        <a class="mdui-ripple sidebar_archives-link" href="/archives/2019/11/">十一月 2019<span class="mdui-ripple sidebar_archives-count">9</span></a><a class="mdui-ripple sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="mdui-ripple sidebar_archives-count">4</span></a>
+        <a class="mdui-ripple sidebar_archives-link" href="/archives/2019/11/">十一月 2019<span class="mdui-ripple sidebar_archives-count">12</span></a><a class="mdui-ripple sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="mdui-ripple sidebar_archives-count">4</span></a>
         
       </div>
     </div>
@@ -112,7 +112,7 @@
       </div>
       <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
         
-        <a class="mdui-ripple sidebar_archives-link" href="/categories/HTML-CSS-JS/">HTML/CSS/JS<span class="mdui-ripple sidebar_archives-count">4</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维<span class="mdui-ripple sidebar_archives-count">9</span></a>
+        <a class="mdui-ripple sidebar_archives-link" href="/categories/HTML-CSS-JS/">HTML/CSS/JS<span class="mdui-ripple sidebar_archives-count">4</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维<span class="mdui-ripple sidebar_archives-count">12</span></a>
         
       </div>
     </div>
@@ -124,7 +124,7 @@
       </div>
       <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
         
-        <a class="mdui-ripple sidebar_archives-link" href="/tags/Centos/" rel="tag">Centos<span class="mdui-ripple sidebar_archives-count">6</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Grafana/" rel="tag">Grafana<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Hexo/" rel="tag">Hexo<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Nginx/" rel="tag">Nginx<span class="mdui-ripple sidebar_archives-count">3</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/OAuth/" rel="tag">OAuth<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/SSO/" rel="tag">SSO<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Zabbix/" rel="tag">Zabbix<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/php/" rel="tag">php<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        <a class="mdui-ripple sidebar_archives-link" href="/tags/Centos/" rel="tag">Centos<span class="mdui-ripple sidebar_archives-count">8</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Grafana/" rel="tag">Grafana<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/HA/" rel="tag">HA<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Hexo/" rel="tag">Hexo<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Nginx/" rel="tag">Nginx<span class="mdui-ripple sidebar_archives-count">3</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Nginx-%E9%AB%98%E5%B9%B6%E5%8F%91/" rel="tag">Nginx 高并发<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/OAuth/" rel="tag">OAuth<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/SSO/" rel="tag">SSO<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Zabbix/" rel="tag">Zabbix<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/php/" rel="tag">php<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" rel="tag">高并发<span class="mdui-ripple sidebar_archives-count">1</span></a>
         
       </div>
     </div>
@@ -163,9 +163,103 @@
   <main id="main" class="mdui-m-t-5 fadeIn animated">
 
   <article class="mdui-card mdui-m-b-5 mdui-hoverable">
+    <a href="/2019/replication-with-lsyncd/">
+      <header class="mdui-card-media mdui-ripple">
+        <img src="http://q068kveb3.bkt.clouddn.com/b2/material-15.png" style="max-height: 240px;">
+        <div class="mdui-card-media-covered">
+          <div class="mdui-card-primary">
+            <div class="mdui-card-primary-title">使用 lsyncd 进行主从文件实时同步</div>
+            <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2019-11-14 / <i class="iconfont">&#xe601;</i> Jay</div>
+          </div>
+        </div>
+      </header>
+    </a>
+    <div class="mdui-card-content mdui-typo">
+      
+        
+生产环境中，有些文件数据超级大，达到T的数量级，如果用备份系统进行备份，需要上周的时间，而且备份过程中文件也在不断发生变化，导致备份文件不可控。
+本文介绍利用 lsyncd 进行主从数据的同时备份。 lysncd 实际上是lua语言封装了 inotify 和 rsync 工具，采用了 Linux 内核（2.6.13 及以后）里的 inotify 触发机制，然后通过rsync去差异同步，达到实时的效果。 
+lsyncd 项目地址  https://github.com/axkibe/lsyncd...
+      
+      <a href="/2019/replication-with-lsyncd/">阅读更多 >></a>
+    </div>
+    <footer class="mdui-card-actions">
+      
+        <a class="mdui-ripple article_categories-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+      
+      
+        <a class="mdui-ripple article_tags-link" href="/tags/Centos/" rel="tag">Centos</a><a class="mdui-ripple article_tags-link" href="/tags/HA/" rel="tag">HA</a><a class="mdui-ripple article_tags-link" href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" rel="tag">高并发</a>
+      
+    </footer>
+  </article>
+
+  <article class="mdui-card mdui-m-b-5 mdui-hoverable">
+    <a href="/2019/nginx-proxy-load-balance/">
+      <header class="mdui-card-media mdui-ripple">
+        <img src="http://q068kveb3.bkt.clouddn.com/b2/material-16.png" style="max-height: 240px;">
+        <div class="mdui-card-media-covered">
+          <div class="mdui-card-primary">
+            <div class="mdui-card-primary-title">Nginx的负载均衡配置——故障转移</div>
+            <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2019-11-13 / <i class="iconfont">&#xe601;</i> Jay</div>
+          </div>
+        </div>
+      </header>
+    </a>
+    <div class="mdui-card-content mdui-typo">
+      
+        
+Nginx在反向代理、Web服务、负载均衡的配置能有很高的灵活性，本文针对负载均衡进行描述，并增加负载均衡。
+
+1. 后端服务器池在server节外，配置服务器池，池里所有服务器，均提供统一的服务（这也是负载均衡的基础🐎，如果同样的地址，返回内容不一样，(￣▽￣)”）。
+1
+      
+      <a href="/2019/nginx-proxy-load-balance/">阅读更多 >></a>
+    </div>
+    <footer class="mdui-card-actions">
+      
+        <a class="mdui-ripple article_categories-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+      
+      
+        <a class="mdui-ripple article_tags-link" href="/tags/Nginx-%E9%AB%98%E5%B9%B6%E5%8F%91/" rel="tag">Nginx 高并发</a>
+      
+    </footer>
+  </article>
+
+  <article class="mdui-card mdui-m-b-5 mdui-hoverable">
+    <a href="/2019/network-script/">
+      <header class="mdui-card-media mdui-ripple">
+        <img src="http://q068kveb3.bkt.clouddn.com/b2/material-17.png" style="max-height: 240px;">
+        <div class="mdui-card-media-covered">
+          <div class="mdui-card-primary">
+            <div class="mdui-card-primary-title">Centos常用网络脚本</div>
+            <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2019-11-13 / <i class="iconfont">&#xe601;</i> Jay</div>
+          </div>
+        </div>
+      </header>
+    </a>
+    <div class="mdui-card-content mdui-typo">
+      
+        
+Centos常用网络脚本
+
+获取本机IP12345
+      
+      <a href="/2019/network-script/">阅读更多 >></a>
+    </div>
+    <footer class="mdui-card-actions">
+      
+        <a class="mdui-ripple article_categories-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+      
+      
+        <a class="mdui-ripple article_tags-link" href="/tags/Centos/" rel="tag">Centos</a>
+      
+    </footer>
+  </article>
+
+  <article class="mdui-card mdui-m-b-5 mdui-hoverable">
     <a href="/2019/set-centos-open-files-count/">
       <header class="mdui-card-media mdui-ripple">
-        <img src="http://q068kveb3.bkt.clouddn.com/b2/material-8.png" style="max-height: 240px;">
+        <img src="http://q068kveb3.bkt.clouddn.com/b2/material-6.png" style="max-height: 240px;">
         <div class="mdui-card-media-covered">
           <div class="mdui-card-primary">
             <div class="mdui-card-primary-title">配置Centos文件打开数</div>
@@ -196,7 +290,7 @@ Centos 默认的文件打开数比较低（默认1024)，在生产环境中很�
   <article class="mdui-card mdui-m-b-5 mdui-hoverable">
     <a href="/2019/how-to-config-log-format-in-nginx/">
       <header class="mdui-card-media mdui-ripple">
-        <img src="http://q068kveb3.bkt.clouddn.com/b2/material-12.png" style="max-height: 240px;">
+        <img src="http://q068kveb3.bkt.clouddn.com/b2/material-14.png" style="max-height: 240px;">
         <div class="mdui-card-media-covered">
           <div class="mdui-card-primary">
             <div class="mdui-card-primary-title">如何配置nginx的日志格式</div>
@@ -227,7 +321,7 @@ Nginx的Log详细配置，可以参考  http://nginx.org/en/docs/http/ngx_http_l
   <article class="mdui-card mdui-m-b-5 mdui-hoverable">
     <a href="/2019/php-fpm-optimize1/">
       <header class="mdui-card-media mdui-ripple">
-        <img src="http://q068kveb3.bkt.clouddn.com/b2/material-17.png" style="max-height: 240px;">
+        <img src="http://q068kveb3.bkt.clouddn.com/b2/material-14.png" style="max-height: 240px;">
         <div class="mdui-card-media-covered">
           <div class="mdui-card-primary">
             <div class="mdui-card-primary-title">php-fpm参数调优</div>
@@ -258,7 +352,7 @@ php-fpm 参数调整优化记录
   <article class="mdui-card mdui-m-b-5 mdui-hoverable">
     <a href="/2019/methods-to-get-memory-usage/">
       <header class="mdui-card-media mdui-ripple">
-        <img src="http://q068kveb3.bkt.clouddn.com/b2/material-16.png" style="max-height: 240px;">
+        <img src="http://q068kveb3.bkt.clouddn.com/b2/material-9.png" style="max-height: 240px;">
         <div class="mdui-card-media-covered">
           <div class="mdui-card-primary">
             <div class="mdui-card-primary-title">Centos下查看内存占用情况的方法</div>
@@ -289,7 +383,7 @@ top 获取内存占用率1234
   <article class="mdui-card mdui-m-b-5 mdui-hoverable">
     <a href="/2019/linux-centos-free-cache/">
       <header class="mdui-card-media mdui-ripple">
-        <img src="http://q068kveb3.bkt.clouddn.com/b2/material-8.png" style="max-height: 240px;">
+        <img src="http://q068kveb3.bkt.clouddn.com/b2/material-17.png" style="max-height: 240px;">
         <div class="mdui-card-media-covered">
           <div class="mdui-card-primary">
             <div class="mdui-card-primary-title">linux centos 释放cache的方法</div>
@@ -377,98 +471,6 @@ Zabbix 主要监控手段包括：Zabbix agent、snmp、ipmi、fping、http监�
       
       
         <a class="mdui-ripple article_tags-link" href="/tags/SSO/" rel="tag">SSO</a><a class="mdui-ripple article_tags-link" href="/tags/Zabbix/" rel="tag">Zabbix</a>
-      
-    </footer>
-  </article>
-
-  <article class="mdui-card mdui-m-b-5 mdui-hoverable">
-    <a href="/2019/how-to-ban-ip-or-ua-in-nginx/">
-      <header class="mdui-card-media mdui-ripple">
-        <img src="http://q068kveb3.bkt.clouddn.com/b2/material-6.png" style="max-height: 240px;">
-        <div class="mdui-card-media-covered">
-          <div class="mdui-card-primary">
-            <div class="mdui-card-primary-title">配置nginx屏蔽特定IP/UA的访问</div>
-            <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2019-11-04 / <i class="iconfont">&#xe601;</i> Jay</div>
-          </div>
-        </div>
-      </header>
-    </a>
-    <div class="mdui-card-content mdui-typo">
-      
-        
-Nginx是一个高性能Web/Proxy服务器。本文将配置Nginx，来允许特定IP来源访问，屏蔽特定UA（User-Agent）访问。
-
-允许/屏蔽IP的访问在接入云WAF后，通常要限制访问的IP来源（通常称为限源）。在Nginx中，能够很容易地配置。
-
-      
-      <a href="/2019/how-to-ban-ip-or-ua-in-nginx/">阅读更多 >></a>
-    </div>
-    <footer class="mdui-card-actions">
-      
-        <a class="mdui-ripple article_categories-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
-      
-      
-        <a class="mdui-ripple article_tags-link" href="/tags/Nginx/" rel="tag">Nginx</a>
-      
-    </footer>
-  </article>
-
-  <article class="mdui-card mdui-m-b-5 mdui-hoverable">
-    <a href="/2019/linux-centos-swap-modify/">
-      <header class="mdui-card-media mdui-ripple">
-        <img src="http://q068kveb3.bkt.clouddn.com/b2/material-16.png" style="max-height: 240px;">
-        <div class="mdui-card-media-covered">
-          <div class="mdui-card-primary">
-            <div class="mdui-card-primary-title">linux centos 调整配置 swap 的方法</div>
-            <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2019-11-03 / <i class="iconfont">&#xe601;</i> Jay</div>
-          </div>
-        </div>
-      </header>
-    </a>
-    <div class="mdui-card-content mdui-typo">
-      
-        生产环境中，发现Centos的swap分区不足，调整swap。1、查看内存情况
-1free -m
-      
-      <a href="/2019/linux-centos-swap-modify/">阅读更多 >></a>
-    </div>
-    <footer class="mdui-card-actions">
-      
-        <a class="mdui-ripple article_categories-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
-      
-      
-        <a class="mdui-ripple article_tags-link" href="/tags/Centos/" rel="tag">Centos</a>
-      
-    </footer>
-  </article>
-
-  <article class="mdui-card mdui-m-b-5 mdui-hoverable">
-    <a href="/2019/grafana-oauth-simple/">
-      <header class="mdui-card-media mdui-ripple">
-        <img src="http://q068kveb3.bkt.clouddn.com/b2/material-19.png" style="max-height: 240px;">
-        <div class="mdui-card-media-covered">
-          <div class="mdui-card-primary">
-            <div class="mdui-card-primary-title">Grafana简单OAuth认证（自建简易OAuth 2.0实现Grafana SSO整合）</div>
-            <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2019-10-31 / <i class="iconfont">&#xe601;</i> Jay</div>
-          </div>
-        </div>
-      </header>
-    </a>
-    <div class="mdui-card-content mdui-typo">
-      
-        
-Grafana能够以较为丰富的方式进行单点登录集成。在  https://Grafana.com/docs/installation/configuration/  中有比较全面的描述。
-
-Authentication Overview (anonymous access options, ...
-      
-      <a href="/2019/grafana-oauth-simple/">阅读更多 >></a>
-    </div>
-    <footer class="mdui-card-actions">
-      
-        <a class="mdui-ripple article_categories-link" href="/categories/HTML-CSS-JS/">HTML/CSS/JS</a>
-      
-      
-        <a class="mdui-ripple article_tags-link" href="/tags/Grafana/" rel="tag">Grafana</a><a class="mdui-ripple article_tags-link" href="/tags/OAuth/" rel="tag">OAuth</a><a class="mdui-ripple article_tags-link" href="/tags/SSO/" rel="tag">SSO</a>
       
     </footer>
   </article>

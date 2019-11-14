@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="renderer" content="webkit">
+
+  
+  <title>使用 lsyncd 进行主从文件实时同步 | 从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想</title>
+
+  <link rel="shortcut icon" href="http://q068kveb3.bkt.clouddn.com/b/favicon.png">
+  <link rel="alternate" href="/atom.xml" title="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
+  <meta name="description" content="生产环境中，有些文件数据超级大，达到T的数量级，如果用备份系统进行备份，需要上周的时间，而且备份过程中文件也在不断发生变化，导致备份文件不可控。 本文介绍利用 lsyncd 进行主从数据的同时备份。 lysncd 实际上是lua语言封装了 inotify 和 rsync 工具，采用了 Linux 内核（2.6.13 及以后）里的 inotify 触发机制，然后通过rsync去差异同步，达到实时的">
+<meta name="keywords" content="Centos,高并发,HA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 lsyncd 进行主从文件实时同步">
+<meta property="og:url" content="http:&#x2F;&#x2F;blog.sqj.me&#x2F;2019&#x2F;replication-with-lsyncd&#x2F;">
+<meta property="og:site_name" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
+<meta property="og:description" content="生产环境中，有些文件数据超级大，达到T的数量级，如果用备份系统进行备份，需要上周的时间，而且备份过程中文件也在不断发生变化，导致备份文件不可控。 本文介绍利用 lsyncd 进行主从数据的同时备份。 lysncd 实际上是lua语言封装了 inotify 和 rsync 工具，采用了 Linux 内核（2.6.13 及以后）里的 inotify 触发机制，然后通过rsync去差异同步，达到实时的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;q068kveb3.bkt.clouddn.com&#x2F;image&#x2F;lsyncd1.png">
+<meta property="og:updated_time" content="2019-11-14T02:10:52.966Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;q068kveb3.bkt.clouddn.com&#x2F;image&#x2F;lsyncd1.png">
+
+  <meta name="format-detection" content="telephone=no,email=no">
+  <meta name="theme-color" content="#9C27B0">
+  <meta name="description" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
+  <meta name="keywords" content=",Centos,高并发,HA">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
+  <meta name="msapplication-starturl" content="http://blog.sqj.me/2019/replication-with-lsyncd/">
+  <meta name="msapplication-navbutton-color" content="#9C27B0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="http://q068kveb3.bkt.clouddn.com/b/favicon.png">
+
+  
+    <meta property="article:published_time" content="Thu Nov 14 2019 09:22:53 GMT+0800">
+    <meta property="article:modified_time" content="Thu Nov 14 2019 10:10:52 GMT+0800">
+  
+
+  
+    <link rel="canonical" href="http://blog.sqj.me/2019/replication-with-lsyncd/">
+  
+
+  
+  
+
+  
+  
+  
+
+  <link rel="stylesheet" href="/css/mdui.css">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-primary-deep-purple mdui-theme-accent-deep-purple">
+  <script>var a=localStorage.getItem("mdui-theme-layout-dark");if(a){document.getElementsByTagName("body")[0].className+=" mdui-theme-layout-dark"};</script>
+  <header id="header" class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide mdui-appbar-inset">
+  <div class="mdui-toolbar mdui-color-theme">
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="mdui-icon material-icons">menu</i></a>
+    <a href="/" class="mdui-typo-headline">从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: '搜索'}"><i class="mdui-icon material-icons">search</i></a>
+    <a href="/atom.xml" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'RSS'}"><i class="mdui-icon material-icons">rss_feed</i></a>
+  </div>
+</header>
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="Enter the key words">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+  <aside id="sidebar" class="mdui-drawer mdui-drawer-full-height">
+  <div class="mdui-grid-tile">
+    <img src="http://q068kveb3.bkt.clouddn.com/b/banner.png" style="height: 160px;">
+    <img src="http://q068kveb3.bkt.clouddn.com/b/avatar.png" class="avatar-animation" style="position: absolute; top: 10%; left: 24px; width: 64px; height: 64px; border: 2px solid #fff; border-radius: 50%;">
+    <div class="mdui-grid-tile-actions">
+      <div class="mdui-grid-tile-text">
+        <div class="mdui-grid-tile-title">Jay Yi</div>
+        <div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">art_track</i>Keep It Simple Stupid</div>
+      </div>
+      
+        <div class="mdui-grid-tile-buttons">
+          <a href="mailto:38984917@qq.com" target="_blank" rel="noopener" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '38984917@qq.com'}"><i class="mdui-icon material-icons">email</i></a>
+        </div>
+      
+    </div>
+  </div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    <a href="/" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">home</i>
+      <div class="mdui-list-item-content">主页</div>
+    </a>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">inbox</i>
+        <div class="mdui-list-item-content">归档</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/archives/2019/11/">十一月 2019<span class="mdui-ripple sidebar_archives-count">12</span></a><a class="mdui-ripple sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="mdui-ripple sidebar_archives-count">4</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">chrome_reader_mode</i>
+        <div class="mdui-list-item-content">分类</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/categories/HTML-CSS-JS/">HTML/CSS/JS<span class="mdui-ripple sidebar_archives-count">4</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维<span class="mdui-ripple sidebar_archives-count">12</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">bookmark</i>
+        <div class="mdui-list-item-content">标签</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/tags/Centos/" rel="tag">Centos<span class="mdui-ripple sidebar_archives-count">8</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Grafana/" rel="tag">Grafana<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/HA/" rel="tag">HA<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Hexo/" rel="tag">Hexo<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Nginx/" rel="tag">Nginx<span class="mdui-ripple sidebar_archives-count">3</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Nginx-%E9%AB%98%E5%B9%B6%E5%8F%91/" rel="tag">Nginx 高并发<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/OAuth/" rel="tag">OAuth<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/SSO/" rel="tag">SSO<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Zabbix/" rel="tag">Zabbix<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/php/" rel="tag">php<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" rel="tag">高并发<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        
+      </div>
+    </div>
+    <a href="/about" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">person</i>
+      <div class="mdui-list-item-content">关于</div>
+    </a>
+  </div>
+
+  <div class="mdui-divider"></div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    
+      <a href="/tags" class="mdui-list-item mdui-ripple">Tags</a>
+    
+      <a href="/mylinks" class="mdui-list-item mdui-ripple">常用链接</a>
+    
+      <a href="/2019/common-script/" class="mdui-list-item mdui-ripple">常用命令</a>
+    
+    <!--
+    <div class="mdui-collapse-item">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <div class="mdui-list-item-content">友情链接</div>
+        <i class="mdui-list-item-icon mdui-icon material-icons">link</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        
+          <a href="javascript:;" class="mdui-list-item mdui-ripple mdui-p-l-2 mdui-text-color-theme" style="justify-content: center;">链接为空</a>
+        
+      </div>
+    </div>
+    -->
+  </div>
+</aside>
+  <main id="main" class="mdui-m-t-5 fadeIn animated">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+  <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
+  <article class="mdui-card mdui-m-b-5">
+    <header class="mdui-card-media">
+      <img src="http://q068kveb3.bkt.clouddn.com/b2/material-7.png" style="max-height: 180px;">
+      <div class="mdui-card-media-covered">
+        <div class="mdui-card-primary">
+          <div class="mdui-card-primary-title">使用 lsyncd 进行主从文件实时同步</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2019-11-14 / <i class="iconfont">&#xe601;</i> Jay</div>
+        </div>
+      </div>
+      <div class="mdui-card-menu">
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#qrcode', align: 'right'}"><i class="mdui-icon material-icons">devices</i></button>
+          <ul class="mdui-menu" id="qrcode">
+            
+              <li class="mdui-menu-item"><a class="mdui-text-center mdui-ripple">Send to mobile phone</a></li>
+            
+            <li class="mdui-menu-item" disabled>
+              
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACbklEQVR42u3aQZICIQwFUO9/aecAlu1PAthjPVaW1dI8FhCTPJ4/PR54eHh4eHh4eHg34z3i8fqr68+v8+fPjNaGh4eHd4T34ai9fOZ16ckikvl7a8PDw8M7yXu3oHfP5JdEfsEkM3y4ZvDw8PD+CS8PsqubgoeHh/cbvCi0LX6TXxt4eHh49+H10g3zELmXBMHDw8P7Li8vMp3/fLS+h4eHhxfwyi1NcaCcH+tJyN5susLDw8PbwJsX/q+vmUl43WxEwMPDw9vM6yVw81fOW12rFwkeHh7ebl6SeuilYpPlJkF2+b14eHh4x3nVMHdVkSwphkVXER4eHt5mXnW6ajNWcjFEgXKwWXh4eHhneHmKIcdEBf5F7a14eHh453nXR3MvSVFNNPQaFwohNR4eHt4GXh4Ez9nV3y5oHcDDw8NbyouO2mKydZSEjRPKzWQEHh4e3pjXW8SkGJY3IjQvHjw8PLzjvOqy8pRr9bJpNnvh4eHhbebNE7L54qpb1gzr8fDw8L7Ey6erJhGqZbDqduDh4eGd4eWwvBEqD4J7YXozS42Hh4e3jbdquck25W+Mim14eHh4B3l5qT5vOEjC5WdxNJuu8PDw8I7wqod7s8E0HhEeDw8PbzOvdygnQXA1FM6vmQ9vxMPDw9vMmxzKSdh9nXSYP1+o7+Hh4eEt5eV//te2ZPW2Eg8PD+8+vPkBXS1ZVVMh0ebi4eHh3ZiXB9ZJON4LuEc9ZXh4eHg34F0nc3sp4HKzFx4eHt5BXl6UKhzTcXvBqsAaDw8P7wwvn656lOdXS/WNW+p7eHh4eAHv9wYeHh4eHh4eHt4Nxh8ntZun/cgDdwAAAABJRU5ErkJggg==">
+              
+            </li>
+          </ul>
+        
+        
+      </div>
+    </header>
+    <div class="mdui-card-content mdui-typo">
+      <blockquote>
+<p>生产环境中，有些文件数据超级大，达到T的数量级，如果用备份系统进行备份，需要上周的时间，而且备份过程中文件也在不断发生变化，导致备份文件不可控。</p>
+<p>本文介绍利用 lsyncd 进行主从数据的同时备份。 lysncd 实际上是lua语言封装了 inotify 和 rsync 工具，采用了 Linux 内核（2.6.13 及以后）里的 inotify 触发机制，然后通过rsync去差异同步，达到实时的效果。 </p>
+<p>lsyncd 项目地址  <a href="https://github.com/axkibe/lsyncd" target="_blank" rel="noopener">https://github.com/axkibe/lsyncd</a>  官网  <a href="https://axkibe.github.io/lsyncd/" target="_blank" rel="noopener">https://axkibe.github.io/lsyncd/</a> </p>
+</blockquote>
+<h3 id="1-rsync安装"><a href="#1-rsync安装" class="headerlink" title="1. rsync安装"></a>1. rsync安装</h3><p>lsyncd 依赖于 rsync，现在系统中安装 rsync</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install rsync</span><br><span class="line"><span class="comment">#或者</span></span><br><span class="line">yum update rsync</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-安装-repl-yum-源"><a href="#2-安装-repl-yum-源" class="headerlink" title="2. 安装 repl yum 源"></a>2. 安装 repl yum 源</h3><p>利用 epel yum 源，可直接yum安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install epel-release</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-yum-安装-lsyncd"><a href="#3-yum-安装-lsyncd" class="headerlink" title="3. yum 安装 lsyncd"></a>3. yum 安装 lsyncd</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install lsyncd</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-配置-etc-lsyncd-conf"><a href="#4-配置-etc-lsyncd-conf" class="headerlink" title="4. 配置 /etc/lsyncd.conf"></a>4. 配置 /etc/lsyncd.conf</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">-- 注释掉最后一样</span><br><span class="line">-- sync&#123;default.rsyncssh, source="/var/www/html", host="localhost", targetdir="/tmp/htmlcopy/"&#125;</span><br><span class="line"></span><br><span class="line">-- 添加 lsyncd 配置代码</span><br><span class="line">settings &#123;</span><br><span class="line">   logfile    = "/data/lsyncd_log/lsyncd.log",		# 日志文件</span><br><span class="line">   statusFile = "/data/lsyncd_log/lsyncd.status",	# 同步文件状态</span><br><span class="line">   insist = true,</span><br><span class="line">   statusInterval = 10,								# 同步时间间隔 10s</span><br><span class="line">   inotifyMode  = "CloseWrite"						# 文件变化检测模式</span><br><span class="line">&#125;</span><br><span class="line">sync &#123;</span><br><span class="line">   default.rsyncssh,</span><br><span class="line">   source="/data/www/XXXX",							# 同步本机源地址</span><br><span class="line">   host="172.19.0.123",								# 目标主机</span><br><span class="line">   targetdir="/data/www/xxxx_sync",					# 目标主机上的备份地址</span><br><span class="line">   rsync = &#123;</span><br><span class="line">     archive = true,</span><br><span class="line">     compress = false,								# 是否压缩，压缩会好用本机CPU，按实选择</span><br><span class="line">     whole_file = false</span><br><span class="line">   &#125;,</span><br><span class="line">   ssh = &#123;</span><br><span class="line">     port = 22										# 目标主机ssh端口</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="参数说明："><a href="#参数说明：" class="headerlink" title="参数说明："></a>参数说明：</h4><p><strong>inotifyMode：</strong>指定inotify监控的模式，默认是CloseWrite，可配置为Modify或CloseWrite or Modify。</p>
+<p>CloseWrite如字面意思，就是结束写入。 Modify则是监控文件的变更。</p>
+<p><strong>maxProcesses:</strong> 同步时最大的进程数，在rsyncssh模式下，maxProcesses=1，可不设置。 </p>
+<p><strong>sync模式：</strong></p>
+<ol>
+<li><p>本地目录同步（ direct ）  default.direct </p>
+</li>
+<li><p>本地目录同步（  rsync  ）  default. rsync </p>
+</li>
+<li><p>远程目录同步（rsync + rsyncd daemon ）</p>
+<p>default.rsync </p>
+<p>target = “<a href="mailto:syncuser@172.19.0.123" target="_blank" rel="noopener">syncuser@172.19.0.123</a>::module1” </p>
+</li>
+<li><p>远程目录同步（rsync + ssh shell ），也就是本文所用模式，o(<em>￣︶￣</em>)o</p>
+<p>default.rsyncssh </p>
+</li>
+</ol>
+<h3 id="5-配置远程SSH免密登录"><a href="#5-配置远程SSH免密登录" class="headerlink" title="5. 配置远程SSH免密登录"></a>5. 配置远程SSH免密登录</h3><p>配置完 lsyncd 后，需要允许本机远程免密登录远程目标主机。</p>
+<p>5.1 （远程目标主机）生成 ssh key</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -b 4096 -t rsa</span><br><span class="line"><span class="comment"># 一路回车，生成 /root/.ssh/id_rsa 文件</span></span><br></pre></td></tr></table></figure>
+
+<p>5.2 （远程目标主机）生成  authorized keys </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.ssh</span><br><span class="line">cat id_rsa.pub &gt;&gt; authorized_keys</span><br></pre></td></tr></table></figure>
+
+<p>5.3 （本地主机）将远程主机的 /root/.ssh/id_rsa （ id_rsa私钥 ），复制到本地主机</p>
+<p>5.4  （本地主机）变更文件权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 600 ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
+
+<p>5.5 （本地主机）测试免密登录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#用户名 user，ip，端口 根据实际情况配置</span></span><br><span class="line">ssh user@172.19.0.123 -p 22</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-启用-lsyncd-同步-服务"><a href="#6-启用-lsyncd-同步-服务" class="headerlink" title="6. 启用 lsyncd 同步 服务"></a>6. 启用 lsyncd 同步 服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> lsyncd</span><br><span class="line">systemctl start lsyncd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看状态</span></span><br><span class="line">systemctl status lsyncd -l</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://q068kveb3.bkt.clouddn.com/image/lsyncd1.png" alt=""></p>
+<hr>
+<h3 id="7-效果验证"><a href="#7-效果验证" class="headerlink" title="7. 效果验证"></a>7. 效果验证</h3><ul>
+<li>实测首次同步，速度可达 700mbps，本机CPU占用 20+%。</li>
+<li>同步配置后，进行源文件的增加、删除测试，远程目标主机能准实时进行相应的改变。</li>
+<li>如果A文件同步到远程目标主机后，远程目标主机进行文件删除。则A文件不发生改变情况下，这个A文件不会再次同步到远程。只有当A文件更改后，才会再次将A文件同步到远程目标主机。</li>
+</ul>
+<h3 id="8-日志查看"><a href="#8-日志查看" class="headerlink" title="8. 日志查看"></a>8. 日志查看</h3><p>任何情况下，均可通过查看 logfile、statusFile 进行同步信息、任务执行情况的查看。</p>
+
+      <hr>
+      <blockquote class="mdui-m-t-5">
+      	<strong>本文作者：</strong>Jay<br>
+	<strong>本文链接：</strong><a href="http://blog.sqj.me/2019/replication-with-lsyncd/">http://blog.sqj.me/2019/replication-with-lsyncd/</a><br>
+      	<strong>版权声明：</strong>
+        
+          本作品采用 <a href='https://creativecommons.org/licenses/by-nc-nd/4.0/' target='_blank'>署名-非商业性使用-禁止演绎 4.0 国际</a> 许可。转载请保留原文链接及作者。
+        
+      </blockquote>
+      
+    </div>
+    <footer class="mdui-card-actions">
+      
+        <a class="mdui-ripple article_categories-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+      
+      
+        <a class="mdui-ripple article_tags-link" href="/tags/Centos/" rel="tag">Centos</a><a class="mdui-ripple article_tags-link" href="/tags/HA/" rel="tag">HA</a><a class="mdui-ripple article_tags-link" href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" rel="tag">高并发</a>
+      
+    </footer>
+    
+  </article>
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
+
+
+  <nav id="paginator">
+    
+    <div class="spacer"></div>
+    
+      <a rel="next" class="extend next" href="/2019/nginx-proxy-load-balance/">
+        下一篇&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
+      </a>
+    
+  </nav>
+
+
+
+</main>
+  <footer id="footer" class="mdui-m-t-5 mdui-p-y-3 mdui-color-theme">
+  <div class="mdui-p-y-0 mdui-text-center">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+  <div class="mdui-p-y-1 mdui-text-center">
+    <p>Copyright &copy; 2019 - 2019 Jay Yi</p>
+    <p>Powered by <a href="https://hexo.io/" target="_blank" class="mdui-text-color-theme-accent">Hexo</a>
+    
+    </p>
+  </div>
+</footer>
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">arrow_upward</i></button>
+  
+  <script src="/js/mdui.js"></script>
+<script src="/js/script.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300,"right":30,"bottom":20},"mobile":{"show":true},"react":{"opacity":0.9},"log":false});</script></body>
+</html>

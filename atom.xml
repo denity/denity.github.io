@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.sqj.me/"/>
-  <updated>2019-11-12T08:45:28.115Z</updated>
+  <updated>2019-11-14T02:10:52.966Z</updated>
   <id>http://blog.sqj.me/</id>
   
   <author>
@@ -15,6 +15,96 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用 lsyncd 进行主从文件实时同步</title>
+    <link href="http://blog.sqj.me/2019/replication-with-lsyncd/"/>
+    <id>http://blog.sqj.me/2019/replication-with-lsyncd/</id>
+    <published>2019-11-14T01:22:53.000Z</published>
+    <updated>2019-11-14T02:10:52.966Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>生产环境中，有些文件数据超级大，达到T的数量级，如果用备份系统进行备份，需要上周的时间，而且备份过程中文件也在不断发生变化，导致备份文件不可控。</p><p>本文介绍利用 lsyncd 进行主从数据的同时备份。 lysncd 实际上是lua语言封装了 inotify 和 rsync 工具，采用了 Linux 内核（2.6.13 及以后）里的 inotify 触发机制，然后通过rsync去差异同步，达到实时的效果。 </p><p>lsyncd 项目地址  <a href="https://github.com/axkibe/lsyncd" target="_blank" rel="noopener">https://github.com/axkibe/lsyncd</a>  官网  <a href="https://axkibe.github.io/lsyncd/" target="_blank" rel="noopener">https://axkibe.github.io/lsyncd/</a> </p></blockquote><h3 id="1-rsync安装"><a href="#1-rsync安装" class="headerlink" title="1. rsync安装"></a>1. rsync安装</h3><p>lsyncd 依赖于 rsync，现在系统中安装 rsync</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install rsync</span><br><span class="line"><span class="comment">#或者</span></span><br><span class="line">yum update rsync</span><br></pre></td></tr></table></figure><h3 id="2-安装-repl-yum-源"><a href="#2-安装-repl-yum-源" class="headerlink" title="2. 安装 repl yum 源"></a>2. 安装 repl yum 源</h3><p>利用 epel yum 源，可直接yum安装</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install epel-release</span><br></pre></td></tr></table></figure><h3 id="3-yum-安装-lsyncd"><a href="#3-yum-安装-lsyncd" class="headerlink" title="3. yum 安装 lsyncd"></a>3. yum 安装 lsyncd</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install lsyncd</span><br></pre></td></tr></table></figure><h3 id="4-配置-etc-lsyncd-conf"><a href="#4-配置-etc-lsyncd-conf" class="headerlink" title="4. 配置 /etc/lsyncd.conf"></a>4. 配置 /etc/lsyncd.conf</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">-- 注释掉最后一样</span><br><span class="line">-- sync&#123;default.rsyncssh, source="/var/www/html", host="localhost", targetdir="/tmp/htmlcopy/"&#125;</span><br><span class="line"></span><br><span class="line">-- 添加 lsyncd 配置代码</span><br><span class="line">settings &#123;</span><br><span class="line">   logfile    = "/data/lsyncd_log/lsyncd.log",# 日志文件</span><br><span class="line">   statusFile = "/data/lsyncd_log/lsyncd.status",# 同步文件状态</span><br><span class="line">   insist = true,</span><br><span class="line">   statusInterval = 10,# 同步时间间隔 10s</span><br><span class="line">   inotifyMode  = "CloseWrite"# 文件变化检测模式</span><br><span class="line">&#125;</span><br><span class="line">sync &#123;</span><br><span class="line">   default.rsyncssh,</span><br><span class="line">   source="/data/www/XXXX",# 同步本机源地址</span><br><span class="line">   host="172.19.0.123",# 目标主机</span><br><span class="line">   targetdir="/data/www/xxxx_sync",# 目标主机上的备份地址</span><br><span class="line">   rsync = &#123;</span><br><span class="line">     archive = true,</span><br><span class="line">     compress = false,# 是否压缩，压缩会好用本机CPU，按实选择</span><br><span class="line">     whole_file = false</span><br><span class="line">   &#125;,</span><br><span class="line">   ssh = &#123;</span><br><span class="line">     port = 22# 目标主机ssh端口</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="参数说明："><a href="#参数说明：" class="headerlink" title="参数说明："></a>参数说明：</h4><p><strong>inotifyMode：</strong>指定inotify监控的模式，默认是CloseWrite，可配置为Modify或CloseWrite or Modify。</p><p>CloseWrite如字面意思，就是结束写入。 Modify则是监控文件的变更。</p><p><strong>maxProcesses:</strong> 同步时最大的进程数，在rsyncssh模式下，maxProcesses=1，可不设置。 </p><p><strong>sync模式：</strong></p><ol><li><p>本地目录同步（ direct ）  default.direct </p></li><li><p>本地目录同步（  rsync  ）  default. rsync </p></li><li><p>远程目录同步（rsync + rsyncd daemon ）</p><p>default.rsync </p><p>target = “<a href="mailto:syncuser@172.19.0.123" target="_blank" rel="noopener">syncuser@172.19.0.123</a>::module1” </p></li><li><p>远程目录同步（rsync + ssh shell ），也就是本文所用模式，o(<em>￣︶￣</em>)o</p><p>default.rsyncssh </p></li></ol><h3 id="5-配置远程SSH免密登录"><a href="#5-配置远程SSH免密登录" class="headerlink" title="5. 配置远程SSH免密登录"></a>5. 配置远程SSH免密登录</h3><p>配置完 lsyncd 后，需要允许本机远程免密登录远程目标主机。</p><p>5.1 （远程目标主机）生成 ssh key</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -b 4096 -t rsa</span><br><span class="line"><span class="comment"># 一路回车，生成 /root/.ssh/id_rsa 文件</span></span><br></pre></td></tr></table></figure><p>5.2 （远程目标主机）生成  authorized keys </p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.ssh</span><br><span class="line">cat id_rsa.pub &gt;&gt; authorized_keys</span><br></pre></td></tr></table></figure><p>5.3 （本地主机）将远程主机的 /root/.ssh/id_rsa （ id_rsa私钥 ），复制到本地主机</p><p>5.4  （本地主机）变更文件权限</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 600 ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure><p>5.5 （本地主机）测试免密登录</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#用户名 user，ip，端口 根据实际情况配置</span></span><br><span class="line">ssh user@172.19.0.123 -p 22</span><br></pre></td></tr></table></figure><h3 id="6-启用-lsyncd-同步-服务"><a href="#6-启用-lsyncd-同步-服务" class="headerlink" title="6. 启用 lsyncd 同步 服务"></a>6. 启用 lsyncd 同步 服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> lsyncd</span><br><span class="line">systemctl start lsyncd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看状态</span></span><br><span class="line">systemctl status lsyncd -l</span><br></pre></td></tr></table></figure><p><img src="http://q068kveb3.bkt.clouddn.com/image/lsyncd1.png" alt=""></p><hr><h3 id="7-效果验证"><a href="#7-效果验证" class="headerlink" title="7. 效果验证"></a>7. 效果验证</h3><ul><li>实测首次同步，速度可达 700mbps，本机CPU占用 20+%。</li><li>同步配置后，进行源文件的增加、删除测试，远程目标主机能准实时进行相应的改变。</li><li>如果A文件同步到远程目标主机后，远程目标主机进行文件删除。则A文件不发生改变情况下，这个A文件不会再次同步到远程。只有当A文件更改后，才会再次将A文件同步到远程目标主机。</li></ul><h3 id="8-日志查看"><a href="#8-日志查看" class="headerlink" title="8. 日志查看"></a>8. 日志查看</h3><p>任何情况下，均可通过查看 logfile、statusFile 进行同步信息、任务执行情况的查看。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;生产环境中，有些文件数据超级大，达到T的数量级，如果用备份系统进行备份，需要上周的时间，而且备份过程中文件也在不断发生变化，导致备份文件不可控。&lt;/p&gt;
+&lt;p&gt;本文介绍利用 lsyncd 进行主从数据的同时备份。 lysncd 实际上是lua语言封
+      
+    
+    </summary>
+    
+    
+      <category term="运维" scheme="http://blog.sqj.me/categories/%E8%BF%90%E7%BB%B4/"/>
+    
+    
+      <category term="Centos" scheme="http://blog.sqj.me/tags/Centos/"/>
+    
+      <category term="高并发" scheme="http://blog.sqj.me/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/"/>
+    
+      <category term="HA" scheme="http://blog.sqj.me/tags/HA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nginx的负载均衡配置——故障转移</title>
+    <link href="http://blog.sqj.me/2019/nginx-proxy-load-balance/"/>
+    <id>http://blog.sqj.me/2019/nginx-proxy-load-balance/</id>
+    <published>2019-11-13T10:02:13.000Z</published>
+    <updated>2019-11-13T13:27:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>Nginx在反向代理、Web服务、负载均衡的配置能有很高的灵活性，本文针对负载均衡进行描述，并增加负载均衡。</p></blockquote><h3 id="1-后端服务器池"><a href="#1-后端服务器池" class="headerlink" title="1. 后端服务器池"></a>1. 后端服务器池</h3><p>在server节外，配置服务器池，池里所有服务器，均提供统一的服务（这也是负载均衡的基础🐎，如果同样的地址，返回内容不一样，(￣▽￣)”）。</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">upstream media_server_pool#upstream 后面跟 服务器池名称</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">#ip_hash;# nginx 代理到后端服务的轮询方式</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 服务器群，可1~n台</span></span><br><span class="line">server 172.18.0.194:8082weight=1 max_fails=2 fail_timeout=60s;</span><br><span class="line">server 172.18.0.192:8082weight=2 max_fails=2 fail_timeout=60s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>1.1 Nginx到后端服务器的轮询方式</p><p>1.2 服务器池中每一台server的配置</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;Nginx在反向代理、Web服务、负载均衡的配置能有很高的灵活性，本文针对负载均衡进行描述，并增加负载均衡。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;1-后端服务器池&quot;&gt;&lt;a href=&quot;#1-后端服务器池&quot; class=&quot;header
+      
+    
+    </summary>
+    
+    
+      <category term="运维" scheme="http://blog.sqj.me/categories/%E8%BF%90%E7%BB%B4/"/>
+    
+    
+      <category term="Nginx 高并发" scheme="http://blog.sqj.me/tags/Nginx-%E9%AB%98%E5%B9%B6%E5%8F%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Centos常用网络脚本</title>
+    <link href="http://blog.sqj.me/2019/network-script/"/>
+    <id>http://blog.sqj.me/2019/network-script/</id>
+    <published>2019-11-13T09:52:25.000Z</published>
+    <updated>2019-11-13T09:59:16.780Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>Centos常用网络脚本</p></blockquote><h3 id="获取本机IP"><a href="#获取本机IP" class="headerlink" title="获取本机IP"></a>获取本机IP</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ifconfig -a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出示例</span></span><br><span class="line">eth0      Link encap:Ethernet  HWaddr EC:B1:D7:7F:15:BC</span><br><span class="line">          inet addr:172.16.0.199  Bcast:172.16.255.255  Mask:255.255.0.0</span><br><span class="line">          inet6 addr: fe80::eeb1:d7ff:fe7f:15bc/64 Scope:Link</span><br><span class="line">          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span><br><span class="line">          RX packets:57066818 errors:0 dropped:0 overruns:0 frame:0</span><br><span class="line">          TX packets:47386046 errors:0 dropped:0 overruns:0 carrier:0</span><br><span class="line">          collisions:0 txqueuelen:1000</span><br><span class="line">          RX bytes:55226093821 (51.4 GiB)  TX bytes:47035203014 (43.8 GiB)</span><br><span class="line">          Interrupt:16</span><br></pre></td></tr></table></figure><h3 id="获取外网IP"><a href="#获取外网IP" class="headerlink" title="获取外网IP"></a>获取外网IP</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl ifconfig.me</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出 上外网的ip</span></span><br><span class="line">58.62.xx.xx</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;Centos常用网络脚本&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;获取本机IP&quot;&gt;&lt;a href=&quot;#获取本机IP&quot; class=&quot;headerlink&quot; title=&quot;获取本机IP&quot;&gt;&lt;/a&gt;获取本机IP&lt;/h3&gt;&lt;figure cl
+      
+    
+    </summary>
+    
+    
+      <category term="运维" scheme="http://blog.sqj.me/categories/%E8%BF%90%E7%BB%B4/"/>
+    
+    
+      <category term="Centos" scheme="http://blog.sqj.me/tags/Centos/"/>
+    
+  </entry>
   
   <entry>
     <title>配置Centos文件打开数</title>
@@ -308,9 +398,9 @@
     <link href="http://blog.sqj.me/2019/common-script/"/>
     <id>http://blog.sqj.me/2019/common-script/</id>
     <published>2019-10-30T01:55:54.000Z</published>
-    <updated>2019-11-12T08:48:21.645Z</updated>
+    <updated>2019-11-13T09:59:37.325Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>-= 获取当前目录下，各文件夹的大小 =-</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -h --max-depth=1 ./</span><br></pre></td></tr></table></figure><p>-= Centos下查看内存占用情况的方法 =-</p><p><a href="/2019/methods-to-get-memory-usage/">Centos下查看内存占用的方法top、free、ps</a></p>]]></content>
+    <content type="html"><![CDATA[<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>-= 获取当前目录下，各文件夹的大小 =-</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -h --max-depth=1 ./</span><br></pre></td></tr></table></figure><p>-= Centos下查看内存占用情况的方法 =-</p><p><a href="/2019/methods-to-get-memory-usage/">Centos下查看内存占用的方法top、free、ps</a></p><p>-= Centos 网络相关命令 =-</p><p><a href="/2019/network-script/">Centos常用网络脚本</a></p>]]></content>
     
     <summary type="html">
     
