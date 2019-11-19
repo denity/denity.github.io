@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.sqj.me/2019/replication-with-lsyncd-experiment/</loc>
+    
+    <lastmod>2019-11-19T15:59:37.919Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.sqj.me/2019/replication-with-lsyncd-settings/</loc>
+    
+    <lastmod>2019-11-19T15:32:53.605Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.sqj.me/2019/set-centos-open-files-count/</loc>
+    
+    <lastmod>2019-11-14T09:33:11.746Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.sqj.me/2019/nginx-proxy-load-balance/</loc>
     
     <lastmod>2019-11-14T07:13:05.263Z</lastmod>
@@ -33,13 +54,6 @@
     <loc>http://blog.sqj.me/2019/methods-to-get-memory-usage/</loc>
     
     <lastmod>2019-11-12T08:46:56.103Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.sqj.me/2019/set-centos-open-files-count/</loc>
-    
-    <lastmod>2019-11-12T08:45:28.115Z</lastmod>
     
   </url>
   
