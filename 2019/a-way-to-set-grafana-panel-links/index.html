@@ -10,7 +10,7 @@
   
   <title>配置Grafana的Panel地址，实现点击图表后跳转到另一个dashboard/Url | 从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想</title>
 
-  <link rel="shortcut icon" href="http://q068kveb3.bkt.clouddn.com/b/favicon.png">
+  <link rel="shortcut icon" href="http://imimimg.hetong.io/b/favicon.png">
   <link rel="alternate" href="/atom.xml" title="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
   <meta name="description" content="配置Grafana的Panel地址，实现点击图表后跳转到另一个dashboardGrafana有3个地方可以配置跳转链接  dashboard层次，在dashboard的settings可以配置Links。 每一个Panel的data links。 每一个Panel的panel links。     在这三个地方都能够实现点击链接跳转到另外的页面。 传参在添加链接时，可以使用绝对地址，也可以通过传">
 <meta name="keywords" content="Grafana">
@@ -20,13 +20,13 @@
 <meta property="og:site_name" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
 <meta property="og:description" content="配置Grafana的Panel地址，实现点击图表后跳转到另一个dashboardGrafana有3个地方可以配置跳转链接  dashboard层次，在dashboard的settings可以配置Links。 每一个Panel的data links。 每一个Panel的panel links。     在这三个地方都能够实现点击链接跳转到另外的页面。 传参在添加链接时，可以使用绝对地址，也可以通过传">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http:&#x2F;&#x2F;q068kveb3.bkt.clouddn.com&#x2F;image&#x2F;awaytosetlinks1.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;q068kveb3.bkt.clouddn.com&#x2F;image&#x2F;awaytosetlinks2.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;q068kveb3.bkt.clouddn.com&#x2F;image&#x2F;awaytosetlinks3.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;q068kveb3.bkt.clouddn.com&#x2F;image&#x2F;awaytosetlinks4.png">
-<meta property="og:updated_time" content="2019-10-30T05:35:23.706Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;imimimg.hetong.io&#x2F;image&#x2F;awaytosetlinks1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;imimimg.hetong.io&#x2F;image&#x2F;awaytosetlinks2.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;imimimg.hetong.io&#x2F;image&#x2F;awaytosetlinks3.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;imimimg.hetong.io&#x2F;image&#x2F;awaytosetlinks4.png">
+<meta property="og:updated_time" content="2019-11-29T08:05:03.905Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;q068kveb3.bkt.clouddn.com&#x2F;image&#x2F;awaytosetlinks1.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;imimimg.hetong.io&#x2F;image&#x2F;awaytosetlinks1.png">
 
   <meta name="format-detection" content="telephone=no,email=no">
   <meta name="theme-color" content="#9C27B0">
@@ -40,11 +40,11 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <link rel="apple-touch-icon" href="http://q068kveb3.bkt.clouddn.com/b/favicon.png">
+  <link rel="apple-touch-icon" href="http://imimimg.hetong.io/b/favicon.png">
 
   
     <meta property="article:published_time" content="Mon Oct 28 2019 23:03:28 GMT+0800">
-    <meta property="article:modified_time" content="Wed Oct 30 2019 13:35:23 GMT+0800">
+    <meta property="article:modified_time" content="Fri Nov 29 2019 16:05:03 GMT+0800">
   
 
   
@@ -82,8 +82,8 @@
 </div>
   <aside id="sidebar" class="mdui-drawer mdui-drawer-full-height">
   <div class="mdui-grid-tile">
-    <img src="http://q068kveb3.bkt.clouddn.com/b/banner.png" style="height: 160px;">
-    <img src="http://q068kveb3.bkt.clouddn.com/b/avatar.png" class="avatar-animation" style="position: absolute; top: 10%; left: 24px; width: 64px; height: 64px; border: 2px solid #fff; border-radius: 50%;">
+    <img src="http://imimimg.hetong.io/b/banner.png" style="height: 160px;">
+    <img src="http://imimimg.hetong.io/b/avatar.png" class="avatar-animation" style="position: absolute; top: 10%; left: 24px; width: 64px; height: 64px; border: 2px solid #fff; border-radius: 50%;">
     <div class="mdui-grid-tile-actions">
       <div class="mdui-grid-tile-text">
         <div class="mdui-grid-tile-title">Jay Yi</div>
@@ -110,7 +110,7 @@
       </div>
       <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
         
-        <a class="mdui-ripple sidebar_archives-link" href="/archives/2019/11/">十一月 2019<span class="mdui-ripple sidebar_archives-count">14</span></a><a class="mdui-ripple sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="mdui-ripple sidebar_archives-count">4</span></a>
+        <a class="mdui-ripple sidebar_archives-link" href="/archives/2019/11/">十一月 2019<span class="mdui-ripple sidebar_archives-count">16</span></a><a class="mdui-ripple sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="mdui-ripple sidebar_archives-count">4</span></a>
         
       </div>
     </div>
@@ -122,7 +122,7 @@
       </div>
       <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
         
-        <a class="mdui-ripple sidebar_archives-link" href="/categories/HTML-CSS-JS/">HTML/CSS/JS<span class="mdui-ripple sidebar_archives-count">4</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维<span class="mdui-ripple sidebar_archives-count">14</span></a>
+        <a class="mdui-ripple sidebar_archives-link" href="/categories/HTML-CSS-JS/">HTML/CSS/JS<span class="mdui-ripple sidebar_archives-count">4</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维<span class="mdui-ripple sidebar_archives-count">15</span></a>
         
       </div>
     </div>
@@ -134,7 +134,7 @@
       </div>
       <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
         
-        <a class="mdui-ripple sidebar_archives-link" href="/tags/Centos/" rel="tag">Centos<span class="mdui-ripple sidebar_archives-count">10</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Grafana/" rel="tag">Grafana<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/HA/" rel="tag">HA<span class="mdui-ripple sidebar_archives-count">4</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Hexo/" rel="tag">Hexo<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Nginx/" rel="tag">Nginx<span class="mdui-ripple sidebar_archives-count">4</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/OAuth/" rel="tag">OAuth<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/SSO/" rel="tag">SSO<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Zabbix/" rel="tag">Zabbix<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/php/" rel="tag">php<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" rel="tag">高并发<span class="mdui-ripple sidebar_archives-count">4</span></a>
+        <a class="mdui-ripple sidebar_archives-link" href="/tags/Centos/" rel="tag">Centos<span class="mdui-ripple sidebar_archives-count">10</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Grafana/" rel="tag">Grafana<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/HA/" rel="tag">HA<span class="mdui-ripple sidebar_archives-count">4</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Hexo/" rel="tag">Hexo<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Let-s-Encrpyt/" rel="tag">Let's Encrpyt<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Nginx/" rel="tag">Nginx<span class="mdui-ripple sidebar_archives-count">5</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/OAuth/" rel="tag">OAuth<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/SSO/" rel="tag">SSO<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Zabbix/" rel="tag">Zabbix<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/php/" rel="tag">php<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" rel="tag">高并发<span class="mdui-ripple sidebar_archives-count">4</span></a>
         
       </div>
     </div>
@@ -175,7 +175,7 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="http://q068kveb3.bkt.clouddn.com/b2/material-5.png" style="max-height: 180px;">
+      <img src="http://imimimg.hetong.io/b2/material-3.png" style="max-height: 180px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
           <div class="mdui-card-primary-title">配置Grafana的Panel地址，实现点击图表后跳转到另一个dashboard/Url</div>
@@ -206,9 +206,9 @@
 <li>每一个Panel的<strong>data links</strong>。</li>
 <li>每一个Panel的<strong>panel links</strong>。</li>
 </ol>
-<p><img src="http://q068kveb3.bkt.clouddn.com/image/awaytosetlinks1.png" alt="在dashboard的Settings-&gt;Links中配置链接"></p>
-<p><img src="http://q068kveb3.bkt.clouddn.com/image/awaytosetlinks2.png" alt="在Panel中配置data links"></p>
-<p><img src="http://q068kveb3.bkt.clouddn.com/image/awaytosetlinks3.png" alt="在Panel中配置panel links"></p>
+<p><img src="http://imimimg.hetong.io/image/awaytosetlinks1.png" alt="在dashboard的Settings-&gt;Links中配置链接"></p>
+<p><img src="http://imimimg.hetong.io/image/awaytosetlinks2.png" alt="在Panel中配置data links"></p>
+<p><img src="http://imimimg.hetong.io/image/awaytosetlinks3.png" alt="在Panel中配置panel links"></p>
 <p>在这三个地方都能够实现点击链接跳转到另外的页面。</p>
 <h3 id="传参"><a href="#传参" class="headerlink" title="传参"></a>传参</h3><p>在添加链接时，可以使用绝对地址，也可以通过传递变量参数，实现链接的动态跳转</p>
 <p>主要参数如下</p>
@@ -253,7 +253,7 @@
 </tbody></table>
 <p><strong>注意：</strong>在实践中发现，如果dashboard的变量，允许使用<strong>ALL</strong>的时候，只有在<strong>panel links</strong>中配置的url能够准确抓取当前图表的变量值。否则，会将变量的所有值，都会被传送到跳转链接中，导致目标url在获取参数的时候不正确。</p>
 <h3 id="跳转到Dashboard"><a href="#跳转到Dashboard" class="headerlink" title="跳转到Dashboard"></a>跳转到Dashboard</h3><p>跳转到Dashboard是，网上的说明一直说的不够透彻。最简单的方法如下：</p>
-<p>1、进入需要跳转的Dashboard，复制浏览器前面一段<br><img src="http://q068kveb3.bkt.clouddn.com/image/awaytosetlinks4.png" alt="复制dashboard链接地址"></p>
+<p>1、进入需要跳转的Dashboard，复制浏览器前面一段<br><img src="http://imimimg.hetong.io/image/awaytosetlinks4.png" alt="复制dashboard链接地址"></p>
 <p>2、这段地址前面一段，就是Dashboard的地址，将这段链接地址，复制到Links里面，配置即可。</p>
 <p>3、加上适当的参数。</p>
 

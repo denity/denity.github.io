@@ -8,28 +8,31 @@
   <meta name="renderer" content="webkit">
 
   
-  <title>从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想</title>
+  <title>一个沙雕的方式解决 nginx ssl_stapling 超时和 Let&#39;s Encrypt SSL证书返回 curl error code 7问题 | 从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想</title>
 
   <link rel="shortcut icon" href="http://imimimg.hetong.io/b/favicon.png">
   <link rel="alternate" href="/atom.xml" title="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="description" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-<meta property="og:type" content="website">
-<meta property="og:title" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-<meta property="og:url" content="http:&#x2F;&#x2F;blog.sqj.me&#x2F;tags&#x2F;">
+  <meta name="description" content="奇怪的现象：在配置一个 Centos7 + Nginx + Let’s Encrypt SSL证书的环境中，遇到重启nginx服务很卡，常常会超时导致服务无法启动；也在 Let’s Encrypt SSL 获取证书环节中，一直返回 error code 7  经过排查，这个解决方法非常沙雕。 1. 对于 Nginx ssl_stapling发现开启 ssl_stapling 后，nginx的重启">
+<meta name="keywords" content="Nginx,Let&#39;s Encrpyt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个沙雕的方式解决 nginx ssl_stapling 超时和 Let&#39;s Encrypt SSL证书返回 curl error code 7问题">
+<meta property="og:url" content="http:&#x2F;&#x2F;blog.sqj.me&#x2F;2019&#x2F;a-sb-way-to-solve-nginx-ssl-stapling-slow-and-letsencrypt-curl-errcode7&#x2F;">
 <meta property="og:site_name" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-<meta property="og:description" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
+<meta property="og:description" content="奇怪的现象：在配置一个 Centos7 + Nginx + Let’s Encrypt SSL证书的环境中，遇到重启nginx服务很卡，常常会超时导致服务无法启动；也在 Let’s Encrypt SSL 获取证书环节中，一直返回 error code 7  经过排查，这个解决方法非常沙雕。 1. 对于 Nginx ssl_stapling发现开启 ssl_stapling 后，nginx的重启">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-25T07:52:29.411Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;imimimg.hetong.io&#x2F;image&#x2F;sb11111.jpg">
+<meta property="og:updated_time" content="2019-11-29T08:49:35.424Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;imimimg.hetong.io&#x2F;image&#x2F;sb11111.jpg">
 
   <meta name="format-detection" content="telephone=no,email=no">
   <meta name="theme-color" content="#9C27B0">
   <meta name="description" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="keywords" content="">
+  <meta name="keywords" content=",Nginx,Let&#39;s Encrpyt">
 
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="application-name" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="msapplication-starturl" content="http://blog.sqj.me/tags/">
+  <meta name="msapplication-starturl" content="http://blog.sqj.me/2019/a-sb-way-to-solve-nginx-ssl-stapling-slow-and-letsencrypt-curl-errcode7/">
   <meta name="msapplication-navbutton-color" content="#9C27B0">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
@@ -37,9 +40,12 @@
   <link rel="apple-touch-icon" href="http://imimimg.hetong.io/b/favicon.png">
 
   
+    <meta property="article:published_time" content="Fri Nov 29 2019 16:10:26 GMT+0800">
+    <meta property="article:modified_time" content="Fri Nov 29 2019 16:49:35 GMT+0800">
+  
 
   
-    <link rel="canonical" href="http://blog.sqj.me/tags/index.html">
+    <link rel="canonical" href="http://blog.sqj.me/2019/a-sb-way-to-solve-nginx-ssl-stapling-slow-and-letsencrypt-curl-errcode7/">
   
 
   
@@ -166,11 +172,11 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="http://imimimg.hetong.io/b2/material-10.png" style="max-height: 180px;">
+      <img src="http://imimimg.hetong.io/image/ssl_stapling1.png" style="max-height: 180px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
-          <div class="mdui-card-primary-title"></div>
-          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2019-10-25 / <i class="iconfont">&#xe601;</i> Jay Yi</div>
+          <div class="mdui-card-primary-title">一个沙雕的方式解决 nginx ssl_stapling 超时和 Let&#39;s Encrypt SSL证书返回 curl error code 7问题</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2019-11-29 / <i class="iconfont">&#xe601;</i> Jay</div>
         </div>
       </div>
       <div class="mdui-card-menu">
@@ -182,45 +188,50 @@
             
             <li class="mdui-menu-item" disabled>
               
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABhElEQVR42u3aS27DMAwFQN//0u0BjNZPpPUxMFoFRixNsiAoktfPp9aFi4uLi4uLewD3itf9rf+f3J8Xz8LFxd3EfQglMeUvVucsXFzcvdzkmOT4fJ/kJ+Hi4n6FmyconbNwcXG/y70/fzcNwsXF3csdDUB5crPtroaLi9vg5olL//PS+i4uLm6JO9zyDJKb0SLpxJ4wLi5uY54hCTQzEqBof1xc3K3cvMDRaaYmLVtcXNwTuKMHJN/P27EPfxMuLu5y7mj5MimM9tMgXFzc07j51gPBqNS4xcXF3cUdDSudJCZvuuDi4p7ArZU58itQ3oB5eY4MFxf3Je5o2TR5txbmcHFxT+B20FdpRQERFxd3OXd0dUqltX1wcXHXc4sD1i8Nf0+fPcfFxW1wa82VJAHKS67Fyw8uLu5kbh6MZqzhuxouLu5h3Bmfp3R+cHFxl3OTZKgzkIGLi3sCNy96PhwQj1lMv6vh4uI2uJ0CaK25sqi+i4uLW+Kev3BxcXFxcXE3rV+0lW+FE6urmwAAAABJRU5ErkJggg==">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAADjklEQVR42u3ay27bQBAEQP//TyfXAIKk7pldWQGKJ0OmTbJ4aM3j54/jn+MHAQ4cOHDgwIEDBw4cX8zxEx9P/93L8x//9tlvn505+zx/Fhw4cODAcYPjTRQ9OefxYZ5xvEZ5dmb+MjbPggMHDhw47nFswnIWqG8i8OWZ7fk4cODAgeObOVqmGcestMOBAwcOHP87xynQU2GMAwcOHDi+hyNvwCXReLtUSxqO13ulOHDgwIFjvdDw/T9/dL8DBw4cOHA8cOyPfASV427GXfX948CBAweOoxztJfcNwU2x1zYWceDAgQPH73LMirdTKO0neduxrmhx4MCBA8eC43XgJcVS+1ftOckLaAlw4MCBA8dtjrZ8moViG42bBYvideLAgQMHjqMc7epbUubl4TdbtsuJo3vDgQMHDhxHOfKxTd4cnAVq3lJsi7Q3z4UDBw4cOK5xzEZQbemVc8/aiHmZhwMHDhw4bnC0TcBZa28TtEm5OFvCwIEDBw4cNzjaVmCO2C6x5cXbrNTEgQMHDhyf5GjHNvklW5QN02xtDgcOHDhw3OCYhWU+4Hn9yWxxYf91AQcOHDhw3ONIyqG22ddGb/5JO6x6A4cDBw4cOI5yJI+R30T+3/KgbV9JPtzCgQMHDhy3OZIHm0XafuyU3MnsHBw4cODAcZYjKZ/ygi1ZL9gjzkZWw4UGHDhw4MAx4kgirV1xmJVqs8fbvDwcOHDgwHGWIwmksw3ENuA3q3hReOPAgQMHjgsc7a23NG2QJy3CvC24WmjAgQMHDhyjVbmcZhZsmxhOfl59XcCBAwcOHEc5koWz/WO07cK24ZivzRXNQRw4cODAMeLIC6e8SEsQ93E7uxMcOHDgwPFJjtkj5SXc6yidBWpbWEYVLQ4cOHDgWHDkF5gtTLfrCLOR1awsxIEDBw4cNzhOhdZmFNS2Jk8tT+DAgQMHjhscbdDuV+Vm8ZyHdL3GjQMHDhw4jnLUQ5pRey4PyDxo21EZDhw4cOD4DEcbVPuCLR8m5eOoWVsQBw4cOHDc42hXGXK4JPzagMyDNgpvHDhw4MBxjaNoqB0aMuVl3qxFGBWfOHDgwIHjVzlmTO1YKI/P2SvEgQMHDhzfw9FeLCmrNgVhO6Aq9jtw4MCBA8eaI7/wBqhdfWi/BLSrEjhw4MCB4wbHjRKrZT21PHGgOYgDBw4cOBYcDhw4cODAgQMHDhw4cHzZ8Rev8G2+kVJ/EQAAAABJRU5ErkJggg==">
               
             </li>
           </ul>
         
         
-          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
-          <ul class="mdui-menu" id="share_menu">
-            <li class="mdui-menu-item">
-              <a href="http://service.weibo.com/share/share.php?appkey=&title=&url=http://blog.sqj.me/tags/&pic=http://blog.sqj.mehttp://imimimg.hetong.io/b/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到微博</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="https://twitter.com/intent/tweet?text=&url=http://blog.sqj.me/tags/&via=Jay Yi" target="_blank" class="mdui-ripple">分享到Twitter</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.sqj.me/tags/" target="_blank" class="mdui-ripple">分享到Facebook</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="https://plus.google.com/share?url=http://blog.sqj.me/tags/" target="_blank" class="mdui-ripple">分享到Google+</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://blog.sqj.me/tags/&title=" target="_blank" class="mdui-ripple">分享到LinkedIn</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="http://connect.qq.com/widget/shareqq/index.html?site=从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想&title=&summary=从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想&pics=http://blog.sqj.mehttp://imimimg.hetong.io/b/favicon.png&url=http://blog.sqj.me/tags/" target="_blank" class="mdui-ripple">分享到QQ</a>
-            </li>
-            <li class="mdui-menu-item">
-              <a href="https://telegram.me/share/url?url=http://blog.sqj.me/tags/&text=" target="_blank" class="mdui-ripple">分享到Telegram</a>
-            </li>
-          </ul>
-        
       </div>
     </header>
     <div class="mdui-card-content mdui-typo">
-      
+      <blockquote>
+<p>奇怪的现象：在配置一个 Centos7 + Nginx + Let’s Encrypt SSL证书的环境中，遇到重启nginx服务很卡，常常会超时导致服务无法启动；也在 Let’s Encrypt SSL 获取证书环节中，一直返回 error code 7</p>
+</blockquote>
+<p>经过排查，这个解决方法非常沙雕。</p>
+<h3 id="1-对于-Nginx-ssl-stapling"><a href="#1-对于-Nginx-ssl-stapling" class="headerlink" title="1. 对于 Nginx ssl_stapling"></a>1. 对于 Nginx ssl_stapling</h3><p>发现开启 ssl_stapling 后，nginx的重启，或者 nginx -t都会比较慢，甚至会出现超时导致nginx无法启动的问题。</p>
+<p>在启动记录中，有错误提示，大意为找不到验证该证书状态的主机。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"ssl_stapling"</span> ignored, host not found <span class="keyword">in</span> OCSP responder <span class="string">"ocsp.XXXX.com"</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>OCSP（Online Certificate Status Protocol，在线证书状态协议）是用来检验证书合法性的在线查询服务，一般由证书所属 CA 提供。某些客户端会在 TLS 握手阶段进一步协商时，实时查询 OCSP 接口，并在获得结果前阻塞后续流程。OCSP 查询本质是一次完整的 HTTP 请求 - 响应，这中间 DNS 查询、建立 TCP、服务端处理等环节都可能耗费很长时间，导致最终建立 TLS 连接时间变得更长。</p>
+<p>而 OCSP Stapling（OCSP 封套），是指服务端主动获取 OCSP 查询结果并随着证书一起发送给客户端，从而让客户端跳过自己去验证的过程，提高 TLS 握手效率。</p>
+</blockquote>
+<p>排查过程中，通过ping，curl都能连接对应域名。</p>
+<h3 id="2-对于-Let’s-Encrypt-SSL"><a href="#2-对于-Let’s-Encrypt-SSL" class="headerlink" title="2. 对于 Let’s Encrypt SSL"></a>2. 对于 Let’s Encrypt SSL</h3><p>使用 Let‘s Encrypt 进行 ssl证书授予过程中，会出现错误提示 curl error code 7的错误提示。从 <a href="https://curl.haxx.se/libcurl/c/libcurl-errors.html" target="_blank" rel="noopener">https://curl.haxx.se/libcurl/c/libcurl-errors.html</a>  网站查询得知，该错误的意思是无法建立连接。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CURLE_COULDNT_CONNECT (7)</span><br><span class="line"></span><br><span class="line">Failed to connect() to host or proxy.</span><br></pre></td></tr></table></figure>
+
+<p>排查过程中，使用ping，curl都能够正常获取返回。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -vvv https://acme-v02.api.letsencrypt.org/directory</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-调试解决"><a href="#3-调试解决" class="headerlink" title="3. 调试解决"></a>3. 调试解决</h3><ol>
+<li>检查 curl 正常。</li>
+<li>ping，curl连接对应的域名，均正常。</li>
+<li>查询网上的各种方法，均无效。</li>
+</ol>
+<p>给人的感觉，就像是数据连接是好是坏的感觉。</p>
+<p>灵光一现，这台机的网关和其它机的网关不一样，在联网时，经过了上网行为管理。将网关配置更改后，一切问题都解决了。。。。。</p>
+<p>嗯，真沙雕。</p>
+<p><img src="http://imimimg.hetong.io/image/sb11111.jpg" alt=""></p>
+
       <hr>
       <blockquote class="mdui-m-t-5">
-      	<strong>本文作者：</strong>Jay Yi<br>
-	<strong>本文链接：</strong><a href="http://blog.sqj.me/tags/">http://blog.sqj.me/tags/</a><br>
+      	<strong>本文作者：</strong>Jay<br>
+	<strong>本文链接：</strong><a href="http://blog.sqj.me/2019/a-sb-way-to-solve-nginx-ssl-stapling-slow-and-letsencrypt-curl-errcode7/">http://blog.sqj.me/2019/a-sb-way-to-solve-nginx-ssl-stapling-slow-and-letsencrypt-curl-errcode7/</a><br>
       	<strong>版权声明：</strong>
         
           本作品采用 <a href='https://creativecommons.org/licenses/by-nc-nd/4.0/' target='_blank'>署名-非商业性使用-禁止演绎 4.0 国际</a> 许可。转载请保留原文链接及作者。
@@ -230,6 +241,10 @@
     </div>
     <footer class="mdui-card-actions">
       
+        <a class="mdui-ripple article_categories-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+      
+      
+        <a class="mdui-ripple article_tags-link" href="/tags/Let-s-Encrpyt/" rel="tag">Let's Encrpyt</a><a class="mdui-ripple article_tags-link" href="/tags/Nginx/" rel="tag">Nginx</a>
       
     </footer>
     
@@ -238,6 +253,22 @@
 <script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
   <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
 
+
+  <nav id="paginator">
+    
+      <a rel="prev" class="extend prev" href="/2019/merge-ModSecurity-with-Nginx/">
+        <button aria-label="prev" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_back</i></button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上一篇
+      </a>
+    
+    <div class="spacer"></div>
+    
+      <a rel="next" class="extend next" href="/2019/replication-with-lsyncd-settings/">
+        下一篇&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
+      </a>
+    
+  </nav>
 
 
 

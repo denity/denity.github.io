@@ -10,7 +10,7 @@
   
   <title>使用 lsyncd 进行主从文件实时同步 | 从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想</title>
 
-  <link rel="shortcut icon" href="http://q068kveb3.bkt.clouddn.com/b/favicon.png">
+  <link rel="shortcut icon" href="http://imimimg.hetong.io/b/favicon.png">
   <link rel="alternate" href="/atom.xml" title="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
   <meta name="description" content="生产环境中，有些文件数据超级大，达到T的数量级，如果用备份系统进行备份，需要上周的时间，而且备份过程中文件也在不断发生变化，导致备份文件不可控。 本文介绍利用 lsyncd 进行主从数据的同时备份。 lysncd 实际上是lua语言封装了 inotify 和 rsync 工具，采用了 Linux 内核（2.6.13 及以后）里的 inotify 触发机制，然后通过rsync去差异同步，达到实时的">
 <meta name="keywords" content="Centos,高并发,HA">
@@ -20,10 +20,10 @@
 <meta property="og:site_name" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
 <meta property="og:description" content="生产环境中，有些文件数据超级大，达到T的数量级，如果用备份系统进行备份，需要上周的时间，而且备份过程中文件也在不断发生变化，导致备份文件不可控。 本文介绍利用 lsyncd 进行主从数据的同时备份。 lysncd 实际上是lua语言封装了 inotify 和 rsync 工具，采用了 Linux 内核（2.6.13 及以后）里的 inotify 触发机制，然后通过rsync去差异同步，达到实时的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http:&#x2F;&#x2F;q068kveb3.bkt.clouddn.com&#x2F;image&#x2F;lsyncd1.png">
-<meta property="og:updated_time" content="2019-11-14T02:10:52.966Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;imimimg.hetong.io&#x2F;image&#x2F;lsyncd1.png">
+<meta property="og:updated_time" content="2019-11-29T08:05:03.978Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;q068kveb3.bkt.clouddn.com&#x2F;image&#x2F;lsyncd1.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;imimimg.hetong.io&#x2F;image&#x2F;lsyncd1.png">
 
   <meta name="format-detection" content="telephone=no,email=no">
   <meta name="theme-color" content="#9C27B0">
@@ -37,11 +37,11 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <link rel="apple-touch-icon" href="http://q068kveb3.bkt.clouddn.com/b/favicon.png">
+  <link rel="apple-touch-icon" href="http://imimimg.hetong.io/b/favicon.png">
 
   
     <meta property="article:published_time" content="Thu Nov 14 2019 09:22:53 GMT+0800">
-    <meta property="article:modified_time" content="Thu Nov 14 2019 10:10:52 GMT+0800">
+    <meta property="article:modified_time" content="Fri Nov 29 2019 16:05:03 GMT+0800">
   
 
   
@@ -79,8 +79,8 @@
 </div>
   <aside id="sidebar" class="mdui-drawer mdui-drawer-full-height">
   <div class="mdui-grid-tile">
-    <img src="http://q068kveb3.bkt.clouddn.com/b/banner.png" style="height: 160px;">
-    <img src="http://q068kveb3.bkt.clouddn.com/b/avatar.png" class="avatar-animation" style="position: absolute; top: 10%; left: 24px; width: 64px; height: 64px; border: 2px solid #fff; border-radius: 50%;">
+    <img src="http://imimimg.hetong.io/b/banner.png" style="height: 160px;">
+    <img src="http://imimimg.hetong.io/b/avatar.png" class="avatar-animation" style="position: absolute; top: 10%; left: 24px; width: 64px; height: 64px; border: 2px solid #fff; border-radius: 50%;">
     <div class="mdui-grid-tile-actions">
       <div class="mdui-grid-tile-text">
         <div class="mdui-grid-tile-title">Jay Yi</div>
@@ -107,7 +107,7 @@
       </div>
       <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
         
-        <a class="mdui-ripple sidebar_archives-link" href="/archives/2019/11/">十一月 2019<span class="mdui-ripple sidebar_archives-count">14</span></a><a class="mdui-ripple sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="mdui-ripple sidebar_archives-count">4</span></a>
+        <a class="mdui-ripple sidebar_archives-link" href="/archives/2019/11/">十一月 2019<span class="mdui-ripple sidebar_archives-count">16</span></a><a class="mdui-ripple sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="mdui-ripple sidebar_archives-count">4</span></a>
         
       </div>
     </div>
@@ -119,7 +119,7 @@
       </div>
       <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
         
-        <a class="mdui-ripple sidebar_archives-link" href="/categories/HTML-CSS-JS/">HTML/CSS/JS<span class="mdui-ripple sidebar_archives-count">4</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维<span class="mdui-ripple sidebar_archives-count">14</span></a>
+        <a class="mdui-ripple sidebar_archives-link" href="/categories/HTML-CSS-JS/">HTML/CSS/JS<span class="mdui-ripple sidebar_archives-count">4</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维<span class="mdui-ripple sidebar_archives-count">15</span></a>
         
       </div>
     </div>
@@ -131,7 +131,7 @@
       </div>
       <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
         
-        <a class="mdui-ripple sidebar_archives-link" href="/tags/Centos/" rel="tag">Centos<span class="mdui-ripple sidebar_archives-count">10</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Grafana/" rel="tag">Grafana<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/HA/" rel="tag">HA<span class="mdui-ripple sidebar_archives-count">4</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Hexo/" rel="tag">Hexo<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Nginx/" rel="tag">Nginx<span class="mdui-ripple sidebar_archives-count">4</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/OAuth/" rel="tag">OAuth<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/SSO/" rel="tag">SSO<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Zabbix/" rel="tag">Zabbix<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/php/" rel="tag">php<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" rel="tag">高并发<span class="mdui-ripple sidebar_archives-count">4</span></a>
+        <a class="mdui-ripple sidebar_archives-link" href="/tags/Centos/" rel="tag">Centos<span class="mdui-ripple sidebar_archives-count">10</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Grafana/" rel="tag">Grafana<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/HA/" rel="tag">HA<span class="mdui-ripple sidebar_archives-count">4</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Hexo/" rel="tag">Hexo<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Let-s-Encrpyt/" rel="tag">Let's Encrpyt<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Nginx/" rel="tag">Nginx<span class="mdui-ripple sidebar_archives-count">5</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/OAuth/" rel="tag">OAuth<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/SSO/" rel="tag">SSO<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Zabbix/" rel="tag">Zabbix<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/php/" rel="tag">php<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" rel="tag">高并发<span class="mdui-ripple sidebar_archives-count">4</span></a>
         
       </div>
     </div>
@@ -172,7 +172,7 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="http://q068kveb3.bkt.clouddn.com/b2/material-7.png" style="max-height: 180px;">
+      <img src="http://imimimg.hetong.io/b2/material-15.png" style="max-height: 180px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
           <div class="mdui-card-primary-title">使用 lsyncd 进行主从文件实时同步</div>
@@ -255,7 +255,7 @@
 
 <h3 id="6-启用-lsyncd-同步-服务"><a href="#6-启用-lsyncd-同步-服务" class="headerlink" title="6. 启用 lsyncd 同步 服务"></a>6. 启用 lsyncd 同步 服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> lsyncd</span><br><span class="line">systemctl start lsyncd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看状态</span></span><br><span class="line">systemctl status lsyncd -l</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://q068kveb3.bkt.clouddn.com/image/lsyncd1.png" alt=""></p>
+<p><img src="http://imimimg.hetong.io/image/lsyncd1.png" alt=""></p>
 <hr>
 <h3 id="7-效果验证"><a href="#7-效果验证" class="headerlink" title="7. 效果验证"></a>7. 效果验证</h3><ul>
 <li>实测首次同步，速度可达 700mbps，本机CPU占用 20+%。</li>
@@ -292,7 +292,7 @@
 
   <nav id="paginator">
     
-      <a rel="prev" class="extend prev" href="/2019/replication-with-lsyncd-settings/">
+      <a rel="prev" class="extend prev" href="/2019/replication-with-lsyncd-experiment/">
         <button aria-label="prev" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_back</i></button>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上一篇
       </a>
