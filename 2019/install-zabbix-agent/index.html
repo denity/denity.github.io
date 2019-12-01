@@ -8,31 +8,34 @@
   <meta name="renderer" content="webkit">
 
   
-  <title>如何在Nginx中屏蔽特定的地址或文件夹 | 从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想</title>
+  <title>安装 Zabbix Agent | 从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想</title>
 
   <link rel="shortcut icon" href="http://imimimg.hetong.io/b/favicon.png">
   <link rel="alternate" href="/atom.xml" title="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="description" content="Nginx是一个高性能Web&#x2F;Proxy服务器。本文将配置Nginx，屏蔽对于特定Url或文件夹的访问。  屏蔽特定文件夹的访问实际网页中，有些地址是不允许外部进行访问的，可通过配置location节，进行特定地址屏蔽。 1、新增一个限制访问文件配置对应的屏蔽信息，方便后续引入每一个站点的配置文件中2、配置屏蔽信息1234567891011#屏蔽特定目录下的文件location ~* &#x2F;(che">
-<meta name="keywords" content="Nginx">
+  <meta name="description" content="随着 Zabbix 的发展，Zabbix的安装那是越来越简单了。现在官网上都有打包好的安装包，以及软件仓库可以直接使用。 所有的安装程序、脚本，可以参考官网  https:&#x2F;&#x2F;www.zabbix.com&#x2F;download  本文介绍的是 Zabbix Agent 在Centos 6&#x2F;7下的安装，官方新版本中，已经没有对5的支持了。 Zabbix Agent安装过程分3部分：  安装 yum 仓库">
+<meta name="keywords" content="Centos,Zabbix">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何在Nginx中屏蔽特定的地址或文件夹">
-<meta property="og:url" content="http:&#x2F;&#x2F;blog.sqj.me&#x2F;2019&#x2F;how-to-ban-particular-floder-in-nginx&#x2F;">
+<meta property="og:title" content="安装 Zabbix Agent">
+<meta property="og:url" content="http:&#x2F;&#x2F;blog.sqj.me&#x2F;2019&#x2F;install-zabbix-agent&#x2F;">
 <meta property="og:site_name" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-<meta property="og:description" content="Nginx是一个高性能Web&#x2F;Proxy服务器。本文将配置Nginx，屏蔽对于特定Url或文件夹的访问。  屏蔽特定文件夹的访问实际网页中，有些地址是不允许外部进行访问的，可通过配置location节，进行特定地址屏蔽。 1、新增一个限制访问文件配置对应的屏蔽信息，方便后续引入每一个站点的配置文件中2、配置屏蔽信息1234567891011#屏蔽特定目录下的文件location ~* &#x2F;(che">
+<meta property="og:description" content="随着 Zabbix 的发展，Zabbix的安装那是越来越简单了。现在官网上都有打包好的安装包，以及软件仓库可以直接使用。 所有的安装程序、脚本，可以参考官网  https:&#x2F;&#x2F;www.zabbix.com&#x2F;download  本文介绍的是 Zabbix Agent 在Centos 6&#x2F;7下的安装，官方新版本中，已经没有对5的支持了。 Zabbix Agent安装过程分3部分：  安装 yum 仓库">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http:&#x2F;&#x2F;imimimg.hetong.io&#x2F;image&#x2F;postman-test-after-config2.png">
-<meta property="og:updated_time" content="2019-11-29T08:05:03.935Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;imimimg.hetong.io&#x2F;image&#x2F;zabbix-install-1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;imimimg.hetong.io&#x2F;image&#x2F;zabbix-agent-2.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;imimimg.hetong.io&#x2F;image&#x2F;zabbix-install-2.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;imimimg.hetong.io&#x2F;image&#x2F;zabbix-agent-3.png">
+<meta property="og:updated_time" content="2019-12-01T01:25:07.311Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;imimimg.hetong.io&#x2F;image&#x2F;postman-test-after-config2.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;imimimg.hetong.io&#x2F;image&#x2F;zabbix-install-1.png">
 
   <meta name="format-detection" content="telephone=no,email=no">
   <meta name="theme-color" content="#9C27B0">
   <meta name="description" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="keywords" content=",Nginx">
+  <meta name="keywords" content=",Centos,Zabbix">
 
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="application-name" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="msapplication-starturl" content="http://blog.sqj.me/2019/how-to-ban-particular-floder-in-nginx/">
+  <meta name="msapplication-starturl" content="http://blog.sqj.me/2019/install-zabbix-agent/">
   <meta name="msapplication-navbutton-color" content="#9C27B0">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
@@ -40,12 +43,12 @@
   <link rel="apple-touch-icon" href="http://imimimg.hetong.io/b/favicon.png">
 
   
-    <meta property="article:published_time" content="Wed Nov 06 2019 08:30:00 GMT+0800">
-    <meta property="article:modified_time" content="Fri Nov 29 2019 16:05:03 GMT+0800">
+    <meta property="article:published_time" content="Sat Nov 30 2019 12:10:55 GMT+0800">
+    <meta property="article:modified_time" content="Sun Dec 01 2019 09:25:07 GMT+0800">
   
 
   
-    <link rel="canonical" href="http://blog.sqj.me/2019/how-to-ban-particular-floder-in-nginx/">
+    <link rel="canonical" href="http://blog.sqj.me/2019/install-zabbix-agent/">
   
 
   
@@ -172,11 +175,11 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="http://imimimg.hetong.io/b2/material-14.png" style="max-height: 180px;">
+      <img src="http://imimimg.hetong.io/b2/material-12.png" style="max-height: 180px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
-          <div class="mdui-card-primary-title">如何在Nginx中屏蔽特定的地址或文件夹</div>
-          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2019-11-06 / <i class="iconfont">&#xe601;</i> Jay</div>
+          <div class="mdui-card-primary-title">安装 Zabbix Agent</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2019-11-30 / <i class="iconfont">&#xe601;</i> Jay</div>
         </div>
       </div>
       <div class="mdui-card-menu">
@@ -188,7 +191,7 @@
             
             <li class="mdui-menu-item" disabled>
               
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACYklEQVR42u3aQW4jMQwEQP//05sHLGbcLVrKxCidjMCWVDmQBMXXv69eLzw8PDw8PDw8vIfxXvH6/1dXO1ztP/ltcTc8PDy8I7w3ofaWl/+qDvFrd8PDw8M7yLsKuElYvzr4/or3u7V3w8PDw3syb15qt4kBDw8P75t4bw4rQz8eHh7e3+LlAfr+m0nayHc72mvBw8PDi3n5I9P5z0ff9/Dw8PAC3vxRKimF14rsxRvi4eHhbeblgTgpnde+mTyh5U1hPDw8vPO8yZHtuOpayhl1qfHw8PA+xMuH7O+PWXseSwa5imEvPDw8vCO8NlXkg6qfGszKC2s8PDy8M7wkAbTFd/tPbEvzohmBh4eH91He/EJ5+2A+khXdAQ8PD+8IL08Ma0Vw2ybO2yVRYsDDw8PbzEtSRft5cmIOw8PDwzvJWyudc9h8PKtIJHh4eHibee2m7QBr2w5e+wseHh7eSV7bDoge78umbRL0F4eu8PDw8Lbx8oJ10q7Nh1nXUgseHh7eGV5bwuat2HwsdVLKv0kMeHh4eJt5Sbhfa9fuGLqqEwMeHh7eBl7bzM3bEPlQwqRZjIeHh/dbvElQbtsc7Q4faEbg4eHhbeYlgf4VrxaQn4uHh4d3kteutgk7L6/rBIaHh4e3mbcW1pMrrg1mtSMIUTMCDw8PbwNv3g7Ih6ImYwp4eHh4T+PlAbotmh/Ua8HDw8N7AG/SDm53SEp2PDw8vOfz8mSwlk7qNIOHh4d3kDcZnGqbCPnDWP2EhoeHh3eENxmxagcO7hPA/BEODw8Pbzfv+xYeHh4eHh4eHt4D1g9FHjUANBDLRgAAAABJRU5ErkJggg==">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACaElEQVR42u3aQZKDQAgF0Nz/0jMHmNF8oG1N6rlKWSbyXAgBXj9ffbzw8PDw8PDw8PAexnvFxz8/FF+fnKn+/uG98PDw8Lbwktv8veXRmfPvHgHOv5vEhoeHh7efd/TCPQ8xeQTVV38vNjw8PLwn885DTx5N7zMeHh7eJ/KSK6uNjPMzeHh4eE/m5X/4q4HOk8qmXgseHh5ezMuHTPs/b53v4eHh4QW88kpTvASQp4ckARQixMPDw7uY11sdSF7cvUFX/mgOHyseHh7exbz5CGq+BNBbii3kPTw8PLylvOYf/jiUvBG8an0BDw8PbyevV9RWlwxWNXPLAzA8PDy8pbzkTF5S98ZdeSP4TXLCw8PDu5iXlLaTmyVpZjJaK6wO4OHh4S3iVVuueSs2TxV5omrO9/Dw8PAu5lUXCCYrWb0YFvRa8PDw8C7m9cZd84Zvr5THw8PD28PL27V5q6IX6GSchoeHh7efNxllVVNFLxksWx3Aw8PDG/DypsPaIrja8C0kLTw8PLwtvPxmhRF+77VeTAlRYsDDw8NbystHVnnymIzBek0KPDw8vLt41WZBj9dLIYWxHB4eHt5GXl7U9poUeehJ+Y6Hh4d3L2+eEqqh52sBCQkPDw9vJ6965MV0EuK8bVFeHcDDw8Mb83qv43ylNWH0Wh7NvIeHh4e3iNcrf6spJC+jFycGPDw8vMt4eeHbSw+9Jkh1KRYPDw/v03m9lYLRlXh4eHiP5CXN3PmDy38TDw8P7y5erxmRBz1pdhSSEB4eHt4WXq8FkC+k5gV3dQiHh4eHt5/3fQceHh4eHh4eHt4Djl9MtljcbRuvMgAAAABJRU5ErkJggg==">
               
             </li>
           </ul>
@@ -197,25 +200,107 @@
       </div>
     </header>
     <div class="mdui-card-content mdui-typo">
-      <blockquote>
-<p>Nginx是一个高性能Web/Proxy服务器。本文将配置Nginx，屏蔽对于特定Url或文件夹的访问。</p>
-</blockquote>
-<h3 id="屏蔽特定文件夹的访问"><a href="#屏蔽特定文件夹的访问" class="headerlink" title="屏蔽特定文件夹的访问"></a>屏蔽特定文件夹的访问</h3><p>实际网页中，有些地址是不允许外部进行访问的，可通过配置location节，进行特定地址屏蔽。</p>
-<h4 id="1、新增一个限制访问文件配置对应的屏蔽信息，方便后续引入每一个站点的配置文件中"><a href="#1、新增一个限制访问文件配置对应的屏蔽信息，方便后续引入每一个站点的配置文件中" class="headerlink" title="1、新增一个限制访问文件配置对应的屏蔽信息，方便后续引入每一个站点的配置文件中"></a>1、新增一个限制访问文件配置对应的屏蔽信息，方便后续引入每一个站点的配置文件中</h4><h4 id="2、配置屏蔽信息"><a href="#2、配置屏蔽信息" class="headerlink" title="2、配置屏蔽信息"></a>2、配置屏蔽信息</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#屏蔽特定目录下的文件</span></span><br><span class="line">location ~* /(check|login|logincheck)\.(php|aspx|asp|html|jsp) </span><br><span class="line">&#123;</span><br><span class="line">	deny all;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#屏蔽特定目录</span></span><br><span class="line">location ~* /(config|cnkadmin|eWebEditor|admin|_notes)/ </span><br><span class="line">&#123;</span><br><span class="line">	deny all;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      <p>随着 Zabbix 的发展，Zabbix的安装那是越来越简单了。现在官网上都有打包好的安装包，以及软件仓库可以直接使用。</p>
+<p>所有的安装程序、脚本，可以参考官网  <a href="https://www.zabbix.com/download" target="_blank" rel="noopener">https://www.zabbix.com/download</a> </p>
+<p>本文介绍的是 Zabbix Agent 在Centos 6/7下的安装，官方新版本中，已经没有对5的支持了。</p>
+<p>Zabbix Agent安装过程分3部分：</p>
+<ol>
+<li>安装 yum 仓库</li>
+<li>yum 安装</li>
+<li>配置 Zabbix Agent</li>
+</ol>
+<h3 id="1-安装-yum-仓库"><a href="#1-安装-yum-仓库" class="headerlink" title="1. 安装 yum 仓库"></a>1. 安装 yum 仓库</h3><p>选择对应OS的版本，如图</p>
+<p><img src="http://imimimg.hetong.io/image/zabbix-install-1.png" alt=""></p>
+<p>选择好后，在下面会直接显示对应操作系统版本所需要安装的软件仓库，copy后直接执行即可。</p>
+<p><img src="http://imimimg.hetong.io/image/zabbix-agent-2.png" alt=""></p>
+<h3 id="2-yum-安装-Zabbix-Agent"><a href="#2-yum-安装-Zabbix-Agent" class="headerlink" title="2. yum 安装 Zabbix Agent"></a>2. yum 安装 Zabbix Agent</h3><p>幼儿园等级，直接上代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install zabbix-agent</span><br></pre></td></tr></table></figure>
 
-<h4 id="3、将该文件在对应的站点文件中引入"><a href="#3、将该文件在对应的站点文件中引入" class="headerlink" title="3、将该文件在对应的站点文件中引入"></a>3、将该文件在对应的站点文件中引入</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include _common_config.conf;</span><br></pre></td></tr></table></figure>
+<p>由于国内的网络可能不太稳定，所以没安装成功没关系，多运行几次，直到安装成功。</p>
+<h3 id="3-配置-Zabbix-Agent"><a href="#3-配置-Zabbix-Agent" class="headerlink" title="3. 配置 Zabbix Agent"></a>3. 配置 Zabbix Agent</h3><h4 id="3-1-Zabbix-Agent-端配置-zabbix-agentd-conf"><a href="#3-1-Zabbix-Agent-端配置-zabbix-agentd-conf" class="headerlink" title="3.1 Zabbix Agent 端配置 zabbix_agentd.conf"></a>3.1 Zabbix Agent 端配置 zabbix_agentd.conf</h4><p>Zabbix Agent 的配置文件，在 /etc/zabbix 文件夹下。（默认 yum 安装的时候，配置文件是 /etc/zabbix/zabbix_agentd.conf）</p>
+<p>配置的主要参数：</p>
+<table>
+<thead>
+<tr>
+<th align="center">解决方式</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">EnableRemoteCommands</td>
+<td align="left">是否允许远程执行代码（1允许；0不允许）</td>
+</tr>
+<tr>
+<td align="center">LogRemoteCommands</td>
+<td align="left">对远程执行的代码，进行记录（1开启；0不开启）</td>
+</tr>
+<tr>
+<td align="center">Server</td>
+<td align="left">Zabbix Server 地址</td>
+</tr>
+<tr>
+<td align="center">ListenPort</td>
+<td align="left">监听端口</td>
+</tr>
+<tr>
+<td align="center">ServerActive</td>
+<td align="left">用于本机的活动检测的 Zabbix servers 或 Zabbix proxies 的 ip</td>
+</tr>
+<tr>
+<td align="center">Hostname</td>
+<td align="left">主机名，可设置为本机ip</td>
+</tr>
+<tr>
+<td align="center">TLSConnect</td>
+<td align="left">Agent 连接到 Server的方式，有 unencrypted（不加密）、psk、cert 三种方式</td>
+</tr>
+<tr>
+<td align="center">TLSAccept</td>
+<td align="left">Agent 接受 Server 入站的连接方式，可选项同样有 unencrypted（不加密）、psk、cert 三种方式</td>
+</tr>
+<tr>
+<td align="center">TLSPSKIdentity</td>
+<td align="left">如果设置为 psk 模式，要在这里配置预先和 Server 端协商一致的标识符（大小写敏感哦）</td>
+</tr>
+<tr>
+<td align="center">TLSPSKFile</td>
+<td align="left">psk模式下，标识符对应的 key 文件</td>
+</tr>
+</tbody></table>
+<p>示例代码为</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">EnableRemoteCommands</span>=<span class="number">1</span></span><br><span class="line"><span class="attr">LogRemoteCommands</span>=<span class="number">1</span></span><br><span class="line"><span class="attr">Server</span>=<span class="variable">$&#123;zbx_server&#125;</span></span><br><span class="line"><span class="attr">ListenPort</span>=<span class="variable">$&#123;zbx_port&#125;</span></span><br><span class="line"><span class="attr">ServerActive</span>=<span class="variable">$&#123;zbx_server&#125;</span></span><br><span class="line"><span class="attr">Hostname</span>=<span class="variable">$&#123;hostip&#125;</span></span><br><span class="line"><span class="attr">TLSConnect</span>=psk</span><br><span class="line"><span class="attr">TLSAccept</span>=psk</span><br><span class="line"><span class="attr">TLSPSKIdentity</span>=<span class="variable">$&#123;pskkey&#125;</span>		<span class="comment"># 需要与服务端一致，大小写敏感</span></span><br><span class="line"><span class="attr">TLSPSKFile</span>=/etc/zabbix/psk.key	<span class="comment"># 需要与服务端一致</span></span><br></pre></td></tr></table></figure>
 
 
 
-<p>4、Postman测试</p>
-<p><img src="http://imimimg.hetong.io/image/postman-test-after-config2.png" alt=""></p>
+<h4 id="3-2-配置-psk-key-文件"><a href="#3-2-配置-psk-key-文件" class="headerlink" title="3.2 配置 psk.key 文件"></a>3.2 配置 psk.key 文件</h4><p>随机生成一串文字，存入 psk.key 中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"thisisyoupskkeycontent"</span> &gt; /etc/zabbix/psk.key</span><br><span class="line">head /etc/zabbix/psk.key</span><br><span class="line">thisisyoupskkeycontent</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-3-配置完后，文件结构"><a href="#3-3-配置完后，文件结构" class="headerlink" title="3.3 配置完后，文件结构"></a>3.3 配置完后，文件结构</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ll /etc/zabbix/</span><br><span class="line">总用量 28</span><br><span class="line">-rw-r--r-- 1 root root    66 10月 14 15:37 psk.key</span><br><span class="line">-rw-r--r-- 1 root root 11736 10月 14 15:37 zabbix_agentd.conf</span><br><span class="line">-rw-r--r-- 1 root root 11731 10月  7 19:26 zabbix_agentd.conf.rpmnew</span><br><span class="line">drwxr-xr-x 2 root root    38 10月 14 15:37 zabbix_agentd.d</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-4-配置-visudo"><a href="#3-4-配置-visudo" class="headerlink" title="3.4 配置 visudo"></a>3.4 配置 visudo</h4><p>Agent 端允许远程执行代码，不是想执行就能够执行的，还需要配置 visudo，允许 zabbix 用户不用密码，执行相应的命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">visudo</span><br><span class="line"><span class="comment"># 添加</span></span><br><span class="line">zabbix  ALL=(ALL)       NOPASSWD: /usr/sbin/dmidecode</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="4-配置-Zabbix-Server-添加主机"><a href="#4-配置-Zabbix-Server-添加主机" class="headerlink" title="4. 配置 Zabbix Server 添加主机"></a>4. 配置 Zabbix Server 添加主机</h3><p>在“<strong>配置——主机——添加主机</strong>”中，进入“<strong>加密</strong>”Tab页面，点选“共享秘钥（PSK）”，输入在 Agent 端同样的 TLSPSKIdentity，以及 TLSPSKFile 文件内容。</p>
+<p><img src="http://imimimg.hetong.io/image/zabbix-install-2.png" alt=""></p>
+<p>配置成功（ Agent 和 Server 牵手配对成功后）</p>
+<p><img src="http://imimimg.hetong.io/image/zabbix-agent-3.png" alt=""></p>
 <hr>
-<p>在Nginx中，屏蔽特定特定IP/UA的访问，请看 <a href="/2019/how-to-ban-ip-or-ua-in-nginx">配置nginx屏蔽特定IP/UA的访问</a></p>
+<p>后记：Zabbix Agent 端的安装配置就讲到这里了。在一群服务器中，每个都这样配置还是挺累的。后续有一篇《<a href="/2019/zabbix-install-one-click-script">一键安装 Zabbix Agent 的脚本（Centos6/7，Zabbix4.4）</a>》，请继续享用。</p>
 
       <hr>
       <blockquote class="mdui-m-t-5">
       	<strong>本文作者：</strong>Jay<br>
-	<strong>本文链接：</strong><a href="http://blog.sqj.me/2019/how-to-ban-particular-floder-in-nginx/">http://blog.sqj.me/2019/how-to-ban-particular-floder-in-nginx/</a><br>
+	<strong>本文链接：</strong><a href="http://blog.sqj.me/2019/install-zabbix-agent/">http://blog.sqj.me/2019/install-zabbix-agent/</a><br>
       	<strong>版权声明：</strong>
         
           本作品采用 <a href='https://creativecommons.org/licenses/by-nc-nd/4.0/' target='_blank'>署名-非商业性使用-禁止演绎 4.0 国际</a> 许可。转载请保留原文链接及作者。
@@ -228,7 +313,7 @@
         <a class="mdui-ripple article_categories-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
       
       
-        <a class="mdui-ripple article_tags-link" href="/tags/Nginx/" rel="tag">Nginx</a>
+        <a class="mdui-ripple article_tags-link" href="/tags/Centos/" rel="tag">Centos</a><a class="mdui-ripple article_tags-link" href="/tags/Zabbix/" rel="tag">Zabbix</a>
       
     </footer>
     
@@ -240,14 +325,9 @@
 
   <nav id="paginator">
     
-      <a rel="prev" class="extend prev" href="/2019/linux-centos-free-cache/">
-        <button aria-label="prev" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_back</i></button>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上一篇
-      </a>
-    
     <div class="spacer"></div>
     
-      <a rel="next" class="extend next" href="/2019/zabbix-sso/">
+      <a rel="next" class="extend next" href="/2019/merge-ModSecurity-with-Nginx/">
         下一篇&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
       </a>
