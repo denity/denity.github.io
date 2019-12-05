@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.sqj.me/"/>
-  <updated>2019-12-01T01:25:07.311Z</updated>
+  <updated>2019-12-05T08:27:24.305Z</updated>
   <id>http://blog.sqj.me/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>缩小 Sql Server 磁盘空间占用</title>
+    <link href="http://blog.sqj.me/2019/minimize-mssql-db-size/"/>
+    <id>http://blog.sqj.me/2019/minimize-mssql-db-size/</id>
+    <published>2019-12-05T07:59:35.000Z</published>
+    <updated>2019-12-05T08:27:24.305Z</updated>
+    
+    <content type="html"><![CDATA[<p>长时间运行的 Sql Server ，日志文件会越来越大，对于2008以上的版本，可用以下命令来缩小文件在用空间。</p><p>（其实就是清空数据库的log记录）</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ALTER DATABASE 数据库名 SET RECOVERY SIMPLE  </span><br><span class="line">DBCC SHRINKDATABASE(数据库名, 0)  </span><br><span class="line">ALTER DATABASE 数据库名 SET RECOVERY FULL</span><br></pre></td></tr></table></figure><p>执行后效果杠杠滴。</p><p>注意，关于网上很多写的</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DUMP TRANSACTION databasename WITH NO_LOG</span><br></pre></td></tr></table></figure><p>在新版 Sql Server 中已经无效了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;长时间运行的 Sql Server ，日志文件会越来越大，对于2008以上的版本，可用以下命令来缩小文件在用空间。&lt;/p&gt;
+&lt;p&gt;（其实就是清空数据库的log记录）&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td cla
+      
+    
+    </summary>
+    
+    
+      <category term="开发" scheme="http://blog.sqj.me/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="Sql Server" scheme="http://blog.sqj.me/tags/Sql-Server/"/>
+    
+  </entry>
   
   <entry>
     <title>安装 Zabbix Agent</title>
@@ -558,32 +586,6 @@
     
     
       <category term="Centos" scheme="http://blog.sqj.me/tags/Centos/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>配置Grafana的Panel地址，实现点击图表后跳转到另一个dashboard/Url</title>
-    <link href="http://blog.sqj.me/2019/a-way-to-set-grafana-panel-links/"/>
-    <id>http://blog.sqj.me/2019/a-way-to-set-grafana-panel-links/</id>
-    <published>2019-10-28T15:03:28.000Z</published>
-    <updated>2019-11-29T08:05:03.905Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="配置Grafana的Panel地址，实现点击图表后跳转到另一个dashboard"><a href="#配置Grafana的Panel地址，实现点击图表后跳转到另一个dashboard" class="headerlink" title="配置Grafana的Panel地址，实现点击图表后跳转到另一个dashboard"></a>配置Grafana的Panel地址，实现点击图表后跳转到另一个dashboard</h3><p>Grafana有3个地方可以配置跳转链接</p><ol><li>dashboard层次，在dashboard的settings可以配置Links。</li><li>每一个Panel的<strong>data links</strong>。</li><li>每一个Panel的<strong>panel links</strong>。</li></ol><p><img src="http://imimimg.hetong.io/image/awaytosetlinks1.png" alt="在dashboard的Settings-&gt;Links中配置链接"></p><p><img src="http://imimimg.hetong.io/image/awaytosetlinks2.png" alt="在Panel中配置data links"></p><p><img src="http://imimimg.hetong.io/image/awaytosetlinks3.png" alt="在Panel中配置panel links"></p><p>在这三个地方都能够实现点击链接跳转到另外的页面。</p><h3 id="传参"><a href="#传参" class="headerlink" title="传参"></a>传参</h3><p>在添加链接时，可以使用绝对地址，也可以通过传递变量参数，实现链接的动态跳转</p><p>主要参数如下</p><table><thead><tr><th>名称</th><th>举例</th><th>简要说明</th></tr></thead><tbody><tr><td>${配置的dashboard变量}</td><td>如$group,$host等</td><td>这些变量需要在dashboard的settings的变量里面设置</td></tr><tr><td>${__url_time_range}</td><td>时间范围</td><td>${<strong>url_time_range} ${</strong>from} ${__to}</td></tr><tr><td>${__series.name}</td><td>数据列的名称</td><td>只在<strong>data links</strong>中有</td></tr><tr><td>${__field.name}</td><td>数据列的名称</td><td>只在<strong>data links</strong>中有</td></tr><tr><td>${__value.numeric}</td><td>图表的数值</td><td>只在<strong>data links</strong>中有，可以是字符/数字/原值/计算值</td></tr><tr><td></td><td></td><td></td></tr></tbody></table><p><strong>注意：</strong>在实践中发现，如果dashboard的变量，允许使用<strong>ALL</strong>的时候，只有在<strong>panel links</strong>中配置的url能够准确抓取当前图表的变量值。否则，会将变量的所有值，都会被传送到跳转链接中，导致目标url在获取参数的时候不正确。</p><h3 id="跳转到Dashboard"><a href="#跳转到Dashboard" class="headerlink" title="跳转到Dashboard"></a>跳转到Dashboard</h3><p>跳转到Dashboard是，网上的说明一直说的不够透彻。最简单的方法如下：</p><p>1、进入需要跳转的Dashboard，复制浏览器前面一段<br><img src="http://imimimg.hetong.io/image/awaytosetlinks4.png" alt="复制dashboard链接地址"></p><p>2、这段地址前面一段，就是Dashboard的地址，将这段链接地址，复制到Links里面，配置即可。</p><p>3、加上适当的参数。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;配置Grafana的Panel地址，实现点击图表后跳转到另一个dashboard&quot;&gt;&lt;a href=&quot;#配置Grafana的Panel地址，实现点击图表后跳转到另一个dashboard&quot; class=&quot;headerlink&quot; title=&quot;配置Grafana的Pa
-      
-    
-    </summary>
-    
-    
-      <category term="HTML/CSS/JS" scheme="http://blog.sqj.me/categories/HTML-CSS-JS/"/>
-    
-    
-      <category term="Grafana" scheme="http://blog.sqj.me/tags/Grafana/"/>
     
   </entry>
   

@@ -8,39 +8,29 @@
   <meta name="renderer" content="webkit">
 
   
-  <title>使用 lsyncd 进行主从文件实时同步 —— 生产效果 | 从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想</title>
+  <title>缩小 Sql Server 磁盘空间占用 | 从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想</title>
 
   <link rel="shortcut icon" href="http://imimimg.hetong.io/b/favicon.png">
   <link rel="alternate" href="/atom.xml" title="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="description" content="前文参考： lsyncd 进行主从文件实时同步 使用 lsyncd 进行主从文件实时同步 —— 配置参数   1. 服务启动123systemctl start lsyncdsystemctl enable lsyncdsystemctl status lsyncd -l   2. 第一次同步（没有限制速度）2.1 同步数据 1 T，所用数据约4小时 2.2 所占带宽 2.3 系统负载情况 3.">
-<meta name="keywords" content="Centos,高并发,HA">
+  <meta name="description" content="长时间运行的 Sql Server ，日志文件会越来越大，对于2008以上的版本，可用以下命令来缩小文件在用空间。 （其实就是清空数据库的log记录） 123ALTER DATABASE 数据库名 SET RECOVERY SIMPLE  DBCC SHRINKDATABASE(数据库名, 0)  ALTER DATABASE 数据库名 SET RECOVERY FULL    执行后效果杠杠滴。">
+<meta name="keywords" content="Sql Server">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用 lsyncd 进行主从文件实时同步 —— 生产效果">
-<meta property="og:url" content="http:&#x2F;&#x2F;blog.sqj.me&#x2F;2019&#x2F;replication-with-lsyncd-experiment&#x2F;">
+<meta property="og:title" content="缩小 Sql Server 磁盘空间占用">
+<meta property="og:url" content="http:&#x2F;&#x2F;blog.sqj.me&#x2F;2019&#x2F;minimize-mssql-db-size&#x2F;">
 <meta property="og:site_name" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-<meta property="og:description" content="前文参考： lsyncd 进行主从文件实时同步 使用 lsyncd 进行主从文件实时同步 —— 配置参数   1. 服务启动123systemctl start lsyncdsystemctl enable lsyncdsystemctl status lsyncd -l   2. 第一次同步（没有限制速度）2.1 同步数据 1 T，所用数据约4小时 2.2 所占带宽 2.3 系统负载情况 3.">
+<meta property="og:description" content="长时间运行的 Sql Server ，日志文件会越来越大，对于2008以上的版本，可用以下命令来缩小文件在用空间。 （其实就是清空数据库的log记录） 123ALTER DATABASE 数据库名 SET RECOVERY SIMPLE  DBCC SHRINKDATABASE(数据库名, 0)  ALTER DATABASE 数据库名 SET RECOVERY FULL    执行后效果杠杠滴。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http:&#x2F;&#x2F;imimimg.hetong.io&#x2F;image&#x2F;lsyncd1.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;imimimg.hetong.io&#x2F;image&#x2F;lsyncd3.jpg">
-<meta property="og:image" content="http:&#x2F;&#x2F;imimimg.hetong.io&#x2F;image&#x2F;lsyncd5.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;imimimg.hetong.io&#x2F;image&#x2F;lsyncd4.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;imimimg.hetong.io&#x2F;image&#x2F;lsyncd-r1.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;imimimg.hetong.io&#x2F;image&#x2F;lsyncd-r2.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;imimimg.hetong.io&#x2F;image&#x2F;lsyncd-r3.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;imimimg.hetong.io&#x2F;image&#x2F;lsyncd-r4.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;imimimg.hetong.io&#x2F;image&#x2F;lsyncd-r5.png">
-<meta property="og:updated_time" content="2019-11-29T08:05:03.971Z">
+<meta property="og:updated_time" content="2019-12-05T08:27:24.305Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;imimimg.hetong.io&#x2F;image&#x2F;lsyncd1.png">
 
   <meta name="format-detection" content="telephone=no,email=no">
   <meta name="theme-color" content="#9C27B0">
   <meta name="description" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="keywords" content=",Centos,高并发,HA">
+  <meta name="keywords" content=",Sql Server">
 
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="application-name" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
-  <meta name="msapplication-starturl" content="http://blog.sqj.me/2019/replication-with-lsyncd-experiment/">
+  <meta name="msapplication-starturl" content="http://blog.sqj.me/2019/minimize-mssql-db-size/">
   <meta name="msapplication-navbutton-color" content="#9C27B0">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="从小有个开个咖啡店悠闲无聊看店外匆匆忙忙人来人往一边打代码一边喝咖啡吃蛋糕的梦想">
@@ -48,12 +38,12 @@
   <link rel="apple-touch-icon" href="http://imimimg.hetong.io/b/favicon.png">
 
   
-    <meta property="article:published_time" content="Tue Nov 19 2019 22:51:00 GMT+0800">
-    <meta property="article:modified_time" content="Fri Nov 29 2019 16:05:03 GMT+0800">
+    <meta property="article:published_time" content="Thu Dec 05 2019 15:59:35 GMT+0800">
+    <meta property="article:modified_time" content="Thu Dec 05 2019 16:27:24 GMT+0800">
   
 
   
-    <link rel="canonical" href="http://blog.sqj.me/2019/replication-with-lsyncd-experiment/">
+    <link rel="canonical" href="http://blog.sqj.me/2019/minimize-mssql-db-size/">
   
 
   
@@ -180,11 +170,11 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="http://imimimg.hetong.io/b2/material-1.png" style="max-height: 180px;">
+      <img src="http://imimimg.hetong.io/image/201912050001.png" style="max-height: 180px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
-          <div class="mdui-card-primary-title">使用 lsyncd 进行主从文件实时同步 —— 生产效果</div>
-          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2019-11-19 / <i class="iconfont">&#xe601;</i> Jay</div>
+          <div class="mdui-card-primary-title">缩小 Sql Server 磁盘空间占用</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2019-12-05 / <i class="iconfont">&#xe601;</i> Jay</div>
         </div>
       </div>
       <div class="mdui-card-menu">
@@ -196,7 +186,7 @@
             
             <li class="mdui-menu-item" disabled>
               
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACWElEQVR42u3aQXKDMAwF0Nz/0u0FGviSQCWZx4phAPt5IXskvX6++nrh4eHh4eHh4eE9jPeKr+SrPwZ78+27v10wNzw8PLwV3kmobb0zWYLRuHh4eHiLvHdTOb6vBvpk9N7c8PDw8D6LdxzEE1hvLDw8PLzP4h0H9OR58mc8PDy8J/OSsF7F5/95RK4FDw8PL+blRab9+9X6Hh4eHl7AK7c0DaZ7vKz5ZnAyQzw8PLybeXkgrrYLJAmL/KtCyhgPDw9vhXeccq0+qcKSNG5hRDw8PLybeXkRKz8c501XyUyqKWA8PDy8HV4+TDWt0GsIyBcRDw8Pb5/Xaw/tHYXzpaymOfDw8PA2eVVYj9Q7cPcO1nh4eHh386qNVtWC1sVtAUlTAh4eHt4Kb1LO700iGfGWzgg8PDy8Ma+H7L1ZbWOtzgEPDw9vh9cLvtWSf57guKDNCw8PD2+dl2wVk9L+/Ghebh3Aw8PDu5Q3Sc5Wi2STJO8oGYGHh4d3M686id7Wkh/Zq8uBh4eHdzevmhrImwmqB+7LnuDh4eGt85JfJEPOGwiqDbJ4eHh4+7x5grWcOGg1sJ5sMHh4eHiLvGRjqL7TS2fk5TQ8PDy8fd7FQXlwFE7KZuWNAQ8PD+8GXi8oV5O2eWJ3XkLDw8PD2+Elm0FeypqUxKobAx4eHt7/8vIAPWlLzYN+jsfDw8P7FN48vdsDn4yIh4eH90heNcl7/KSaFD6ZAx4eHt4ib16Uqt4nsOrBGg8PD2+Hl/9uEuLz7aS6XeHh4eFt8r7vwsPDw8PDw8PDe8D1C6fYNQBdslGEAAAAAElFTkSuQmCC">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACb0lEQVR42u3aQW7CQAwFUO5/abqt1BK+7Zlpil5WCFGYl0Xsfvvx/OjrgYeHh4eHh4eHdzPeI76+f/7n6+tv++UQwSerZ8PDw8M7yXvzqH3xw9eHfnU7EvzobHh4eHgHeUkxuP7ba+T1oz/5/uRseHh4eHfjJQ/0HDApKnh4eHj/l1dti5MygIeHh/dfeMkR57HsJGjYnrXg4eHhxbz5AGzf61vM9/Dw8PAGVxLRVpcA8jIQnRAPDw9vM683fEoihuoALC8JC/5jwMPDwxvwqgFuHhbMb0ce5uLh4eGd5FVb4by9npN6QTAeHh7eGd5kISBpi3s3tDcew8PDwzvDqx609061GPTWZPHw8PB285KHfrW9ng/A8pVWPDw8vL/ivQlGg/A0j2InN67cUuPh4eFt483BeTGo/sqzeOHh4eGd4VWj1VVrBKuiCjw8PLyTvLxFTmKFatxQXqiaLF3h4eHhLeXlseyq41aD4GaMi4eHh7eBl4cRk4A1KRvVAGJxjIuHh4e3YQCWh7m9RdUkIoluJR4eHt5mXnXNtBoTVJvyXqyMh4eHd5KXF4C8Bc8Di3zVoPA9eHh4eAd51XhisjpQbcQL7+Ph4eFt5vWi1epy6qoVhNF8Dw8PD28Rb1Ie5i1yPgDb3lLj4eHhtWLc6sppHknkA7DqUhceHh7eX/HyEX7ysK4unubs5uoAHh4e3jZedfhUjSSSaGNeovDw8PDuxssb6Lxxz9nNMAIPDw/vBrykIU6ihGqRiAIRPDw8vIO8XhiRN985pnpCPDw8vPO8SQSwKm5IkM0YFw8PD28p7/MuPDw8PDw8PDy8G1xfDStPArKmBdAAAAAASUVORK5CYII=">
               
             </li>
           </ul>
@@ -205,32 +195,22 @@
       </div>
     </header>
     <div class="mdui-card-content mdui-typo">
-      <blockquote>
-<p>前文参考：<br> <a href="/2019/replication-with-lsyncd/">lsyncd 进行主从文件实时同步</a><br> <a href="/2019/replication-with-lsyncd-settings/">使用 lsyncd 进行主从文件实时同步 —— 配置参数</a> </p>
-</blockquote>
-<h3 id="1-服务启动"><a href="#1-服务启动" class="headerlink" title="1. 服务启动"></a>1. 服务启动</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl start lsyncd</span><br><span class="line">systemctl <span class="built_in">enable</span> lsyncd</span><br><span class="line">systemctl status lsyncd -l</span><br></pre></td></tr></table></figure>
+      <p>长时间运行的 Sql Server ，日志文件会越来越大，对于2008以上的版本，可用以下命令来缩小文件在用空间。</p>
+<p>（其实就是清空数据库的log记录）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ALTER DATABASE 数据库名 SET RECOVERY SIMPLE  </span><br><span class="line">DBCC SHRINKDATABASE(数据库名, 0)  </span><br><span class="line">ALTER DATABASE 数据库名 SET RECOVERY FULL</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://imimimg.hetong.io/image/lsyncd1.png" alt=""></p>
-<h3 id="2-第一次同步（没有限制速度）"><a href="#2-第一次同步（没有限制速度）" class="headerlink" title="2. 第一次同步（没有限制速度）"></a>2. 第一次同步（没有限制速度）</h3><h4 id="2-1-同步数据-1-T，所用数据约4小时"><a href="#2-1-同步数据-1-T，所用数据约4小时" class="headerlink" title="2.1 同步数据 1 T，所用数据约4小时"></a>2.1 同步数据 1 T，所用数据约4小时</h4><p><img src="http://imimimg.hetong.io/image/lsyncd3.jpg" alt=""></p>
-<h4 id="2-2-所占带宽"><a href="#2-2-所占带宽" class="headerlink" title="2.2 所占带宽"></a>2.2 所占带宽</h4><p><img src="http://imimimg.hetong.io/image/lsyncd5.png" alt=""></p>
-<h4 id="2-3-系统负载情况"><a href="#2-3-系统负载情况" class="headerlink" title="2.3 系统负载情况"></a>2.3 系统负载情况</h4><p><img src="http://imimimg.hetong.io/image/lsyncd4.png" alt=""></p>
-<h3 id="3-同步效果"><a href="#3-同步效果" class="headerlink" title="3. 同步效果"></a>3. 同步效果</h3><h4 id="3-1-监控记录-lsyncd-status"><a href="#3-1-监控记录-lsyncd-status" class="headerlink" title="3.1 监控记录 lsyncd.status"></a>3.1 监控记录 lsyncd.status</h4><p>排除Cache目录，监控了多少文件夹，存在多少个文件 delays</p>
-<p><img src="http://imimimg.hetong.io/image/lsyncd-r1.png" alt=""></p>
-<p>注意：如果一开始配置了同步，后修改 exclude 参数，则该文件夹、文件不会再同步，但原来已同步的文件不会删除。</p>
-<h4 id="3-2-源文件夹增加文件，目标文件夹同步新增同样文件"><a href="#3-2-源文件夹增加文件，目标文件夹同步新增同样文件" class="headerlink" title="3.2 源文件夹增加文件，目标文件夹同步新增同样文件"></a>3.2 源文件夹增加文件，目标文件夹同步新增同样文件</h4><p><strong>源服务器</strong></p>
-<p><img src="http://imimimg.hetong.io/image/lsyncd-r2.png" alt=""></p>
-<p><strong>目标服务器</strong></p>
-<p><img src="http://imimimg.hetong.io/image/lsyncd-r3.png" alt=""></p>
-<h4 id="3-3-目标服务器主动删除已同步的文件，不会触发再次同步，必须等到下次该文件在源服务器上修改后，才会再次同步。"><a href="#3-3-目标服务器主动删除已同步的文件，不会触发再次同步，必须等到下次该文件在源服务器上修改后，才会再次同步。" class="headerlink" title="3.3 目标服务器主动删除已同步的文件，不会触发再次同步，必须等到下次该文件在源服务器上修改后，才会再次同步。"></a>3.3 目标服务器主动删除已同步的文件，不会触发再次同步，必须等到下次该文件在源服务器上修改后，才会再次同步。</h4><h4 id="3-3-源文件夹删除文件、文件夹，目标文件夹同步删除文件、文件夹"><a href="#3-3-源文件夹删除文件、文件夹，目标文件夹同步删除文件、文件夹" class="headerlink" title="3.3 源文件夹删除文件、文件夹，目标文件夹同步删除文件、文件夹"></a>3.3 源文件夹删除文件、文件夹，目标文件夹同步删除文件、文件夹</h4><p>从源服务器删除 tt.t 文件，目标服务器自动删除</p>
-<p><strong>源服务器</strong></p>
-<p><img src="http://imimimg.hetong.io/image/lsyncd-r4.png" alt=""></p>
-<p><strong>目标服务器</strong></p>
-<p><img src="http://imimimg.hetong.io/image/lsyncd-r5.png" alt=""></p>
+
+
+<p>执行后效果杠杠滴。</p>
+<p>注意，关于网上很多写的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DUMP TRANSACTION databasename WITH NO_LOG</span><br></pre></td></tr></table></figure>
+
+<p>在新版 Sql Server 中已经无效了。</p>
 
       <hr>
       <blockquote class="mdui-m-t-5">
       	<strong>本文作者：</strong>Jay<br>
-	<strong>本文链接：</strong><a href="http://blog.sqj.me/2019/replication-with-lsyncd-experiment/">http://blog.sqj.me/2019/replication-with-lsyncd-experiment/</a><br>
+	<strong>本文链接：</strong><a href="http://blog.sqj.me/2019/minimize-mssql-db-size/">http://blog.sqj.me/2019/minimize-mssql-db-size/</a><br>
       	<strong>版权声明：</strong>
         
           本作品采用 <a href='https://creativecommons.org/licenses/by-nc-nd/4.0/' target='_blank'>署名-非商业性使用-禁止演绎 4.0 国际</a> 许可。转载请保留原文链接及作者。
@@ -240,10 +220,10 @@
     </div>
     <footer class="mdui-card-actions">
       
-        <a class="mdui-ripple article_categories-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+        <a class="mdui-ripple article_categories-link" href="/categories/%E5%BC%80%E5%8F%91/">开发</a>
       
       
-        <a class="mdui-ripple article_tags-link" href="/tags/Centos/" rel="tag">Centos</a><a class="mdui-ripple article_tags-link" href="/tags/HA/" rel="tag">HA</a><a class="mdui-ripple article_tags-link" href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" rel="tag">高并发</a>
+        <a class="mdui-ripple article_tags-link" href="/tags/Sql-Server/" rel="tag">Sql Server</a>
       
     </footer>
     
@@ -255,14 +235,9 @@
 
   <nav id="paginator">
     
-      <a rel="prev" class="extend prev" href="/2019/a-sb-way-to-solve-nginx-ssl-stapling-slow-and-letsencrypt-curl-errcode7/">
-        <button aria-label="prev" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_back</i></button>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上一篇
-      </a>
-    
     <div class="spacer"></div>
     
-      <a rel="next" class="extend next" href="/2019/replication-with-lsyncd-settings/">
+      <a rel="next" class="extend next" href="/2019/install-zabbix-agent/">
         下一篇&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
       </a>

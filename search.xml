@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>缩小 Sql Server 磁盘空间占用</title>
+      <link href="/2019/minimize-mssql-db-size/"/>
+      <url>/2019/minimize-mssql-db-size/</url>
+      
+        <content type="html"><![CDATA[<p>长时间运行的 Sql Server ，日志文件会越来越大，对于2008以上的版本，可用以下命令来缩小文件在用空间。</p><p>（其实就是清空数据库的log记录）</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ALTER DATABASE 数据库名 SET RECOVERY SIMPLE  </span><br><span class="line">DBCC SHRINKDATABASE(数据库名, 0)  </span><br><span class="line">ALTER DATABASE 数据库名 SET RECOVERY FULL</span><br></pre></td></tr></table></figure><p>执行后效果杠杠滴。</p><p>注意，关于网上很多写的</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DUMP TRANSACTION databasename WITH NO_LOG</span><br></pre></td></tr></table></figure><p>在新版 Sql Server 中已经无效了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Sql Server </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>安装 Zabbix Agent</title>
       <link href="/2019/install-zabbix-agent/"/>
       <url>/2019/install-zabbix-agent/</url>

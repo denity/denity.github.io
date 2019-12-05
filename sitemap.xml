@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.sqj.me/2019/minimize-mssql-db-size/</loc>
+    
+    <lastmod>2019-12-05T08:27:24.305Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.sqj.me/mylinks/</loc>
+    
+    <lastmod>2019-12-03T04:10:35.558Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.sqj.me/2019/install-zabbix-agent/</loc>
     
     <lastmod>2019-12-01T01:25:07.311Z</lastmod>
@@ -138,13 +152,6 @@
     <loc>http://blog.sqj.me/2019/how-to-config-log-format-in-nginx/</loc>
     
     <lastmod>2019-11-12T04:23:12.683Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.sqj.me/mylinks/</loc>
-    
-    <lastmod>2019-11-04T08:30:53.758Z</lastmod>
     
   </url>
   
